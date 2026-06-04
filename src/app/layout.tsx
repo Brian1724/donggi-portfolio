@@ -1,0 +1,67 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_KEYWORDS,
+  DEFAULT_TITLE,
+  OG_IMAGE_PATH,
+  RSS_FEED_PATH,
+  SITE_NAME,
+} from "@/lib/metadata";
+import { absoluteUrl, metadataBase } from "@/lib/site-url";
+import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase,
+  title: {
+    default: DEFAULT_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: DEFAULT_DESCRIPTION,
+  keywords: DEFAULT_KEYWORDS,
+  alternates: {
+    canonical: absoluteUrl("/"),
+    types: {
+      "application/rss+xml": absoluteUrl(RSS_FEED_PATH),
+    },
+  },
+  openGraph: {
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    url: absoluteUrl("/"),
+    siteName: SITE_NAME,
+    images: [absoluteUrl(OG_IMAGE_PATH)],
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [absoluteUrl(OG_IMAGE_PATH)],
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="ko" className={`${inter.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-canvas-soft text-ink">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}

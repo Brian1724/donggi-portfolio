@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --background: #e8ebe6;
+  --foreground: #0e0f0c;
+}
+
+@theme {
+  --color-primary: #9fe870;
+  --color-primary-active: #cdffad;
+  --color-primary-neutral: #c5edab;
+  --color-primary-pale: #e2f6d5;
+
+  --color-canvas: #ffffff;
+  --color-canvas-soft: #e8ebe6;
+  --color-ink: #0e0f0c;
+  --color-ink-deep: #163300;
+  --color-body: #454745;
+  --color-mute: #868685;
+  --color-line: rgba(14, 15, 12, 0.1);
+
+  --color-positive: #2ead4b;
+  --color-positive-deep: #054d28;
+  --color-warning: #ffd11a;
+  --color-warning-deep: #b86700;
+  --color-negative: #d03238;
+  --color-negative-deep: #a72027;
+  --color-accent-orange: #ffc091;
+  --color-accent-cyan: #38c8ff;
+
+  --font-sans: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+a {
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+::selection {
+  background: #9fe870;
+  color: #0e0f0c;
+}
+
+@layer components {
+  .eyebrow {
+    font-size: 0.875rem;
+    font-weight: 800;
+    line-height: 1.25rem;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: #054d28;
+  }
+
+  .hero-heading {
+    font-size: clamp(4rem, 8.5vw, 8.75rem);
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: 0;
+    color: #0e0f0c;
+  }
+
+  .section-heading {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: 0;
+    color: #0e0f0c;
+  }
+
+  .text-body-large {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.875rem;
+  }
+
+  .hero-line {
+    white-space: nowrap;
+  }
+
+  .surface-ring {
+    border: 1px solid rgba(14, 15, 12, 0.1);
+  }
+
+  .soft-shadow {
+    box-shadow: 0 18px 50px rgba(14, 15, 12, 0.06);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-heading {
+    font-size: clamp(3.5rem, 17vw, 5rem);
+  }
+
+  .hero-line {
+    white-space: normal;
+  }
+
+  .section-heading {
+    font-size: clamp(2.4rem, 12vw, 3.7rem);
+  }
+}
