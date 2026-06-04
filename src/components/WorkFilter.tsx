@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { WorkCard } from "@/components/WorkCard";
 import { workFilters, type Work } from "@/data/works";
@@ -22,10 +22,10 @@ export function WorkFilter({ works }: { works: Work[] }) {
           <button
             key={filter}
             type="button"
-            className={`min-h-12 rounded-[24px] px-5 text-sm font-semibold transition ${
+            className={`min-h-12 rounded-[24px] px-6 text-sm font-semibold transition ${
               activeFilter === filter
-                ? "bg-primary text-ink"
-                : "bg-canvas text-body hover:bg-primary-pale hover:text-ink"
+                ? "bg-primary-pale text-ink-deep"
+                : "bg-canvas text-ink hover:bg-canvas-soft"
             }`}
             onClick={() => setActiveFilter(filter)}
           >
@@ -33,22 +33,25 @@ export function WorkFilter({ works }: { works: Work[] }) {
           </button>
         ))}
       </div>
-      <motion.div layout className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        <AnimatePresence mode="popLayout">
-          {filteredWorks.map((work) => (
-            <motion.div
-              key={work.slug}
-              layout
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 18 }}
-              transition={{ duration: 0.25 }}
-            >
-              <WorkCard work={work} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
+        {filteredWorks.map((work, index) => (
+          <motion.div
+            key={`${activeFilter}-${work.slug}`}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              ease: [0.2, 0.8, 0.2, 1],
+              delay: index * 0.04,
+            }}
+          >
+            <WorkCard
+              work={work}
+              aspect={index % 3 === 1 ? "landscape" : "portrait"}
+            />
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }

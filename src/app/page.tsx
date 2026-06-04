@@ -4,11 +4,9 @@ import { Card } from "@/components/Card";
 import { ContactCTA } from "@/components/ContactCTA";
 import { Container } from "@/components/Container";
 import { Hero } from "@/components/Hero";
-import { JournalCard } from "@/components/JournalCard";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
 import { WorkCard } from "@/components/WorkCard";
-import { journalPosts } from "@/data/journal";
 import { profile } from "@/data/profile";
 import { skills } from "@/data/skills";
 import { works } from "@/data/works";
@@ -21,36 +19,12 @@ export const metadata = createPageMetadata({
 
 export default function HomePage() {
   const featuredWorks = works.slice(0, 3);
-  const latestPosts = journalPosts.slice(0, 2);
 
   return (
     <>
       <Hero />
 
-      <section className="bg-canvas py-12 sm:py-16 lg:py-20">
-        <Container>
-          <div className="grid gap-5 md:grid-cols-3">
-            {[
-              ["School", profile.school],
-              ["Major", profile.department],
-              ["Double Major", profile.doubleMajor],
-            ].map(([label, value]) => (
-              <Reveal key={label}>
-                <Card className="h-full">
-                  <p className="text-sm font-bold uppercase text-positive-deep">
-                    {label}
-                  </p>
-                  <p className="mt-4 text-2xl font-black leading-tight text-ink">
-                    {value}
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-canvas py-12 sm:py-16 lg:py-24">
+      <section className="content-band">
         <Container>
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <SectionHeader
@@ -62,18 +36,21 @@ export default function HomePage() {
               모든 작업 보기
             </Button>
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
             {featuredWorks.map((work, index) => (
               <Reveal key={work.slug} delay={index * 0.08}>
-                <WorkCard work={work} />
+                <WorkCard
+                  work={work}
+                  aspect={index === 1 ? "landscape" : "portrait"}
+                />
               </Reveal>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="bg-primary py-12 sm:py-16 lg:py-24">
-        <Container className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <section className="sage-band">
+        <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <Reveal>
             <SectionHeader
               eyebrow="About"
@@ -87,44 +64,29 @@ export default function HomePage() {
               </Button>
             </div>
           </Reveal>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {skills.map((skill, index) => (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {[
+              {
+                title: "School",
+                description: profile.school,
+                items: [profile.department, profile.doubleMajor],
+              },
+              ...skills.slice(0, 3),
+            ].map((skill, index) => (
               <Reveal key={skill.title} delay={index * 0.06}>
                 <Card className="h-full">
-                  <h3 className="text-3xl font-black leading-none text-ink">
+                  <h3 className="display-md text-ink">
                     {skill.title}
                   </h3>
-                  <p className="mt-4 text-base leading-6 text-body">
+                  <p className="body-copy mt-4">
                     {skill.description}
                   </p>
-                  <div className="mt-5 flex flex-wrap gap-2">
+                  <div className="mt-6 flex flex-wrap gap-2">
                     {skill.items.slice(0, 4).map((item) => (
                       <Badge key={item}>{item}</Badge>
                     ))}
                   </div>
                 </Card>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-canvas py-12 sm:py-16 lg:py-24">
-        <Container>
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <SectionHeader
-              eyebrow="Journal"
-              title="Process notes and visual thoughts."
-              subtitle="촬영, 편집, 여행, 사진을 배우며 남기는 짧은 기록들입니다."
-            />
-            <Button href="/journal" variant="secondary">
-              저널 읽기
-            </Button>
-          </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {latestPosts.map((post, index) => (
-              <Reveal key={post.slug} delay={index * 0.08}>
-                <JournalCard post={post} />
               </Reveal>
             ))}
           </div>

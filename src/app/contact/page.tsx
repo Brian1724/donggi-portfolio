@@ -1,6 +1,6 @@
 import { Badge } from "@/components/Badge";
-import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
+import { ContactFeatureCard } from "@/components/ContactFeatureCard";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
 import { profile } from "@/data/profile";
@@ -15,35 +15,19 @@ export const metadata = createPageMetadata({
 
 export default function ContactPage() {
   return (
-    <section className="bg-canvas-soft py-12 sm:py-16 lg:py-24">
-      <Container className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+    <section className="sage-band">
+      <Container className="grid grid-cols-1 gap-8">
         <Reveal>
-          <p className="eyebrow">Contact</p>
-          <h1 className="hero-heading mt-5">Let&apos;s talk.</h1>
-          <p className="mt-6 max-w-2xl text-body-large text-body">
-            사진, 영상, 여행 기록, 개인 프로젝트, 협업 문의가 있다면 편하게
-            연락해주세요.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button href={`mailto:${profile.email}`}>이메일 보내기</Button>
-            <Button href={profile.instagram} variant="secondary" external>
-              @donggi_03
-            </Button>
-            <Button href={profile.photoInstagram} variant="tertiary" external>
-              @dk4film
-            </Button>
-          </div>
+          <ContactFeatureCard />
         </Reveal>
 
-        <div className="grid gap-5">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
           <Reveal delay={0.08}>
             <Card>
-              <p className="text-sm font-bold uppercase text-positive-deep">
-                Email
-              </p>
+              <p className="eyebrow text-ink-deep">Email</p>
               <a
                 href={`mailto:${profile.email}`}
-                className="mt-4 block break-words text-4xl font-black leading-none text-ink sm:text-5xl"
+                className="display-md mt-4 block break-words text-ink"
               >
                 {profile.email}
               </a>
@@ -52,15 +36,13 @@ export default function ContactPage() {
 
           <Reveal delay={0.12}>
             <Card>
-              <p className="text-sm font-bold uppercase text-positive-deep">
-                Social
-              </p>
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <p className="eyebrow text-ink-deep">Social</p>
+              <div className="mt-6 grid grid-cols-1 gap-3">
                 <a
                   href={profile.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-[24px] bg-canvas-soft p-5 font-bold text-ink transition hover:bg-primary-pale"
+                  className="rounded-[24px] bg-canvas-soft p-6 font-semibold text-ink transition hover:bg-primary-pale"
                 >
                   Instagram
                   <span className="mt-2 block text-base font-semibold text-body">
@@ -71,7 +53,7 @@ export default function ContactPage() {
                   href={profile.photoInstagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-[24px] bg-canvas-soft p-5 font-bold text-ink transition hover:bg-primary-pale"
+                  className="rounded-[24px] bg-canvas-soft p-6 font-semibold text-ink transition hover:bg-primary-pale"
                 >
                   Photo Instagram
                   <span className="mt-2 block text-base font-semibold text-body">
@@ -84,10 +66,8 @@ export default function ContactPage() {
 
           <Reveal delay={0.16}>
             <Card>
-              <p className="text-sm font-bold uppercase text-positive-deep">
-                Open To
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
+              <p className="eyebrow text-ink-deep">Open To</p>
+              <div className="mt-6 flex flex-wrap gap-2">
                 {[
                   "Videography",
                   "Photography",

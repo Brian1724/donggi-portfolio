@@ -1,4 +1,3 @@
-import { ContactCTA } from "@/components/ContactCTA";
 import { Container } from "@/components/Container";
 import { JournalCard } from "@/components/JournalCard";
 import { Reveal } from "@/components/Reveal";
@@ -17,26 +16,23 @@ export default function JournalPage() {
   const posts = getSortedJournalPosts();
 
   return (
-    <>
-      <section className="bg-canvas-soft py-12 sm:py-16 lg:py-24">
-        <Container>
-          <Reveal>
-            <SectionHeader
-              eyebrow="Journal"
-              title="Notes from the visual process."
-              subtitle="촬영을 준비하고, 사진을 고르고, 편집을 배우며 생기는 생각을 짧게 남깁니다."
-            />
-          </Reveal>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {posts.map((post, index) => (
-              <Reveal key={post.slug} delay={index * 0.05}>
-                <JournalCard post={post} />
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-      <ContactCTA />
-    </>
+    <section className="sage-band">
+      <Container>
+        <Reveal>
+          <SectionHeader
+            eyebrow="Journal"
+            title="Notes from the visual process."
+            subtitle="촬영을 준비하고, 사진을 고르고, 편집을 배우며 생기는 생각을 짧게 남깁니다."
+          />
+        </Reveal>
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+          {posts.map((post, index) => (
+            <Reveal key={post.slug} delay={index * 0.04}>
+              <JournalCard post={post} />
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </section>
   );
 }

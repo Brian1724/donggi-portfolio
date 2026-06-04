@@ -8,10 +8,12 @@ export function SectionHeader({
   subtitle?: string;
 }) {
   return (
-    <div className="max-w-3xl">
+    <div className="max-w-[640px]">
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2 className="section-heading mt-3">{title}</h2>
-      {subtitle ? <p className="mt-5 text-body-large text-body">{subtitle}</p> : null}
+      <h2 className="heading mt-3 text-[32px] leading-tight text-ink">
+        {title}
+      </h2>
+      {subtitle ? <p className="lead mt-4">{subtitle}</p> : null}
     </div>
   );
 }

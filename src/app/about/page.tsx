@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
-import { ContactCTA } from "@/components/ContactCTA";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -22,21 +21,21 @@ export const metadata = createPageMetadata({
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-canvas-soft py-12 sm:py-16 lg:py-24">
-        <Container className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+      <section className="hero-band">
+        <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <Reveal>
             <p className="eyebrow">About</p>
-            <h1 className="hero-heading mt-5">윤동기</h1>
-            <p className="mt-6 text-2xl font-black leading-tight text-ink">
+            <h1 className="display hero-mega mt-4 text-ink">윤동기</h1>
+            <p className="sub-heading mt-6 text-ink">
               {profile.title}
             </p>
-            <p className="mt-5 max-w-2xl text-body-large text-body">
+            <p className="lead mt-4 max-w-[640px]">
               {profile.intro}
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="surface-ring rounded-[24px] bg-canvas p-4">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-primary-pale">
+            <div className="card">
+              <div className="media relative aspect-[4/3] bg-canvas-soft">
                 <Image
                   src="/images/hero.jpg"
                   alt="윤동기의 시각 아카이브를 표현한 이미지"
@@ -50,8 +49,8 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-canvas-soft py-10 sm:py-16 lg:py-20">
-        <Container className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <section className="sage-band">
+        <Container className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
           {[
             ["Korean Name", profile.nameKo],
             ["English Name", profile.nameEn],
@@ -60,10 +59,10 @@ export default function AboutPage() {
           ].map(([label, value], index) => (
             <Reveal key={label} delay={index * 0.05}>
               <Card className="h-full">
-                <p className="text-sm font-bold uppercase text-positive-deep">
+                <p className="eyebrow">
                   {label}
                 </p>
-                <p className="mt-4 text-2xl font-black leading-tight text-ink">
+                <p className="sub-heading mt-4 text-ink">
                   {value}
                 </p>
               </Card>
@@ -72,8 +71,8 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-canvas-soft py-10 sm:py-16 lg:py-20">
-        <Container className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+      <section className="sage-band">
+        <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
             <SectionHeader
               eyebrow="Learning Path"
@@ -81,18 +80,18 @@ export default function AboutPage() {
               subtitle="학교에서 배우는 미디어적 관점과 개인 촬영 경험을 연결해, 오래 남는 이미지와 흐름을 탐구하고 있습니다."
             />
           </Reveal>
-          <div className="grid gap-5">
+          <div className="grid grid-cols-1 gap-6">
             {timeline.map((item, index) => (
               <Reveal key={`${item.period}-${item.title}`} delay={index * 0.06}>
                 <Card>
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <Badge>{item.period}</Badge>
-                      <h2 className="mt-4 text-3xl font-black leading-none text-ink">
+                      <h2 className="display-md mt-4 text-ink">
                         {item.title}
                       </h2>
                     </div>
-                    <p className="max-w-xl text-base leading-7 text-body">
+                    <p className="body-copy max-w-[640px]">
                       {item.description}
                     </p>
                   </div>
@@ -103,21 +102,21 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-canvas-soft py-10 sm:py-16 lg:py-20">
+      <section className="sage-band">
         <Container>
           <SectionHeader
             eyebrow="Practice"
             title="What I keep building."
             subtitle="촬영, 편집, 색감, 스토리텔링을 작게 반복하며 포트폴리오를 채워가고 있습니다."
           />
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {skills.map((skill, index) => (
               <Reveal key={skill.title} delay={index * 0.05}>
                 <Card className="h-full">
-                  <h2 className="text-4xl font-black leading-none text-ink">
+                  <h2 className="display-md text-ink">
                     {skill.title}
                   </h2>
-                  <p className="mt-4 text-base leading-7 text-body">
+                  <p className="body-copy mt-4">
                     {skill.description}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-2">
@@ -137,8 +136,6 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
-
-      <ContactCTA />
     </>
   );
 }

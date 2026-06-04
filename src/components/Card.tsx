@@ -8,9 +8,7 @@ export function Card({
   className?: string;
 }) {
   return (
-    <article
-      className={`surface-ring rounded-[24px] bg-canvas p-6 transition duration-300 hover:-translate-y-1 ${className}`}
-    >
+    <article className={`card ${className}`}>
       {children}
     </article>
   );
