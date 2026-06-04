@@ -57,7 +57,7 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
   );
 
   return (
-    <article className="sage-band">
+    <article className="hero-band">
       <Container>
         <Reveal>
           <Link href="/journal" className="eyebrow inline-flex text-ink-deep">
@@ -91,9 +91,11 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
 
         <Reveal delay={0.12}>
           <Card className="mx-auto mt-8 max-w-3xl">
-            <div className="grid grid-cols-1 gap-6 text-lg leading-8 text-body">
+            <div className="grid grid-cols-1 gap-6">
               {post.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+                <p key={paragraph} className="body">
+                  {paragraph}
+                </p>
               ))}
             </div>
             <div className="mt-8">
@@ -115,7 +117,7 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
                   className="card block transition hover:bg-primary-pale"
                 >
                   <span className="eyebrow text-body">{item.date}</span>
-                  <span className="display-md mt-3 block text-ink">
+                  <span className="head-md mt-3 block text-ink">
                     {item.title}
                   </span>
                 </Link>

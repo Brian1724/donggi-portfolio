@@ -1,7 +1,6 @@
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
-import { ContactCTA } from "@/components/ContactCTA";
 import { Container } from "@/components/Container";
 import { Hero } from "@/components/Hero";
 import { Reveal } from "@/components/Reveal";
@@ -36,7 +35,7 @@ export default function HomePage() {
               모든 작업 보기
             </Button>
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
+          <div className="grid-works mt-8">
             {featuredWorks.map((work, index) => (
               <Reveal key={work.slug} delay={index * 0.08}>
                 <WorkCard
@@ -49,7 +48,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="sage-band">
+      <section className="hero-band">
         <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <Reveal>
             <SectionHeader
@@ -75,10 +74,10 @@ export default function HomePage() {
             ].map((skill, index) => (
               <Reveal key={skill.title} delay={index * 0.06}>
                 <Card className="h-full">
-                  <h3 className="display-md text-ink">
+                  <h3 className="head-md text-ink">
                     {skill.title}
                   </h3>
-                  <p className="body-copy mt-4">
+                  <p className="body mt-4">
                     {skill.description}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-2">
@@ -92,8 +91,6 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
-
-      <ContactCTA />
     </>
   );
 }

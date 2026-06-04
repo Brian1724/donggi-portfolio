@@ -14,7 +14,7 @@ export function ContactFeatureCard({
       <h2 className="display sub-hero mt-4 max-w-4xl text-primary">
         Let&apos;s create something visual
       </h2>
-      <p className="mt-6 max-w-[640px] text-xl leading-[30px] text-canvas-soft">
+      <p className="lead mt-6 text-canvas-soft">
         촬영, 협업, 프로젝트 문의가 있다면 편하게 연락해주세요.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">

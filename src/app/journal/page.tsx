@@ -16,7 +16,7 @@ export default function JournalPage() {
   const posts = getSortedJournalPosts();
 
   return (
-    <section className="sage-band">
+    <section className="hero-band">
       <Container>
         <Reveal>
           <SectionHeader

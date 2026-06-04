@@ -23,7 +23,6 @@ const inter = Inter({
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["800"],
   display: "swap",
 });
 
@@ -40,6 +39,14 @@ export const metadata: Metadata = {
     types: {
       "application/rss+xml": absoluteUrl(RSS_FEED_PATH),
     },
+  },
+  icons: {
+    icon: [
+      { url: absoluteUrl("/logo/favicon.ico") },
+      { url: absoluteUrl("/logo/icon-192.png"), sizes: "192x192", type: "image/png" },
+      { url: absoluteUrl("/logo/icon-512.png"), sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: absoluteUrl("/apple-icon.png"), sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title: DEFAULT_TITLE,

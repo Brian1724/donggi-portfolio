@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -22,10 +23,25 @@ export function Header() {
       <div className="container relative flex items-center justify-between gap-6 py-3">
         <Link
           href="/"
-          className="font-display text-2xl font-black leading-none text-ink"
+          className="inline-flex items-center"
           onClick={() => setIsOpen(false)}
         >
-          Donggi
+          <Image
+            src="/logo/logo-icon-mono-ink.svg"
+            alt="YOON DONGGI"
+            width={32}
+            height={32}
+            priority
+            className="logo-mobile h-8 w-auto"
+          />
+          <Image
+            src="/logo/logo-mono-ink.svg"
+            alt="YOON DONGGI"
+            width={172}
+            height={32}
+            priority
+            className="logo-wordmark h-8 w-auto"
+          />
         </Link>
         <nav className="hidden items-center gap-2 md:flex">
           {navLinks.map((link) => {
@@ -78,11 +94,18 @@ export function Header() {
           id="mobile-menu"
           className="absolute inset-x-0 top-full z-40 grid min-h-screen grid-cols-1 content-start gap-4 bg-canvas-soft p-6 md:hidden"
         >
+          <Image
+            src="/logo/logo-icon-mono-ink.svg"
+            alt="YOON DONGGI"
+            width={32}
+            height={32}
+            className="h-8 w-auto"
+          />
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="display-md rounded-[24px] bg-canvas px-6 py-4 text-ink"
+              className="head-md rounded-[24px] bg-canvas px-6 py-4 text-ink"
               onClick={() => setIsOpen(false)}
             >
               {link.label}
@@ -92,7 +115,7 @@ export function Header() {
             href={profile.photoInstagram}
             target="_blank"
             rel="noreferrer"
-            className="display-md rounded-[24px] bg-canvas px-6 py-4 text-ink"
+            className="head-md rounded-[24px] bg-canvas px-6 py-4 text-ink"
           >
             @dk4film
           </a>

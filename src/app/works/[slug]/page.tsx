@@ -51,7 +51,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
   const { previous, next } = getAdjacentWorks(work.slug);
 
   return (
-    <article className="sage-band">
+    <article className="hero-band">
       <Container>
         <Reveal>
           <Link href="/works" className="eyebrow">
@@ -89,7 +89,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
               <dl className="mt-6 grid grid-cols-1 gap-6">
                 <div>
                   <dt className="eyebrow">Year</dt>
-                  <dd className="sub-heading mt-2 text-ink">{work.year}</dd>
+                  <dd className="subhead mt-2 text-ink">{work.year}</dd>
                 </div>
                 <div>
                   <dt className="eyebrow">Role</dt>
@@ -115,11 +115,11 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
             <Card>
               <p className="eyebrow">Project Note</p>
               <div className="mt-6 grid grid-cols-1 gap-4">
-                <p className="body-copy">
+                <p className="body">
                   이 작업은 윤동기가 사진과 영상으로 일상, 여행, 사람,
                   공간의 분위기를 기록하며 쌓아가는 개인 포트폴리오의 일부입니다.
                 </p>
-                <p className="body-copy">
+                <p className="body">
                   장면의 색감, 움직임, 빛의 방향, 편집 리듬을 함께 관찰하며
                   오래 남는 비주얼 언어를 찾아가는 과정으로 정리했습니다.
                 </p>
@@ -166,7 +166,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
           {previous ? (
             <Link href={`/works/${previous.slug}`} className="card block">
               <span className="eyebrow">Previous</span>
-              <span className="sub-heading mt-3 block text-ink">
+              <span className="subhead mt-3 block text-ink">
                 {previous.title}
               </span>
             </Link>
@@ -179,7 +179,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
               className="card block text-left md:text-right"
             >
               <span className="eyebrow">Next</span>
-              <span className="sub-heading mt-3 block text-ink">
+              <span className="subhead mt-3 block text-ink">
                 {next.title}
               </span>
             </Link>

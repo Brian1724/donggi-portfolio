@@ -15,7 +15,7 @@ export const metadata = createPageMetadata({
 
 export default function ContactPage() {
   return (
-    <section className="sage-band">
+    <section className="hero-band">
       <Container className="grid grid-cols-1 gap-8">
         <Reveal>
           <ContactFeatureCard />
@@ -27,7 +27,7 @@ export default function ContactPage() {
               <p className="eyebrow text-ink-deep">Email</p>
               <a
                 href={`mailto:${profile.email}`}
-                className="display-md mt-4 block break-words text-ink"
+                className="head-md mt-4 block break-words text-ink"
               >
                 {profile.email}
               </a>

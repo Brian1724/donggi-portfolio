@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="YOON DONGGI">
+  <g fill="none" stroke="#0e0f0c" stroke-linecap="square" stroke-width="5">
+    <path d="M34 28h-16v16"/>
+    <path d="M126 28h16v16"/>
+    <path d="M34 132h-16v-16"/>
+    <path d="M126 132h16v-16"/>
+  </g>
+  <path fill="#0e0f0c" d="M34 43h31l22 37-22 37H34l24-37L34 43Z"/>
+  <path d="M76 44h11c31 0 49 16 49 36s-18 36-49 36H76" fill="none" stroke="#0e0f0c" stroke-width="12" stroke-linecap="round"/>
+</svg>

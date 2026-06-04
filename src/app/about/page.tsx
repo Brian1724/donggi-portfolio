@@ -26,7 +26,7 @@ export default function AboutPage() {
           <Reveal>
             <p className="eyebrow">About</p>
             <h1 className="display hero-mega mt-4 text-ink">윤동기</h1>
-            <p className="sub-heading mt-6 text-ink">
+            <p className="subhead mt-6 text-ink">
               {profile.title}
             </p>
             <p className="lead mt-4 max-w-[640px]">
@@ -49,7 +49,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="sage-band">
+      <section className="hero-band">
         <Container className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
           {[
             ["Korean Name", profile.nameKo],
@@ -62,7 +62,7 @@ export default function AboutPage() {
                 <p className="eyebrow">
                   {label}
                 </p>
-                <p className="sub-heading mt-4 text-ink">
+                <p className="subhead mt-4 text-ink">
                   {value}
                 </p>
               </Card>
@@ -71,7 +71,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="sage-band">
+      <section className="hero-band">
         <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
             <SectionHeader
@@ -87,11 +87,11 @@ export default function AboutPage() {
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <Badge>{item.period}</Badge>
-                      <h2 className="display-md mt-4 text-ink">
+                      <h2 className="head-md mt-4 text-ink">
                         {item.title}
                       </h2>
                     </div>
-                    <p className="body-copy max-w-[640px]">
+                    <p className="body">
                       {item.description}
                     </p>
                   </div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="sage-band">
+      <section className="hero-band">
         <Container>
           <SectionHeader
             eyebrow="Practice"
@@ -113,10 +113,10 @@ export default function AboutPage() {
             {skills.map((skill, index) => (
               <Reveal key={skill.title} delay={index * 0.05}>
                 <Card className="h-full">
-                  <h2 className="display-md text-ink">
+                  <h2 className="head-md text-ink">
                     {skill.title}
                   </h2>
-                  <p className="body-copy mt-4">
+                  <p className="body mt-4">
                     {skill.description}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-2">

@@ -14,7 +14,7 @@ export const metadata = createPageMetadata({
 
 export default function WorksPage() {
   return (
-    <section className="sage-band">
+    <section className="hero-band">
       <Container>
         <Reveal>
           <SectionHeader

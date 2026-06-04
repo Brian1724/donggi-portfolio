@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-label="YOON DONGGI">
+  <g transform="translate(42 34)">
+    <g fill="none" stroke-linecap="square" stroke-width="4">
+      <path d="M24 12h-12v12" stroke="#b99a5a"/>
+      <path d="M116 12h12v12" stroke="#b99a5a"/>
+      <path d="M24 100h-12v-12" stroke="#b99a5a"/>
+      <path d="M116 100h12v-12" stroke="#b99a5a"/>
+    </g>
+    <path fill="#0e0f0c" d="M30 28h30l22 28-22 28H30l24-28-24-28Z"/>
+    <path d="M73 29h10c31 0 49 13 49 27s-18 27-49 27H73" fill="none" stroke="#b99a5a" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <path d="M224 52v76" stroke="#b99a5a" stroke-width="2" opacity=".58"/>
+  <text x="275" y="78" fill="#0e0f0c" font-family="Manrope, Inter, Arial, sans-serif" font-size="40" font-weight="800" letter-spacing="14">YOON DONGGI</text>
+  <text x="296" y="118" fill="#0e0f0c" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="8">VIDEOGRAPHER  ·  PHOTOGRAPHER  ·  CREATIVE</text>
+  <text x="410" y="148" fill="#0e0f0c" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="8">DIGITAL MARKETING</text>
+</svg>

@@ -14,7 +14,7 @@ export function WorkCard({
   return (
     <Link
       href={`/works/${work.slug}`}
-      className="card group block"
+      className="card group"
     >
       <div className={`media relative ${aspectClass} bg-canvas-soft`}>
         <Image
@@ -24,14 +24,14 @@ export function WorkCard({
           className="object-cover"
         />
       </div>
-      <div className="pt-6">
+      <div className="flex flex-1 flex-col pt-6">
         <p className="eyebrow">
           {work.categories[0]} · {work.year}
         </p>
-        <h3 className="display-md mt-3 text-ink">
+        <h3 className="head-md mt-3 text-ink">
           {work.title}
         </h3>
-        <p className="body-copy mt-4 truncate">{work.description}</p>
+        <p className="body card-cta mt-4 truncate">{work.description}</p>
       </div>
     </Link>
   );

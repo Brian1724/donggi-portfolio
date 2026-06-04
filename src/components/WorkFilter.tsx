@@ -33,12 +33,13 @@ export function WorkFilter({ works }: { works: Work[] }) {
           </button>
         ))}
       </div>
-      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
+      <div className="grid-works mt-8">
         {filteredWorks.map((work, index) => (
           <motion.div
             key={`${activeFilter}-${work.slug}`}
             initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{
               duration: 0.6,
               ease: [0.2, 0.8, 0.2, 1],

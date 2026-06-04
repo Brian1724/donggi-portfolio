@@ -16,7 +16,7 @@ export function ProfileCard() {
       </div>
       <div className="pt-6">
         <p className="eyebrow text-body">Archive Card</p>
-        <h2 className="display-md mt-2 text-ink">{profile.nameKo}</h2>
+        <h2 className="head-md mt-2 text-ink">{profile.nameKo}</h2>
         <p className="mt-2 text-base font-semibold text-body">
           Videographer & Photographer
         </p>

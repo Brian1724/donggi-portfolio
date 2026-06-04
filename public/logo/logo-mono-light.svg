@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 80" role="img" aria-label="YOON DONGGI">
+  <g fill="none" stroke="#e8ebe6" stroke-linecap="square" stroke-width="3">
+    <path d="M23 18h-10v10"/>
+    <path d="M93 18h10v10"/>
+    <path d="M23 62h-10v-10"/>
+    <path d="M93 62h10v-10"/>
+  </g>
+  <path fill="#e8ebe6" d="M28 22h19l14 18-14 18H28l15-18-15-18Z"/>
+  <path d="M55 23h8c22 0 35 8 35 17s-13 17-35 17h-8" fill="none" stroke="#e8ebe6" stroke-width="8" stroke-linecap="round"/>
+  <path d="M132 18v44" stroke="#e8ebe6" stroke-width="2" opacity=".24"/>
+  <text x="164" y="45" fill="#e8ebe6" font-family="Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="9">YOON DONGGI</text>
+</svg>
