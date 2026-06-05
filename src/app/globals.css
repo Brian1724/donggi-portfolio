@@ -6,6 +6,7 @@
   --canvas-soft: #e8ebe6;
   --ink: #0e0f0c;
   --ink-deep: #163300;
+  --deep-green: #163300;
   --body: #454745;
   --mute: #868685;
   --primary: #9fe870;
@@ -14,7 +15,7 @@
   --r-badge: 8px;
   --r-input: 12px;
   --r-mid: 16px;
-  --r-card: 24px;
+  --r-card: 32px;
   --r-pill: 9999px;
   --s1: 4px;
   --s2: 8px;
@@ -23,6 +24,8 @@
   --s6: 24px;
   --s8: 32px;
   --s12: 48px;
+  --section-mobile: 48px;
+  --section-desktop: 96px;
   --container: 1200px;
   --font-display: var(--font-manrope), "Pretendard", var(--font-inter), system-ui, sans-serif;
   --font-body: var(--font-inter), "Pretendard", system-ui, sans-serif;
@@ -33,6 +36,7 @@
   --color-canvas-soft: var(--canvas-soft);
   --color-ink: var(--ink);
   --color-ink-deep: var(--ink-deep);
+  --color-deep-green: var(--deep-green);
   --color-body: var(--body);
   --color-mute: var(--mute);
   --color-primary: var(--primary);
@@ -117,8 +121,8 @@ a {
 }
 
 .hero-mega {
-  font-size: clamp(56px, 9vw, 126px);
-  line-height: 0.85;
+  font-size: clamp(56px, 8vw, 112px);
+  line-height: 0.92;
 }
 
 .sub-hero {
@@ -162,7 +166,7 @@ a {
   color: var(--body);
   font-size: 20px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
   max-width: 640px;
   overflow-wrap: anywhere;
   word-break: keep-all;
@@ -172,7 +176,7 @@ a {
 .body {
   color: var(--body);
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.65;
   max-width: 640px;
   overflow-wrap: anywhere;
   word-break: keep-all;
@@ -235,18 +239,18 @@ a {
 
 .hero-band {
   background: var(--canvas-soft);
-  padding: var(--s8) var(--s6);
+  padding: var(--section-mobile) var(--s6);
 }
 
 .content-band {
   background: var(--canvas);
-  padding: var(--s8) var(--s6);
+  padding: var(--section-mobile) var(--s6);
 }
 
 .dark-band {
-  background: var(--ink);
+  background: var(--deep-green);
   color: var(--primary);
-  padding: var(--s8) var(--s6);
+  padding: var(--section-mobile) var(--s6);
 }
 
 .container {
@@ -281,10 +285,10 @@ a {
 }
 
 .card-dark {
-  background: var(--ink);
+  background: var(--deep-green);
   border-radius: var(--r-card);
-  color: var(--primary);
-  padding: var(--s6);
+  color: var(--canvas);
+  padding: var(--s8);
 }
 
 .card-dark .lead,
@@ -298,7 +302,7 @@ a {
 
 .btn {
   align-items: center;
-  border-radius: var(--r-card);
+  border-radius: var(--r-pill);
   cursor: pointer;
   display: inline-flex;
   font-family: var(--font-body);
@@ -356,6 +360,25 @@ a {
   padding: var(--s1) var(--s3);
 }
 
+.field {
+  background: var(--canvas-soft);
+  border: 1px solid transparent;
+  border-radius: var(--r-input);
+  color: var(--ink);
+  display: block;
+  font: inherit;
+  min-height: 48px;
+  outline: none;
+  padding: var(--s3) var(--s4);
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+}
+
+.field:focus {
+  background: var(--canvas);
+  border-color: var(--ink-deep);
+}
+
 .media {
   border-radius: var(--r-card);
   overflow: hidden;
@@ -384,7 +407,7 @@ a {
   .hero-band,
   .content-band,
   .dark-band {
-    padding-block: var(--s12);
+    padding-block: var(--section-desktop);
   }
 
   .logo-mobile {

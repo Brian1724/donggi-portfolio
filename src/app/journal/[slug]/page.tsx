@@ -69,9 +69,6 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
           <div className="mt-6 flex flex-wrap items-center gap-2">
             <Badge>{post.category}</Badge>
             <span className="eyebrow text-body">{post.date}</span>
-            {post.tags.map((tag) => (
-              <Badge key={tag}>{tag}</Badge>
-            ))}
           </div>
         </Reveal>
 

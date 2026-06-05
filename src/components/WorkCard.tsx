@@ -26,7 +26,7 @@ export function WorkCard({
       </div>
       <div className="flex flex-1 flex-col pt-6">
         <p className="eyebrow">
-          {work.categories[0]} · {work.year}
+          {work.year}
         </p>
         <h3 className="head-md mt-2 text-ink">
           {work.title}

@@ -1,28 +1,22 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
 import { profile } from "@/data/profile";
-import { works } from "@/data/works";
 
 export function Hero() {
-  const featuredWork = works[0];
-
   return (
     <section className="hero-band overflow-hidden">
-      <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_420px] lg:items-center">
-        <Reveal>
+      <Container>
+        <Reveal className="mx-auto max-w-5xl text-center">
           <p className="eyebrow">Visual Archive / South Korea</p>
-          <h1 className="display hero-mega mt-2 max-w-4xl text-ink">
-            Everyday frames, cinematic memories.
+          <h1 className="display hero-mega mx-auto mt-4 max-w-5xl text-ink">
+            Everyday moments, cinematic memories.
           </h1>
-          <p className="subhead mt-6 max-w-[640px] text-ink">
-            {profile.title}
+          <p className="lead mx-auto mt-6">
+            {profile.tagline}
           </p>
-          <p className="lead mt-4 max-w-[640px]">{profile.tagline}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button href="/works">
               작업 보기
             </Button>
@@ -31,31 +25,16 @@ export function Hero() {
             </Button>
           </div>
         </Reveal>
-        <Reveal delay={0.1}>
-          <Link
-            href={`/works/${featuredWork.slug}`}
-            className="card group border border-ink"
-          >
-            <div className="media relative aspect-[4/5] bg-canvas-soft">
-              <Image
-                src="/images/archive/hero-cherry-portrait.jpg"
-                alt="강변 너머 도시의 밤 실루엣을 담은 Donggi Yoon의 시각 아카이브 이미지"
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
-            <div className="flex flex-1 flex-col pt-6">
-              <div className="flex flex-wrap gap-2">
-                {featuredWork.categories.slice(0, 2).map((category) => (
-                  <Badge key={category}>{category}</Badge>
-                ))}
-              </div>
-              <p className="eyebrow mt-4">{featuredWork.year}</p>
-              <h2 className="head-md mt-2 text-ink">{featuredWork.title}</h2>
-              <p className="body card-cta mt-4 truncate">{featuredWork.description}</p>
-            </div>
-          </Link>
+        <Reveal delay={0.08}>
+          <div className="media relative mt-12 aspect-[16/9] bg-canvas">
+            <Image
+              src="/images/archive/hero-cherry-portrait.jpg"
+              alt="강변 너머 도시의 밤 실루엣을 담은 Donggi Yoon의 시각 아카이브 이미지"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
         </Reveal>
       </Container>
     </section>

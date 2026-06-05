@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Badge } from "@/components/Badge";
 import type { JournalPost } from "@/data/journal";
 
 export function JournalCard({ post }: { post: JournalPost }) {
@@ -18,11 +17,8 @@ export function JournalCard({ post }: { post: JournalPost }) {
         />
       </div>
       <div className="flex flex-1 flex-col pt-6">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge>{post.category}</Badge>
-          <span className="eyebrow">{post.date}</span>
-        </div>
-        <h3 className="heading mt-4 text-ink">{post.title}</h3>
+        <p className="eyebrow">{post.date}</p>
+        <h3 className="heading mt-2 text-ink">{post.title}</h3>
         <p className="body card-cta mt-4">{post.excerpt}</p>
       </div>
     </Link>

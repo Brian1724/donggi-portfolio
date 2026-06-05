@@ -1,6 +1,4 @@
-import { Badge } from "@/components/Badge";
-import { Card } from "@/components/Card";
-import { ContactFeatureCard } from "@/components/ContactFeatureCard";
+import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
 import { profile } from "@/data/profile";
@@ -16,72 +14,82 @@ export const metadata = createPageMetadata({
 export default function ContactPage() {
   return (
     <section className="hero-band">
-      <Container className="grid grid-cols-1 gap-8">
+      <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <Reveal>
-          <ContactFeatureCard />
-        </Reveal>
-
-        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3 md:gap-8">
-          <Reveal delay={0.08}>
-            <Card>
-              <p className="eyebrow text-ink-deep">Email</p>
-              <a
-                href={`mailto:${profile.email}`}
-                className="email-token mt-2 text-ink"
-              >
-                {profile.email}
-              </a>
-            </Card>
-          </Reveal>
-
-          <Reveal delay={0.12}>
-            <Card>
-              <p className="eyebrow text-ink-deep">Social</p>
-              <div className="mt-6 grid grid-cols-1 gap-3">
-                <a
-                  href={profile.instagram}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-[24px] bg-canvas-soft p-6 font-semibold text-ink transition hover:bg-primary-pale"
-                >
-                  Instagram
-                  <span className="mt-2 block text-base font-semibold text-body">
-                    @donggi_03
-                  </span>
-                </a>
-                <a
-                  href={profile.photoInstagram}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-[24px] bg-canvas-soft p-6 font-semibold text-ink transition hover:bg-primary-pale"
-                >
-                  Photo Instagram
-                  <span className="mt-2 block text-base font-semibold text-body">
-                    @dk4film
-                  </span>
+          <div className="max-w-2xl">
+            <p className="eyebrow">Contact</p>
+            <h1 className="display sub-hero mt-4 text-ink">
+              Tell me about the frame you want to keep.
+            </h1>
+            <p className="lead mt-6">
+              촬영, 사진, 영상, 여행 기록, 포트폴리오 협업에 대해 편하게 이야기해주세요. 조용하고 선명한 기록으로 이어질 수 있는 프로젝트를 기다립니다.
+            </p>
+            <div className="mt-8 grid grid-cols-1 gap-4">
+              <div>
+                <p className="eyebrow text-ink-deep">Email</p>
+                <a href={`mailto:${profile.email}`} className="email-token mt-2 text-ink">
+                  {profile.email}
                 </a>
               </div>
-            </Card>
-          </Reveal>
-
-          <Reveal delay={0.16}>
-            <Card>
-              <p className="eyebrow text-ink-deep">Open To</p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {[
-                  "Videography",
-                  "Photography",
-                  "Travel Archive",
-                  "Portrait",
-                  "Editorial",
-                  "Creative Process",
-                ].map((item) => (
-                  <Badge key={item}>{item}</Badge>
+              <div className="flex flex-wrap gap-4 text-base font-semibold text-ink">
+                <a href={profile.instagram} target="_blank" rel="noreferrer">
+                  Instagram
+                </a>
+                <a href={profile.photoInstagram} target="_blank" rel="noreferrer">
+                  @dk4film
+                </a>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["Videography", "Photography", "Travel Archive"].map((item) => (
+                  <span key={item} className="badge-positive">
+                    {item}
+                  </span>
                 ))}
               </div>
-            </Card>
-          </Reveal>
-        </div>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <form
+            action={`mailto:${profile.email}`}
+            method="post"
+            encType="text/plain"
+            className="card gap-6"
+          >
+            <div>
+              <label className="eyebrow text-ink-deep" htmlFor="name">
+                Name
+              </label>
+              <input id="name" name="name" className="field mt-2" />
+            </div>
+            <div>
+              <label className="eyebrow text-ink-deep" htmlFor="email">
+                Email
+              </label>
+              <input id="email" name="email" type="email" className="field mt-2" />
+            </div>
+            <div>
+              <label className="eyebrow text-ink-deep" htmlFor="message">
+                Project note
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={6}
+                className="field mt-2 resize-none"
+              />
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <button type="submit" className="btn btn-primary">
+                메일 앱으로 보내기
+              </button>
+              <Button href="/works" variant="tertiary">
+                작업 먼저 보기
+              </Button>
+            </div>
+          </form>
+        </Reveal>
       </Container>
     </section>
   );

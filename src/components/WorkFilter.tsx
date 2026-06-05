@@ -22,10 +22,10 @@ export function WorkFilter({ works }: { works: Work[] }) {
           <button
             key={filter}
             type="button"
-            className={`min-h-12 rounded-[24px] px-6 text-sm font-semibold transition ${
+            className={`min-h-12 rounded-full px-6 text-sm font-semibold transition ${
               activeFilter === filter
-                ? "bg-primary-pale text-ink-deep"
-                : "bg-canvas text-ink hover:bg-canvas-soft"
+                ? "bg-canvas text-ink"
+                : "text-body hover:bg-canvas"
             }`}
             onClick={() => setActiveFilter(filter)}
           >

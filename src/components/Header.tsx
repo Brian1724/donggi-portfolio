@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { profile } from "@/data/profile";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,28 +18,13 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-canvas">
-      <div className="container relative flex items-center justify-between gap-6 py-3">
+      <div className="container relative flex items-center justify-between gap-6 py-4">
         <Link
           href="/"
-          className="inline-flex items-center"
+          className="font-display text-xl font-black tracking-[-0.02em] text-ink"
           onClick={() => setIsOpen(false)}
         >
-          <Image
-            src="/logo/logo-icon-mono-ink.svg"
-            alt="YOON DONGGI"
-            width={32}
-            height={32}
-            priority
-            className="logo-mobile h-8 w-auto"
-          />
-          <Image
-            src="/logo/logo-mono-ink.svg"
-            alt="YOON DONGGI"
-            width={172}
-            height={32}
-            priority
-            className="logo-wordmark h-8 w-auto"
-          />
+          Donggi Yoon
         </Link>
         <nav className="hidden items-center gap-2 md:flex">
           {navLinks.map((link) => {
@@ -63,19 +46,8 @@ export function Header() {
             );
           })}
         </nav>
-        <div className="hidden items-center gap-3 md:flex">
-          <a
-            href={profile.photoInstagram}
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm font-semibold text-ink underline underline-offset-4"
-          >
-            @dk4film
-          </a>
-          <Link
-            href="/contact"
-            className="btn btn-primary"
-          >
+        <div className="hidden items-center md:flex">
+          <Link href="/contact" className="btn btn-primary">
             Contact
           </Link>
         </div>
@@ -94,13 +66,6 @@ export function Header() {
           id="mobile-menu"
           className="absolute inset-x-0 top-full z-40 grid min-h-screen grid-cols-1 content-start gap-4 bg-canvas-soft p-6 md:hidden"
         >
-          <Image
-            src="/logo/logo-icon-mono-ink.svg"
-            alt="YOON DONGGI"
-            width={32}
-            height={32}
-            className="h-8 w-auto"
-          />
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -111,14 +76,6 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          <a
-            href={profile.photoInstagram}
-            target="_blank"
-            rel="noreferrer"
-            className="head-md rounded-[24px] bg-canvas px-6 py-4 text-ink"
-          >
-            @dk4film
-          </a>
         </nav>
       ) : null}
     </header>

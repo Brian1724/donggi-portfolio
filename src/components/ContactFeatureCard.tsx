@@ -11,20 +11,22 @@ export function ContactFeatureCard({
   return (
     <div className={`card-dark ${className}`}>
       <p className="eyebrow text-primary">Contact</p>
-      <h2 className="display sub-hero mt-2 max-w-4xl text-primary">
-        Let&apos;s create something visual
+      <h2 className="display sub-hero mt-4 max-w-4xl text-canvas">
+        Let&apos;s make the next archive quietly memorable.
       </h2>
-      <p className="lead mt-4 font-normal text-canvas-soft">
-        촬영, 협업, 프로젝트 문의가 있다면 편하게 연락해주세요.
+      <p className="lead mt-6 font-normal text-canvas-soft">
+        사진, 영상, 여행 기록, 포트폴리오 협업에 대한 이야기를 편하게 보내주세요.
       </p>
-      <div className="mt-8 flex flex-wrap gap-3">
+      <div className="mt-8 flex flex-wrap items-center gap-4">
         <Button href={`mailto:${profile.email}`}>이메일 보내기</Button>
-        <Button href={profile.instagram} variant="secondary" external>
-          @donggi_03
-        </Button>
-        <Button href={profile.photoInstagram} variant="secondary" external>
+        <a
+          href={profile.photoInstagram}
+          target="_blank"
+          rel="noreferrer"
+          className="text-base font-semibold text-canvas underline underline-offset-4"
+        >
           @dk4film
-        </Button>
+        </a>
       </div>
     </div>
   );
