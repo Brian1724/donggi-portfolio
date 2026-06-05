@@ -21,7 +21,7 @@ export function Header() {
       <div className="container relative flex items-center justify-between gap-6 py-4">
         <Link
           href="/"
-          className="font-display text-xl font-black tracking-[-0.02em] text-ink"
+          className="text-xl font-semibold tracking-[-0.02em] text-ink"
           onClick={() => setIsOpen(false)}
         >
           Donggi Yoon
@@ -70,7 +70,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="head-md rounded-[24px] bg-canvas px-6 py-4 text-ink"
+              className="heading rounded-[24px] bg-canvas px-6 py-4 text-ink"
               onClick={() => setIsOpen(false)}
             >
               {link.label}

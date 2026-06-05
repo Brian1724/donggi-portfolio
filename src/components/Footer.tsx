@@ -4,7 +4,7 @@ import { profile } from "@/data/profile";
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div className="container grid grid-cols-1 gap-8 py-12 lg:grid-cols-[1fr_auto]">
+      <div className="container grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto]">
         <div>
           <p className="subhead text-canvas">
             Donggi Yoon

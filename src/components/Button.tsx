@@ -1,12 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type ButtonVariant = "primary" | "secondary" | "tertiary";
+type ButtonVariant = "primary" | "secondary" | "tertiary" | "ghost";
 
 const variants: Record<ButtonVariant, string> = {
   primary: "btn-primary",
   secondary: "btn-secondary",
-  tertiary: "btn-tertiary",
+  tertiary: "btn-ghost",
+  ghost: "btn-ghost",
 };
 
 type ButtonProps = {

@@ -17,15 +17,15 @@ export function WorkFilter({ works }: { works: Work[] }) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-4">
         {workFilters.map((filter) => (
           <button
             key={filter}
             type="button"
-            className={`min-h-12 rounded-full px-6 text-sm font-semibold transition ${
+            className={`min-h-12 text-sm font-semibold transition ${
               activeFilter === filter
-                ? "bg-canvas text-ink"
-                : "text-body hover:bg-canvas"
+                ? "text-ink underline underline-offset-4"
+                : "text-body hover:text-ink"
             }`}
             onClick={() => setActiveFilter(filter)}
           >
@@ -33,7 +33,7 @@ export function WorkFilter({ works }: { works: Work[] }) {
           </button>
         ))}
       </div>
-      <div className="grid-works mt-8">
+      <div className="grid-3 mt-8">
         {filteredWorks.map((work, index) => (
           <motion.div
             key={`${activeFilter}-${work.slug}`}
@@ -47,10 +47,7 @@ export function WorkFilter({ works }: { works: Work[] }) {
               delay: index * 0.04,
             }}
           >
-            <WorkCard
-              work={work}
-              aspect={index % 3 === 1 ? "landscape" : "portrait"}
-            />
+            <WorkCard work={work} />
           </motion.div>
         ))}
       </div>

@@ -13,38 +13,34 @@ export const metadata = createPageMetadata({
 
 export default function ContactPage() {
   return (
-    <section className="hero-band">
+    <section className="band-green">
       <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <Reveal>
           <div className="max-w-2xl">
-            <p className="eyebrow">Contact</p>
-            <h1 className="display contact-page-title mt-4 text-ink">
+            <p className="eyebrow text-canvas">Contact</p>
+            <h1 className="heading mt-2 max-w-[16ch] text-canvas">
               Tell me about the frame you want to keep.
             </h1>
-            <p className="contact-intro mt-6">
+            <p className="ko-under text-canvas-soft">
               촬영, 사진, 영상, 여행 기록, 포트폴리오 협업에 대해 편하게 이야기해주세요. 조용하고 선명한 기록으로 이어질 수 있는 프로젝트를 기다립니다.
             </p>
             <div className="mt-8 grid grid-cols-1 gap-4">
               <div>
-                <p className="eyebrow text-ink-deep">Email</p>
-                <a href={`mailto:${profile.email}`} className="email-token mt-2 text-ink">
+                <p className="eyebrow text-canvas">Email</p>
+                <a href={`mailto:${profile.email}`} className="email-token mt-2 text-canvas">
                   {profile.email}
                 </a>
               </div>
-              <div className="flex flex-wrap gap-4 text-base font-semibold text-ink">
+              <div className="flex flex-wrap gap-4 text-base font-semibold text-canvas">
                 <a href={profile.instagram} target="_blank" rel="noreferrer">
                   Instagram
                 </a>
                 <a href={profile.photoInstagram} target="_blank" rel="noreferrer">
                   @dk4film
                 </a>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {["Videography", "Photography", "Travel Archive"].map((item) => (
-                  <span key={item} className="badge-positive">
-                    {item}
-                  </span>
-                ))}
+                <a href={`mailto:${profile.email}`}>
+                  Email
+                </a>
               </div>
             </div>
           </div>

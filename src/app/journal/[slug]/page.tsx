@@ -57,13 +57,13 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
   );
 
   return (
-    <article className="hero-band">
+    <article className="band-sage">
       <Container>
         <Reveal>
           <Link href="/journal" className="eyebrow inline-flex text-ink-deep">
             Journal
           </Link>
-          <h1 className="display sub-hero mt-2 max-w-5xl text-ink">
+          <h1 className="hero-headline mt-2 max-w-5xl">
             {post.title}
           </h1>
           <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -114,7 +114,7 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
                   className="card block transition hover:bg-primary-pale"
                 >
                   <span className="eyebrow text-body">{item.date}</span>
-                  <span className="head-md mt-2 block text-ink">
+                  <span className="subhead mt-2 block text-ink">
                     {item.title}
                   </span>
                 </Link>

@@ -24,12 +24,12 @@ export function WorkCard({
         />
       </div>
       <div className="work-card-body">
-        {category ? <span className="badge-positive w-fit">{category}</span> : null}
-        <h3 className="head-md work-card-title text-ink">
+        {category ? <span className="chip w-fit">{category}</span> : null}
+        <p className="eyebrow">{work.year}</p>
+        <h3 className="subhead work-card-title text-ink">
           {work.title}
         </h3>
         <p className="work-card-description">{work.description}</p>
-        <p className="work-card-year">{work.year}</p>
       </div>
     </Link>
   );

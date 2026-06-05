@@ -14,15 +14,16 @@ import { absoluteUrl, metadataBase } from "@/lib/site-url";
 import "./globals.css";
 
 const inter = Inter({
-  variable: "--font-inter",
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "600", "900"],
+  weight: ["400", "600"],
   display: "swap",
 });
 
 const manrope = Manrope({
-  variable: "--font-manrope",
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["800"],
   display: "swap",
 });
 

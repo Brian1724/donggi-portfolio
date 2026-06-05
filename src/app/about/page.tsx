@@ -21,15 +21,15 @@ export const metadata = createPageMetadata({
 export default function AboutPage() {
   return (
     <>
-      <section className="hero-band">
+      <section className="band-sage">
         <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <Reveal>
             <p className="eyebrow">About</p>
-            <h1 className="about-name display sub-hero mt-2 text-ink">윤동기</h1>
+            <h1 className="about-name hero-headline mt-2">윤동기</h1>
             <p className="about-subline mt-4">
               {profile.title}
             </p>
-            <p className="about-intro-copy mt-6">
+            <p className="ko-under">
               {profile.intro}
             </p>
           </Reveal>
@@ -49,7 +49,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="hero-band">
+      <section className="band-sage">
         <Container className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
           {[
             ["Korean Name", profile.nameKo],
@@ -71,7 +71,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="hero-band">
+      <section className="band-sage">
         <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
             <SectionHeader
@@ -97,7 +97,7 @@ export default function AboutPage() {
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <Badge>{item.period}</Badge>
-                      <h2 className="head-md mt-2 text-ink">
+                      <h2 className="subhead mt-2 text-ink">
                         {item.title}
                       </h2>
                     </div>
@@ -112,7 +112,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="hero-band">
+      <section className="band-sage">
         <Container>
           <SectionHeader
             eyebrow="Practice"
@@ -123,7 +123,7 @@ export default function AboutPage() {
             {skills.map((skill, index) => (
               <Reveal key={skill.title} delay={index * 0.05}>
                 <Card className="h-full">
-                  <h2 className="head-md text-ink">
+                  <h2 className="subhead text-ink">
                     {skill.title}
                   </h2>
                   <p className="body mt-4">

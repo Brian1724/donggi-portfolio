@@ -56,16 +56,16 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
   };
 
   return (
-    <article className="hero-band">
+    <article className="band-sage">
       <Container>
         <Reveal>
           <Link href="/works" className="eyebrow">
             Works
           </Link>
-          <h1 className="display sub-hero mt-2 max-w-5xl text-ink">
+          <h1 className="hero-headline mt-2 max-w-5xl">
             {work.title}
           </h1>
-          <p className="lead mt-4 max-w-[640px]">{work.description}</p>
+          <p className="ko-under">{work.description}</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {work.categories.map((category) => (
               <Badge key={category}>{category}</Badge>

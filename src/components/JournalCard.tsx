@@ -19,7 +19,7 @@ export function JournalCard({ post }: { post: JournalPost }) {
       <div className="flex flex-1 flex-col pt-6">
         <p className="eyebrow">{post.date}</p>
         <h3 className="heading mt-2 text-ink">{post.title}</h3>
-        <p className="body card-cta mt-4">{post.excerpt}</p>
+        <p className="journal-card-description card-cta mt-4">{post.excerpt}</p>
       </div>
     </Link>
   );

@@ -18,13 +18,33 @@ export const metadata = createPageMetadata({
 
 export default function HomePage() {
   const featuredWorks = works.slice(0, 3);
-  const journalPreview = getSortedJournalPosts().slice(0, 2);
+  const journalPreview = getSortedJournalPosts().slice(0, 3);
+  const stats = [
+    ["12", "visual films in progress"],
+    ["8", "cities and places archived"],
+    ["2026", "portfolio season"],
+  ];
 
   return (
     <>
       <Hero />
 
-      <section className="content-band">
+      <section className="band-sage">
+        <Container>
+          <Reveal>
+            <div className="stats">
+              {stats.map(([number, label]) => (
+                <div key={label}>
+                  <p className="stat-num">{number}</p>
+                  <p className="stat-label">{label}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="band-white">
         <Container>
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <SectionHeader
@@ -32,37 +52,34 @@ export default function HomePage() {
               title="Photos, videos, travel memories."
               subtitle="사진과 영상으로 쌓아가는 개인 비주얼 아카이브입니다."
             />
-            <Button href="/works" variant="secondary">
-              모든 작업 보기
+            <Button href="/works" variant="ghost">
+              모든 작업 보기 →
             </Button>
           </div>
-          <div className="grid-works mt-8">
+          <div className="grid-3 mt-8">
             {featuredWorks.map((work, index) => (
               <Reveal key={work.slug} delay={index * 0.08}>
-                <WorkCard
-                  work={work}
-                  aspect={index === 1 ? "landscape" : "portrait"}
-                />
+                <WorkCard work={work} />
               </Reveal>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="hero-band">
+      <section className="band-sage">
         <Container>
           <Reveal>
-            <div className="card grid grid-cols-1 gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div>
                 <p className="eyebrow">About</p>
-                <h2 className="heading mt-2 max-w-2xl text-ink">
-                  시선을 천천히 훈련하는 개인 비주얼 아카이브.
+                <h2 className="heading mt-2 max-w-2xl">
+                  A quiet visual archive, built frame by frame.
                 </h2>
-                <p className="lead mt-6">
+                <p className="ko-under">
                   전북대학교 SIES에서 공부하며 미디어커뮤니케이션을 함께 배우고 있습니다. 여행, 일상, 사람, 공간의 분위기를 사진과 영상으로 차분히 기록합니다.
                 </p>
                 <div className="mt-8">
-                  <Button href="/about">소개 보기</Button>
+                  <Button href="/about" variant="ghost">소개 보기 →</Button>
                 </div>
               </div>
               <div className="media relative aspect-[4/3] bg-canvas-soft">
@@ -78,7 +95,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="content-band">
+      <section className="band-white">
         <Container>
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <SectionHeader
@@ -86,11 +103,11 @@ export default function HomePage() {
               title="Notes from the visual process."
               subtitle="촬영을 준비하고, 사진을 고르고, 편집을 배우며 남기는 짧은 기록입니다."
             />
-            <Button href="/journal" variant="secondary">
-              저널 보기
+            <Button href="/journal" variant="ghost">
+              저널 보기 →
             </Button>
           </div>
-          <div className="mt-8 grid grid-cols-1 items-stretch gap-8 md:grid-cols-2">
+          <div className="grid-3 mt-8">
             {journalPreview.map((post, index) => (
               <Reveal key={post.slug} delay={index * 0.06}>
                 <JournalCard post={post} />
@@ -100,7 +117,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="hero-band">
+      <section className="band-white">
         <Container>
           <Reveal>
             <ContactFeatureCard />
