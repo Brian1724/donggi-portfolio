@@ -72,30 +72,28 @@ export default function AboutPage() {
       </section>
 
       <section className="band-sage">
-        <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <Reveal>
             <SectionHeader
               eyebrow="Learning Path"
               title="기록하는 사람으로 성장하는 과정."
               subtitle="학교에서 배우는 미디어적 관점과 개인 촬영 경험을 연결해, 오래 남는 이미지와 흐름을 탐구하고 있습니다."
             />
-            <div className="card mt-8">
-              <div className="media relative aspect-[4/5] bg-canvas-soft">
-                <Image
-                  src="/images/archive/about-winter-hike.jpg"
-                  alt="겨울 산책길에서 기록한 세로 프레임의 시각 아카이브 사진"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <div className="about-editorial-media relative mt-8 bg-canvas-soft">
+              <Image
+                src="/images/archive/about-winter-hike.jpg"
+                alt="겨울 산책길에서 기록한 세로 프레임의 시각 아카이브 사진"
+                fill
+                className="object-cover"
+              />
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 gap-4">
             {timeline.map((item, index) => (
               <Reveal key={`${item.period}-${item.title}`} delay={index * 0.06}>
-                <Card>
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
+                <article className="timeline-card">
+                  <div className="grid grid-cols-1 gap-5 md:grid-cols-[240px_1fr] md:items-start">
+                    <div className="min-w-0">
                       <Badge>{item.period}</Badge>
                       <h2 className="subhead mt-2 text-ink">
                         {item.title}
@@ -105,7 +103,7 @@ export default function AboutPage() {
                       {item.description}
                     </p>
                   </div>
-                </Card>
+                </article>
               </Reveal>
             ))}
           </div>
@@ -114,15 +112,17 @@ export default function AboutPage() {
 
       <section className="band-sage">
         <Container>
-          <SectionHeader
-            eyebrow="Practice"
-            title="What I keep building."
-            subtitle="촬영, 편집, 색감, 스토리텔링을 작게 반복하며 포트폴리오를 채워가고 있습니다."
-          />
-          <div className="mt-8 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:gap-8">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Practice</p>
+            <h2 className="heading mt-2">What I keep building.</h2>
+            <p className="ko-under">
+              촬영, 편집, 색감, 스토리텔링을 작게 반복하며 포트폴리오를 채워가고 있습니다.
+            </p>
+          </div>
+          <div className="mt-8 grid grid-cols-1 items-stretch gap-4 md:grid-cols-2 md:gap-6">
             {skills.map((skill, index) => (
               <Reveal key={skill.title} delay={index * 0.05}>
-                <Card className="h-full">
+                <article className="skill-card">
                   <h2 className="subhead text-ink">
                     {skill.title}
                   </h2>
@@ -134,7 +134,7 @@ export default function AboutPage() {
                       <Badge key={item}>{item}</Badge>
                     ))}
                   </div>
-                </Card>
+                </article>
               </Reveal>
             ))}
           </div>

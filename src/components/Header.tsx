@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -21,10 +22,17 @@ export function Header() {
       <div className="container relative flex items-center justify-between gap-6 py-4">
         <Link
           href="/"
-          className="text-xl font-semibold tracking-[-0.02em] text-ink"
+          className="brand-logo-link"
           onClick={() => setIsOpen(false)}
         >
-          Donggi Yoon
+          <Image
+            src="/logo/logo-mono-ink.svg"
+            alt="YOON DONGGI"
+            width={162}
+            height={30}
+            priority
+            className="brand-logo"
+          />
         </Link>
         <nav className="hidden items-center gap-2 md:flex">
           {navLinks.map((link) => {

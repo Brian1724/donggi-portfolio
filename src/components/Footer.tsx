@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { profile } from "@/data/profile";
 
@@ -6,9 +7,13 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto]">
         <div>
-          <p className="subhead text-canvas">
-            Donggi Yoon
-          </p>
+          <Image
+            src="/logo/logo-mono-light.svg"
+            alt="YOON DONGGI"
+            width={172}
+            height={32}
+            className="brand-logo"
+          />
           <p className="body site-footer-copy mt-4">
             Visual Archive for photography, videography, travel memories, and
             creative process.

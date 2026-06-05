@@ -483,6 +483,48 @@ a {
   word-break: keep-all;
 }
 
+.brand-logo-link {
+  align-items: center;
+  display: inline-flex;
+  flex-shrink: 0;
+  min-height: 48px;
+}
+
+.brand-logo {
+  display: block;
+  height: 30px;
+  max-height: 32px;
+  width: auto;
+}
+
+.site-footer .brand-logo {
+  height: 32px;
+}
+
+.about-editorial-media {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+
+.timeline-card,
+.skill-card {
+  background: var(--canvas);
+  border-radius: var(--r-card);
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: var(--s6);
+}
+
+.timeline-card {
+  min-height: 144px;
+}
+
+.skill-card {
+  min-height: 172px;
+}
+
 .about-name {
   font-weight: 900;
 }
