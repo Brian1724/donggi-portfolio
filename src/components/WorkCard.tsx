@@ -4,19 +4,18 @@ import type { Work } from "@/data/works";
 
 export function WorkCard({
   work,
-  aspect = "landscape",
 }: {
   work: Work;
   aspect?: "portrait" | "landscape";
 }) {
-  const aspectClass = aspect === "portrait" ? "aspect-[4/5]" : "aspect-[4/3]";
+  const category = work.categories[0];
 
   return (
     <Link
       href={`/works/${work.slug}`}
-      className="card group"
+      className="card work-card group"
     >
-      <div className={`media relative ${aspectClass} bg-canvas-soft`}>
+      <div className="work-card-media relative bg-canvas-soft">
         <Image
           src={work.thumbnail}
           alt={work.thumbnailAlt}
@@ -24,14 +23,13 @@ export function WorkCard({
           className="object-cover"
         />
       </div>
-      <div className="flex flex-1 flex-col pt-6">
-        <p className="eyebrow">
-          {work.year}
-        </p>
-        <h3 className="head-md mt-2 text-ink">
+      <div className="work-card-body">
+        {category ? <span className="badge-positive w-fit">{category}</span> : null}
+        <h3 className="head-md work-card-title text-ink">
           {work.title}
         </h3>
-        <p className="body card-cta mt-4 truncate">{work.description}</p>
+        <p className="work-card-description">{work.description}</p>
+        <p className="work-card-year">{work.year}</p>
       </div>
     </Link>
   );

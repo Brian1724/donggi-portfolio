@@ -3,6 +3,7 @@ import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 export default function nextConfig(phase: string): NextConfig {
   return {
+    trailingSlash: true,
     images: {
       unoptimized: true,
     },

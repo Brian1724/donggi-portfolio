@@ -29,7 +29,7 @@ export default function AboutPage() {
             <p className="about-subline mt-4">
               {profile.title}
             </p>
-            <p className="lead mt-4 max-w-[640px]">
+            <p className="about-intro-copy mt-6">
               {profile.intro}
             </p>
           </Reveal>
@@ -130,7 +130,7 @@ export default function AboutPage() {
                     {skill.description}
                   </p>
                   <div className="card-cta mt-6 flex flex-wrap gap-2">
-                    {skill.items.map((item) => (
+                    {skill.items.slice(0, 3).map((item) => (
                       <Badge key={item}>{item}</Badge>
                     ))}
                   </div>

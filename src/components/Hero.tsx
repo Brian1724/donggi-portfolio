@@ -10,13 +10,13 @@ export function Hero() {
       <Container>
         <Reveal className="mx-auto max-w-5xl text-center">
           <p className="eyebrow">Visual Archive / South Korea</p>
-          <h1 className="display hero-mega mx-auto mt-4 max-w-5xl text-ink">
+          <h1 className="display hero-mega mx-auto mt-4 text-ink">
             Everyday moments, cinematic memories.
           </h1>
-          <p className="lead mx-auto mt-6">
+          <p className="hero-tagline mx-auto max-w-[640px]">
             {profile.tagline}
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="hero-actions flex flex-wrap justify-center gap-3">
             <Button href="/works">
               작업 보기
             </Button>
@@ -26,10 +26,10 @@ export function Hero() {
           </div>
         </Reveal>
         <Reveal delay={0.08}>
-          <div className="media relative mt-12 aspect-[16/9] bg-canvas">
+          <div className="hero-image relative bg-canvas">
             <Image
-              src="/images/archive/hero-cherry-portrait.jpg"
-              alt="강변 너머 도시의 밤 실루엣을 담은 Donggi Yoon의 시각 아카이브 이미지"
+              src="/images/archive/detail-extra-visual-01.jpg"
+              alt="홍콩의 밤 도시 풍경을 넓게 담은 Donggi Yoon의 여행 아카이브 사진"
               fill
               priority
               className="object-cover"

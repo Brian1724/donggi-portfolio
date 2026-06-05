@@ -18,10 +18,10 @@ export default function ContactPage() {
         <Reveal>
           <div className="max-w-2xl">
             <p className="eyebrow">Contact</p>
-            <h1 className="display sub-hero mt-4 text-ink">
+            <h1 className="display contact-page-title mt-4 text-ink">
               Tell me about the frame you want to keep.
             </h1>
-            <p className="lead mt-6">
+            <p className="contact-intro mt-6">
               촬영, 사진, 영상, 여행 기록, 포트폴리오 협업에 대해 편하게 이야기해주세요. 조용하고 선명한 기록으로 이어질 수 있는 프로젝트를 기다립니다.
             </p>
             <div className="mt-8 grid grid-cols-1 gap-4">
