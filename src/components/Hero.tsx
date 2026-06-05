@@ -10,16 +10,16 @@ export function Hero() {
 
   return (
     <section className="band-sage overflow-hidden">
-      <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_0.78fr] lg:items-center">
+      <Container className="hero-grid grid grid-cols-1 gap-12 lg:grid-cols-[1fr_0.78fr]">
         <Reveal>
-          <p className="eyebrow">Visual Archive / South Korea</p>
-          <h1 className="hero-headline mt-2 max-w-[11ch]">
+          <p className="eyebrow hero-eyebrow">Visual Archive / South Korea</p>
+          <h1 className="hero-headline max-w-[11ch]">
             Everyday moments, cinematic memories.
           </h1>
-          <p className="ko-under">
+          <p className="hero-tagline">
             {profile.tagline}
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="hero-actions flex flex-wrap gap-4">
             <Button href="/works">
               작업 보기
             </Button>

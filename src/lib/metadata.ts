@@ -19,7 +19,7 @@ export const DEFAULT_KEYWORDS = [
   "미디어커뮤니케이션",
   siteHost,
 ];
-export const OG_IMAGE_PATH = "/images/archive/og-seodo-station.jpg";
+export const OG_IMAGE_PATH = "/logo/og-image.png";
 export const RSS_FEED_PATH = "/rss.xml";
 
 type PageMetadataOptions = {

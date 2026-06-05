@@ -298,13 +298,6 @@ a {
   padding: var(--s1) var(--s3);
 }
 
-.stats {
-  align-items: baseline;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s12);
-}
-
 .btn {
   align-items: center;
   border-radius: var(--r-pill);
@@ -492,13 +485,119 @@ a {
 
 .brand-logo {
   display: block;
-  height: 30px;
-  max-height: 32px;
+  height: 36px;
+  max-height: 36px;
   width: auto;
 }
 
 .site-footer .brand-logo {
+  height: 28px;
+  max-height: 28px;
+}
+
+.brand-logo-icon {
+  display: none;
   height: 32px;
+  width: 32px;
+}
+
+.site-header {
+  background: var(--canvas);
+  border-bottom: 1px solid var(--canvas-soft);
+  height: 72px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.site-header-inner {
+  align-items: center;
+  display: flex;
+  gap: var(--s8);
+  height: 72px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.header-actions {
+  align-items: center;
+  display: none;
+  gap: var(--s8);
+  margin-left: auto;
+}
+
+.header-nav {
+  align-items: center;
+  display: flex;
+  gap: 28px;
+}
+
+.header-nav-link {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.header-nav-link.is-active {
+  color: var(--ink-deep);
+  text-decoration: underline;
+}
+
+.hero-grid {
+  align-items: start;
+}
+
+.hero-eyebrow {
+  margin-bottom: var(--s5);
+}
+
+.hero-tagline {
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.7;
+  margin-top: var(--s6);
+  max-width: 420px;
+  text-wrap: pretty;
+  word-break: keep-all;
+}
+
+.hero-actions {
+  margin-top: var(--s8);
+}
+
+.stats-section {
+  background: var(--canvas);
+  color: var(--ink);
+  padding: 0 var(--s6) var(--s24);
+}
+
+.stats-strip {
+  border-top: 1px solid var(--canvas-soft);
+  margin-top: 64px;
+  padding-top: var(--s6);
+}
+
+.stats {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px;
+  justify-content: flex-start;
+}
+
+.stats .stat-num {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stats .stat-label {
+  color: var(--mute);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: var(--s1);
 }
 
 .about-editorial-media {
@@ -560,12 +659,30 @@ a {
   .dark-band {
     padding: 56px var(--s6);
   }
+
+  .stats-section {
+    padding: 0 var(--s6) 56px;
+  }
 }
 
 @media (min-width: 768px) {
+  .header-actions {
+    display: flex;
+  }
+
   .grid-3,
   .grid-works {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 479px) {
+  .brand-logo-full {
+    display: none;
+  }
+
+  .brand-logo-icon {
+    display: block;
   }
 }
 

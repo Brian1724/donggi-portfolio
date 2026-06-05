@@ -8,10 +8,10 @@ export function Footer() {
       <div className="container grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto]">
         <div>
           <Image
-            src="/logo/logo-mono-light.svg"
+            src="/logo/logo-mono-light.png"
             alt="YOON DONGGI"
-            width={172}
-            height={32}
+            width={151}
+            height={28}
             className="brand-logo"
           />
           <p className="body site-footer-copy mt-4">

@@ -29,16 +29,18 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <section className="band-sage">
+      <section className="stats-section">
         <Container>
           <Reveal>
-            <div className="stats">
-              {stats.map(([number, label]) => (
-                <div key={label}>
-                  <p className="stat-num">{number}</p>
-                  <p className="stat-label">{label}</p>
-                </div>
-              ))}
+            <div className="stats-strip">
+              <div className="stats">
+                {stats.map(([number, label]) => (
+                  <div key={label}>
+                    <p className="stat-num">{number}</p>
+                    <p className="stat-label">{label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </Container>
