@@ -28,7 +28,7 @@ export function WorkCard({
         <p className="eyebrow">
           {work.categories[0]} · {work.year}
         </p>
-        <h3 className="head-md mt-3 text-ink">
+        <h3 className="head-md mt-2 text-ink">
           {work.title}
         </h3>
         <p className="body card-cta mt-4 truncate">{work.description}</p>

@@ -11,10 +11,10 @@ export function ContactFeatureCard({
   return (
     <div className={`card-dark ${className}`}>
       <p className="eyebrow text-primary">Contact</p>
-      <h2 className="display sub-hero mt-4 max-w-4xl text-primary">
+      <h2 className="display sub-hero mt-2 max-w-4xl text-primary">
         Let&apos;s create something visual
       </h2>
-      <p className="lead mt-6 text-canvas-soft">
+      <p className="lead mt-4 font-normal text-canvas-soft">
         촬영, 협업, 프로젝트 문의가 있다면 편하게 연락해주세요.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">

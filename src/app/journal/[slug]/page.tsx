@@ -63,7 +63,7 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
           <Link href="/journal" className="eyebrow inline-flex text-ink-deep">
             Journal
           </Link>
-          <h1 className="display sub-hero mt-4 max-w-5xl text-ink">
+          <h1 className="display sub-hero mt-2 max-w-5xl text-ink">
             {post.title}
           </h1>
           <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -77,7 +77,7 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
 
         <Reveal delay={0.08}>
           <Card className="mt-8">
-            <div className="media relative aspect-[16/9] bg-primary-pale">
+            <div className="media relative aspect-[4/3] bg-primary-pale">
               <Image
                 src={post.thumbnail}
                 alt={post.imageAlt}
@@ -117,7 +117,7 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
                   className="card block transition hover:bg-primary-pale"
                 >
                   <span className="eyebrow text-body">{item.date}</span>
-                  <span className="head-md mt-3 block text-ink">
+                  <span className="head-md mt-2 block text-ink">
                     {item.title}
                   </span>
                 </Link>

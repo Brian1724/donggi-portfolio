@@ -52,7 +52,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
   const detailAspectClass = {
     landscape: "aspect-[4/3]",
     portrait: "aspect-[4/5]",
-    wide: "aspect-[16/9]",
+    wide: "aspect-[4/3]",
   };
 
   return (
@@ -62,10 +62,10 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
           <Link href="/works" className="eyebrow">
             Works
           </Link>
-          <h1 className="display sub-hero mt-4 max-w-5xl text-ink">
+          <h1 className="display sub-hero mt-2 max-w-5xl text-ink">
             {work.title}
           </h1>
-          <p className="lead mt-6 max-w-[640px]">{work.description}</p>
+          <p className="lead mt-4 max-w-[640px]">{work.description}</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {work.categories.map((category) => (
               <Badge key={category}>{category}</Badge>
@@ -75,7 +75,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
 
         <Reveal delay={0.1}>
           <div className="card mt-8">
-            <div className="media relative aspect-[16/9] bg-primary-pale">
+            <div className="media relative aspect-[4/3] bg-primary-pale">
               <Image
                 src={work.thumbnail}
                 alt={work.thumbnailAlt}
@@ -163,7 +163,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
           {previous ? (
             <Link href={`/works/${previous.slug}`} className="card block">
               <span className="eyebrow">Previous</span>
-              <span className="subhead mt-3 block text-ink">
+              <span className="subhead mt-2 block text-ink">
                 {previous.title}
               </span>
             </Link>
@@ -176,7 +176,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
               className="card block text-left md:text-right"
             >
               <span className="eyebrow">Next</span>
-              <span className="subhead mt-3 block text-ink">
+              <span className="subhead mt-2 block text-ink">
                 {next.title}
               </span>
             </Link>

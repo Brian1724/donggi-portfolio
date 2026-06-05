@@ -23,7 +23,7 @@ export function Hero() {
             className="mb-6 h-12 w-auto max-w-full"
           />
           <p className="eyebrow">Visual Archive / South Korea</p>
-          <h1 className="display hero-mega mt-4 max-w-4xl text-ink">
+          <h1 className="display hero-mega mt-2 max-w-4xl text-ink">
             Everyday frames, cinematic memories.
           </h1>
           <p className="subhead mt-6 max-w-[640px] text-ink">
@@ -60,7 +60,7 @@ export function Hero() {
                 ))}
               </div>
               <p className="eyebrow mt-4">{featuredWork.year}</p>
-              <h2 className="head-md mt-3 text-ink">{featuredWork.title}</h2>
+              <h2 className="head-md mt-2 text-ink">{featuredWork.title}</h2>
               <p className="body card-cta mt-4 truncate">{featuredWork.description}</p>
             </div>
           </Link>

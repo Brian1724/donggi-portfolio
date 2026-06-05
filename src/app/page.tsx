@@ -63,7 +63,7 @@ export default function HomePage() {
               </Button>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2">
             {[
               {
                 title: "School",
@@ -80,7 +80,7 @@ export default function HomePage() {
                   <p className="body mt-4">
                     {skill.description}
                   </p>
-                  <div className="mt-6 flex flex-wrap gap-2">
+                  <div className="card-cta mt-6 flex flex-wrap gap-2">
                     {skill.items.slice(0, 4).map((item) => (
                       <Badge key={item}>{item}</Badge>
                     ))}

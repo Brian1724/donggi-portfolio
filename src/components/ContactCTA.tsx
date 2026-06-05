@@ -8,7 +8,7 @@ export function ContactCTA() {
       <Container>
         <div className="card">
           <p className="eyebrow text-ink-deep">Contact</p>
-          <h2 className="head-md mt-3 text-ink">Let&apos;s create something visual</h2>
+          <h2 className="head-md mt-2 text-ink">Let&apos;s create something visual</h2>
           <p className="body mt-4">
             촬영, 협업, 프로젝트 문의가 있다면 편하게 연락해주세요.
           </p>

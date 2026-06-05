@@ -25,8 +25,8 @@ export default function AboutPage() {
         <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <Reveal>
             <p className="eyebrow">About</p>
-            <h1 className="display hero-mega mt-4 text-ink">윤동기</h1>
-            <p className="subhead mt-6 text-ink">
+            <h1 className="about-name display sub-hero mt-2 text-ink">윤동기</h1>
+            <p className="about-subline mt-4">
               {profile.title}
             </p>
             <p className="lead mt-4 max-w-[640px]">
@@ -97,7 +97,7 @@ export default function AboutPage() {
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <Badge>{item.period}</Badge>
-                      <h2 className="head-md mt-4 text-ink">
+                      <h2 className="head-md mt-2 text-ink">
                         {item.title}
                       </h2>
                     </div>
@@ -119,7 +119,7 @@ export default function AboutPage() {
             title="What I keep building."
             subtitle="촬영, 편집, 색감, 스토리텔링을 작게 반복하며 포트폴리오를 채워가고 있습니다."
           />
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+          <div className="mt-8 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:gap-8">
             {skills.map((skill, index) => (
               <Reveal key={skill.title} delay={index * 0.05}>
                 <Card className="h-full">
@@ -129,7 +129,7 @@ export default function AboutPage() {
                   <p className="body mt-4">
                     {skill.description}
                   </p>
-                  <div className="mt-6 flex flex-wrap gap-2">
+                  <div className="card-cta mt-6 flex flex-wrap gap-2">
                     {skill.items.map((item) => (
                       <Badge key={item}>{item}</Badge>
                     ))}

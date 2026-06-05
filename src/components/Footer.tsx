@@ -23,7 +23,9 @@ export function Footer() {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-2 text-sm font-semibold text-canvas-soft">
-          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+          <a href={`mailto:${profile.email}`} className="email-token text-canvas-soft">
+            {profile.email}
+          </a>
           <a href={profile.instagram} target="_blank" rel="noreferrer">
             Instagram
           </a>

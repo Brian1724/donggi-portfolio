@@ -24,7 +24,7 @@
   --s8: 32px;
   --s12: 48px;
   --container: 1200px;
-  --font-display: var(--font-manrope), var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-manrope), "Pretendard", var(--font-inter), system-ui, sans-serif;
   --font-body: var(--font-inter), "Pretendard", system-ui, sans-serif;
 }
 
@@ -110,7 +110,9 @@ a {
 .display {
   font-family: var(--font-display);
   font-weight: 900;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
   text-wrap: balance;
 }
 
@@ -129,6 +131,8 @@ a {
   font-size: 40px;
   font-weight: 900;
   line-height: 1;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
   text-wrap: balance;
 }
 
@@ -138,6 +142,8 @@ a {
   font-weight: 600;
   letter-spacing: -0.96px;
   line-height: 1.2;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
   text-wrap: balance;
 }
 
@@ -147,14 +153,19 @@ a {
   font-weight: 600;
   letter-spacing: -0.48px;
   line-height: 1.25;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
   text-wrap: balance;
 }
 
 .lead {
   color: var(--body);
   font-size: 20px;
+  font-weight: 400;
   line-height: 1.5;
   max-width: 640px;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
   text-wrap: pretty;
 }
 
@@ -163,6 +174,8 @@ a {
   font-size: 16px;
   line-height: 1.5;
   max-width: 640px;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
   text-wrap: pretty;
 }
 
@@ -180,6 +193,36 @@ a {
   font-size: 12px;
   line-height: 1.33;
   max-width: 480px;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.about-name {
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+.about-subline {
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  max-width: 640px;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+.email-token {
+  display: inline-block;
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: 600;
+  line-height: 1.5;
+  max-width: 100%;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  word-break: keep-all;
 }
 
 .logo-mobile {

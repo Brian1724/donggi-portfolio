@@ -21,13 +21,13 @@ export default function ContactPage() {
           <ContactFeatureCard />
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3 md:gap-8">
           <Reveal delay={0.08}>
             <Card>
               <p className="eyebrow text-ink-deep">Email</p>
               <a
                 href={`mailto:${profile.email}`}
-                className="head-md mt-4 block break-words text-ink"
+                className="email-token mt-2 text-ink"
               >
                 {profile.email}
               </a>

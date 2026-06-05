@@ -25,7 +25,7 @@ export default function JournalPage() {
             subtitle="촬영을 준비하고, 사진을 고르고, 편집을 배우며 생기는 생각을 짧게 남깁니다."
           />
         </Reveal>
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:gap-8">
           {posts.map((post, index) => (
             <Reveal key={post.slug} delay={index * 0.04}>
               <JournalCard post={post} />
