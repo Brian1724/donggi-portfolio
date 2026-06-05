@@ -14,14 +14,6 @@ export function Hero() {
     <section className="hero-band overflow-hidden">
       <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_420px] lg:items-center">
         <Reveal>
-          <Image
-            src="/logo/logo-full.svg"
-            alt="YOON DONGGI"
-            width={420}
-            height={100}
-            priority
-            className="mb-6 h-12 w-auto max-w-full"
-          />
           <p className="eyebrow">Visual Archive / South Korea</p>
           <h1 className="display hero-mega mt-2 max-w-4xl text-ink">
             Everyday frames, cinematic memories.
