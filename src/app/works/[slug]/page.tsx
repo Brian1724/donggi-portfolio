@@ -49,6 +49,11 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
   }
 
   const { previous, next } = getAdjacentWorks(work.slug);
+  const detailAspectClass = {
+    landscape: "aspect-[4/3]",
+    portrait: "aspect-[4/5]",
+    wide: "aspect-[16/9]",
+  };
 
   return (
     <article className="hero-band">
@@ -73,7 +78,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
             <div className="media relative aspect-[16/9] bg-primary-pale">
               <Image
                 src={work.thumbnail}
-                alt={`${work.title} 대표 이미지`}
+                alt={work.thumbnailAlt}
                 fill
                 priority
                 className="object-cover"
@@ -136,30 +141,22 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         </div>
 
         <section className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
-          <Reveal>
-            <div className="card">
-              <div className="media relative aspect-[4/3] bg-primary-pale">
-                <Image
-                  src={work.thumbnail}
-                  alt={`${work.title} image sequence one`}
-                  fill
-                  className="object-cover"
-                />
+          {work.detailImages.map((image, index) => (
+            <Reveal key={image.src} delay={index * 0.08}>
+              <div className="card">
+                <div
+                  className={`media relative ${detailAspectClass[image.aspect]} bg-primary-pale`}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
-            </div>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <div className="card">
-              <div className="media relative aspect-[4/5] bg-primary-pale">
-                <Image
-                  src="/images/hero.jpg"
-                  alt={`${work.title} image sequence two`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          ))}
         </section>
 
         <nav className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2" aria-label="Work pagination">

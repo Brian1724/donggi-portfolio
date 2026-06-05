@@ -19,7 +19,7 @@ export function WorkCard({
       <div className={`media relative ${aspectClass} bg-canvas-soft`}>
         <Image
           src={work.thumbnail}
-          alt={`${work.title} thumbnail`}
+          alt={work.thumbnailAlt}
           fill
           className="object-cover"
         />

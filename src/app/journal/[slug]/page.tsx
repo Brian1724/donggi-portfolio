@@ -80,7 +80,7 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
             <div className="media relative aspect-[16/9] bg-primary-pale">
               <Image
                 src={post.thumbnail}
-                alt={`${post.title} 대표 이미지`}
+                alt={post.imageAlt}
                 fill
                 priority
                 className="object-cover"

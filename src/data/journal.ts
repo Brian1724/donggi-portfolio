@@ -6,6 +6,7 @@ export type JournalPost = {
   tags: string[];
   excerpt: string;
   thumbnail: string;
+  imageAlt: string;
   body: string[];
 };
 
@@ -18,7 +19,8 @@ export const journalPosts: JournalPost[] = [
     tags: ["Cinematic", "Story", "Personal"],
     excerpt:
       "사진과 영상을 시작하게 된 이유, 그리고 내가 기록하고 싶은 장면들에 대한 이야기.",
-    thumbnail: "/images/journal/why-i-capture-everyday.jpg",
+    thumbnail: "/images/archive/journal-why-capture-everyday.jpg",
+    imageAlt: "매일의 기록을 떠올리게 하는 넓은 풍경과 빛의 흐름",
     body: [
       "일상은 대부분 너무 빠르게 지나갑니다. 그래서 저는 사진과 영상이 그 속도를 잠깐 늦춰주는 도구라고 생각합니다.",
       "좋은 장면은 꼭 특별한 장소에서만 생기지 않습니다. 여행지의 낯선 공기, 익숙한 거리의 오후 빛, 누군가와 나눈 짧은 대화처럼 작은 순간들이 오래 남는 이미지가 됩니다.",
@@ -32,7 +34,8 @@ export const journalPosts: JournalPost[] = [
     category: "Photography",
     tags: ["DK4FILM", "Photography", "Archive"],
     excerpt: "사진 계정을 따로 만들게 된 이유와 앞으로 기록하고 싶은 방향.",
-    thumbnail: "/images/journal/starting-dk4film.jpg",
+    thumbnail: "/images/archive/journal-starting-dk4film.jpg",
+    imageAlt: "DK4FILM 아카이브의 필름적인 톤을 보여주는 세로 사진",
     body: [
       "@dk4film은 사진을 조금 더 차분히 쌓아두기 위한 개인 아카이브입니다.",
       "피드에 올리는 사진은 완성된 결과물이기도 하지만, 동시에 제가 어떤 톤과 장면에 끌리는지 보여주는 기록이기도 합니다.",
@@ -46,7 +49,8 @@ export const journalPosts: JournalPost[] = [
     category: "Videography",
     tags: ["Travel", "Video", "Workflow"],
     excerpt: "장소, 빛, 사람, 움직임을 중심으로 여행 영상을 구성하는 나만의 방식.",
-    thumbnail: "/images/journal/travel-video-workflow.jpg",
+    thumbnail: "/images/archive/journal-travel-video-workflow.jpg",
+    imageAlt: "여행 영상의 흐름을 떠올리게 하는 세로 프레임의 거리 장면",
     body: [
       "여행 영상을 찍을 때 가장 먼저 보는 것은 장소의 정보가 아니라 분위기입니다.",
       "빛이 어느 방향에서 들어오는지, 사람들이 어떻게 움직이는지, 그 공간의 소리가 어떤 리듬을 만드는지 살펴봅니다.",

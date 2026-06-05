@@ -12,7 +12,7 @@ export function JournalCard({ post }: { post: JournalPost }) {
       <div className="media relative aspect-[4/3] bg-canvas-soft">
         <Image
           src={post.thumbnail}
-          alt={`${post.title} thumbnail`}
+          alt={post.imageAlt}
           fill
           className="object-cover"
         />

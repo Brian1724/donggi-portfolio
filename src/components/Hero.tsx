@@ -46,8 +46,8 @@ export function Hero() {
           >
             <div className="media relative aspect-[4/5] bg-canvas-soft">
               <Image
-                src={featuredWork.thumbnail}
-                alt={`${featuredWork.title} featured image`}
+                src="/images/archive/hero-cherry-portrait.jpg"
+                alt="강변 너머 도시의 밤 실루엣을 담은 Donggi Yoon의 시각 아카이브 이미지"
                 fill
                 priority
                 className="object-cover"

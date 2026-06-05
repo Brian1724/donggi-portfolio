@@ -7,8 +7,8 @@ export function ProfileCard() {
     <aside className="card">
       <div className="media relative aspect-[3/4] bg-primary-pale">
         <Image
-          src="/images/profile.jpg"
-          alt="윤동기 프로필 이미지"
+          src="/images/archive/about-winter-hike.jpg"
+          alt="겨울 산책길에서 기록한 윤동기의 세로형 비주얼 아카이브 이미지"
           fill
           priority
           className="object-cover"
