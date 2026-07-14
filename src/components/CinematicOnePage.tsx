@@ -6,6 +6,7 @@ import styles from "./CinematicOnePage.module.css";
 
 const mediaBase = "/media/dalian";
 const filmsBase = "/media/films";
+const stillsBase = "/media/stills";
 
 type Film = {
   title: string;
@@ -50,6 +51,65 @@ const films: Film[] = [
     alt: "푸른 저녁빛 아래 펼쳐진 대련 도심",
   },
 ];
+
+const archiveStills = [
+  {
+    src: "still-01-city-dusk.jpg",
+    alt: "구름 사이로 노을이 번지는 도시의 실루엣",
+    label: "I — CITY AT DUSK",
+    placement: "archiveLead",
+    speed: "0.07",
+  },
+  {
+    src: "still-02-light-study.jpg",
+    alt: "오래된 석조 기둥 사이로 길게 드리운 빛과 그림자",
+    label: "II — LIGHT STUDY",
+    placement: "archivePortraitA",
+    speed: "0.05",
+  },
+  {
+    src: "still-03-angkor.jpg",
+    alt: "푸른 하늘 아래 솟은 앙코르의 오래된 석조 건축",
+    label: "III — ANGKOR",
+    placement: "archivePortraitB",
+    speed: "0.08",
+  },
+  {
+    src: "still-04-seodo-station.jpg",
+    alt: "가을빛이 머문 서도역 앞을 오가는 사람들",
+    label: "IV — SEODO STATION",
+    placement: "archivePanorama",
+    speed: "0.06",
+  },
+  {
+    src: "still-05-night-reflection.jpg",
+    alt: "밤의 연못 위로 색색의 빛이 반사된 전통 건축",
+    label: "V — REFLECTION",
+    placement: "archivePortraitC",
+    speed: "0.05",
+  },
+  {
+    src: "still-06-winter-trail.jpg",
+    alt: "눈 덮인 숲길을 걷는 겨울 산행자",
+    label: "VI — WINTER TRAIL",
+    placement: "archivePortraitD",
+    speed: "0.07",
+  },
+  {
+    src: "still-07-in-transit.jpg",
+    alt: "주황빛과 푸른빛이 교차하는 방콕 역사를 걸어가는 사람들",
+    label: "VII — IN TRANSIT",
+    placement: "archivePortraitE",
+    speed: "0.06",
+  },
+  {
+    src: "still-08-hong-kong.jpg",
+    alt: "구름 아래 빛나는 홍콩의 고층 건물과 빅토리아 하버 야경",
+    label: "VIII — HONG KONG",
+    placement: "archiveFinale",
+    speed: "0.08",
+  },
+] as const;
 
 export function CinematicOnePage() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
@@ -165,6 +225,7 @@ export function CinematicOnePage() {
         </a>
         <nav className={styles.nav} aria-label="페이지 섹션">
           <a href="#story">Story</a>
+          <a href="#stills">Stills</a>
           <a href="#film">Films</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -253,9 +314,24 @@ export function CinematicOnePage() {
           <Still className={styles.stillThree} src="frame-finale.jpg" alt="대련의 높은 빌딩을 향해 걸어가는 윤동기의 뒷모습" label="III — DEPARTURE" speed="0.08" />
         </section>
 
+        <section className={`${styles.section} ${styles.archiveSection}`} id="stills" aria-labelledby="archive-title">
+          <div className={`${styles.archiveHeading} ${styles.reveal}`}>
+            <div>
+              <p className={styles.eyebrow}>03 / STILL ARCHIVE</p>
+              <h2 className={styles.display} id="archive-title">BETWEEN<br />THE CUTS.</h2>
+            </div>
+            <p>움직임이 멈춘 뒤에도 오래 남는 장면들.<br />여행과 일상 사이에서 발견한 빛을 한 프레임씩 모았습니다.</p>
+          </div>
+          <div className={styles.archiveGallery}>
+            {archiveStills.map((still) => (
+              <ArchiveFrame key={still.src} {...still} />
+            ))}
+          </div>
+        </section>
+
         <section className={`${styles.section} ${styles.filmSection}`} id="film" aria-labelledby="film-title">
           <div className={`${styles.filmHeading} ${styles.reveal}`}>
-            <div><p className={styles.eyebrow}>03 / FILMOGRAPHY</p><h2 className={styles.display} id="film-title">THREE FILMS.<br />ONE POINT OF VIEW.</h2></div>
+            <div><p className={styles.eyebrow}>04 / FILMOGRAPHY</p><h2 className={styles.display} id="film-title">THREE FILMS.<br />ONE POINT OF VIEW.</h2></div>
             <p>Travel · Memory · Portrait<br />2025—2026</p>
           </div>
           <p className={`${styles.filmIntro} ${styles.reveal}`}>서로 다른 계절과 화면비, 같은 시선으로 남긴 세 편의 짧은 기록.</p>
@@ -267,7 +343,7 @@ export function CinematicOnePage() {
         </section>
 
         <section className={`${styles.section} ${styles.credits}`} id="contact" aria-labelledby="credits-title">
-          <p className={`${styles.eyebrow} ${styles.reveal}`}>04 / EPILOGUE</p>
+          <p className={`${styles.eyebrow} ${styles.reveal}`}>05 / EPILOGUE</p>
           <h2 className={`${styles.creditsTitle} ${styles.reveal}`} id="credits-title">EVERY END<br />LEAVES A FRAME.</h2>
           <p className={`${styles.creditsKo} ${styles.reveal}`}>지나간 순간을 오래 남기는 사람.<br />사진과 영상으로 다음 장면을 기다립니다.</p>
           <div className={`${styles.creditLines} ${styles.reveal}`}>
@@ -316,6 +392,30 @@ function Still({ className, src, alt, label, speed }: { className: string; src: 
     <figure className={`${styles.still} ${className} ${styles.reveal}`}>
       <div className={styles.stillMedia} data-cinematic-parallax={speed}>
         <Image src={`${mediaBase}/${src}`} alt={alt} fill sizes="(max-width: 800px) 88vw, 64vw" />
+      </div>
+      <figcaption>{label}</figcaption>
+    </figure>
+  );
+}
+
+function ArchiveFrame({
+  src,
+  alt,
+  label,
+  placement,
+  speed,
+}: (typeof archiveStills)[number]) {
+  return (
+    <figure className={`${styles.archiveFigure} ${styles[placement]} ${styles.reveal}`}>
+      <div className={styles.archiveMedia}>
+        <div className={styles.archiveImage} data-cinematic-parallax={speed}>
+          <Image
+            src={`${stillsBase}/${src}`}
+            alt={alt}
+            fill
+            sizes="(max-width: 800px) 92vw, 70vw"
+          />
+        </div>
       </div>
       <figcaption>{label}</figcaption>
     </figure>
