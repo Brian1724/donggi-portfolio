@@ -305,13 +305,12 @@ export function CinematicOnePage() {
           </div>
 
           <Still className={styles.stillOne} src="frame-motion.jpg" alt="교차로를 빠르게 지나가는 버스와 대련 시내" label="I — VELOCITY" speed="0.08" />
-          <Still className={styles.stillTwo} src="frame-night.jpg" alt="도시 공원에 앉아 먼 곳을 바라보는 윤동기" label="II — PAUSE" speed="0.1" />
 
           <blockquote className={`${styles.intertitle} ${styles.reveal}`}>
             <span>“</span><p>기억은 완벽한 장면보다<br />잠시 멈춘 시선에 오래 머문다.</p>
           </blockquote>
 
-          <Still className={styles.stillThree} src="frame-finale.jpg" alt="대련의 높은 빌딩을 향해 걸어가는 윤동기의 뒷모습" label="III — DEPARTURE" speed="0.08" />
+          <Still className={styles.stillThree} src="frame-finale.jpg" alt="대련의 높은 빌딩을 향해 걸어가는 윤동기의 뒷모습" label="II — DEPARTURE" speed="0.08" />
         </section>
 
         <section className={`${styles.section} ${styles.archiveSection}`} id="stills" aria-labelledby="archive-title">
@@ -352,8 +351,17 @@ export function CinematicOnePage() {
             <div><span>Archive</span><strong>2025—2026</strong></div>
           </div>
           <div className={`${styles.contactRow} ${styles.reveal}`}>
-            <a href="mailto:ydk0717@gmail.com">ydk0717@gmail.com</a>
-            <div><a href="https://instagram.com/donggi_03" target="_blank" rel="noreferrer">Instagram</a><a href="https://instagram.com/dk4film" target="_blank" rel="noreferrer">DK4FILM</a></div>
+            <div className={styles.contactPrimary}>
+              <span>Contact / Project Inquiries</span>
+              <a href="mailto:ydk0717@gmail.com">ydk0717@gmail.com</a>
+            </div>
+            <div className={styles.socialLinks}>
+              <span>Follow</span>
+              <div>
+                <a href="https://instagram.com/donggi_03" target="_blank" rel="noreferrer">Instagram ↗</a>
+                <a href="https://instagram.com/dk4film" target="_blank" rel="noreferrer">DK4FILM ↗</a>
+              </div>
+            </div>
           </div>
         </section>
       </main>
