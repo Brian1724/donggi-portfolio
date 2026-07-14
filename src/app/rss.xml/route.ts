@@ -40,7 +40,7 @@ export function GET() {
         <language>ko-KR</language>
         <managingEditor>${escapeXml(profile.email)} (${escapeXml(profile.nameEn)})</managingEditor>
         <webMaster>${escapeXml(profile.email)} (${escapeXml(profile.nameEn)})</webMaster>
-        <lastBuildDate>${new Date("2026-06-04").toUTCString()}</lastBuildDate>
+        <lastBuildDate>${new Date("2026-07-14").toUTCString()}</lastBuildDate>
         ${items}
       </channel>
     </rss>`;

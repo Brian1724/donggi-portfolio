@@ -1,188 +1,75 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Badge } from "@/components/Badge";
-import { Button } from "@/components/Button";
-import { Card } from "@/components/Card";
-import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
 import { getAdjacentWorks, getWorkBySlug, works } from "@/data/works";
 import { createPageMetadata } from "@/lib/metadata";
 
-type WorkPageProps = {
-  params: Promise<{ slug: string }>;
-};
-
+type WorkPageProps = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return works.map((work) => ({
-    slug: work.slug,
-  }));
-}
+export function generateStaticParams() { return works.map((work) => ({ slug: work.slug })); }
 
 export async function generateMetadata({ params }: WorkPageProps) {
-  const { slug } = await params;
-  const work = getWorkBySlug(slug);
-
-  if (!work) {
-    return createPageMetadata({
-      title: "Work",
-      path: "/works",
-    });
-  }
-
-  return createPageMetadata({
-    title: work.title,
-    description: work.description,
-    path: `/works/${work.slug}`,
-    imagePath: work.thumbnail,
-  });
+  const work = getWorkBySlug((await params).slug);
+  return work ? createPageMetadata({ title: work.title, description: work.description, path: `/works/${work.slug}`, imagePath: work.thumbnail }) : createPageMetadata({ title: "Work", path: "/works" });
 }
 
 export default async function WorkDetailPage({ params }: WorkPageProps) {
-  const { slug } = await params;
-  const work = getWorkBySlug(slug);
-
-  if (!work) {
-    notFound();
-  }
-
+  const work = getWorkBySlug((await params).slug);
+  if (!work) notFound();
   const { previous, next } = getAdjacentWorks(work.slug);
-  const detailAspectClass = {
-    landscape: "aspect-[4/3]",
-    portrait: "aspect-[4/5]",
-    wide: "aspect-[4/3]",
-  };
 
   return (
-    <article className="band-sage">
-      <Container>
-        <Reveal>
-          <Link href="/works" className="eyebrow">
-            Works
-          </Link>
-          <h1 className="hero-headline mt-2 max-w-5xl">
-            {work.title}
-          </h1>
-          <p className="ko-under">{work.description}</p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {work.categories.map((category) => (
-              <Badge key={category}>{category}</Badge>
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <div className="card mt-8">
-            <div className="media relative aspect-[4/3] bg-primary-pale">
-              <Image
-                src={work.thumbnail}
-                alt={work.thumbnailAlt}
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </Reveal>
-
-        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[320px_1fr]">
+    <article className="portfolio-page">
+      <section className="portfolio-hero">
+        <div className="portfolio-container">
           <Reveal>
-            <Card>
-              <p className="eyebrow">Overview</p>
-              <dl className="mt-6 grid grid-cols-1 gap-6">
-                <div>
-                  <dt className="eyebrow">Year</dt>
-                  <dd className="subhead mt-2 text-ink">{work.year}</dd>
-                </div>
-                <div>
-                  <dt className="eyebrow">Role</dt>
-                  <dd className="mt-3 flex flex-wrap gap-2">
-                    {work.role.map((role) => (
-                      <Badge key={role}>{role}</Badge>
-                    ))}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="eyebrow">Gear</dt>
-                  <dd className="mt-3 flex flex-wrap gap-2">
-                    {work.tools.map((tool) => (
-                      <Badge key={tool}>{tool}</Badge>
-                    ))}
-                  </dd>
-                </div>
-              </dl>
-            </Card>
+            <Link href="/works" className="portfolio-kicker">Works / Back</Link>
+            <h1 className="portfolio-title is-wide">{work.title}</h1>
           </Reveal>
-
           <Reveal delay={0.08}>
-            <Card>
-              <p className="eyebrow">Project Note</p>
-              <div className="mt-6 grid grid-cols-1 gap-4">
-                <p className="body">
-                  이 작업은 윤동기가 사진과 영상으로 일상, 여행, 사람,
-                  공간의 분위기를 기록하며 쌓아가는 개인 포트폴리오의 일부입니다.
-                </p>
-                <p className="body">
-                  장면의 색감, 움직임, 빛의 방향, 편집 리듬을 함께 관찰하며
-                  오래 남는 비주얼 언어를 찾아가는 과정으로 정리했습니다.
-                </p>
-              </div>
-              {work.links.instagram ? (
-                <div className="mt-8">
-                  <Button href={work.links.instagram} external>
-                    Instagram에서 보기
-                  </Button>
-                </div>
-              ) : null}
-            </Card>
+            <p className="portfolio-lead"><strong>{work.format}</strong>{work.description}</p>
+            <div className="portfolio-tags">{work.categories.slice(0, 3).map((item) => <span className="portfolio-tag" key={item}>{item}</span>)}</div>
           </Reveal>
         </div>
+        <div className="portfolio-container">
+          <Reveal delay={0.12}>
+            <div className="project-hero-media"><Image src={work.thumbnail} alt={work.thumbnailAlt} fill priority className="object-cover" /></div>
+            <dl className="project-info-grid">
+              <div><dt>Year</dt><dd>{work.year}</dd></div>
+              <div><dt>Location</dt><dd>{work.location}</dd></div>
+              <div><dt>Role</dt><dd>{work.role.join(" · ")}</dd></div>
+              <div><dt>Tools</dt><dd>{work.tools.join(" · ")}</dd></div>
+            </dl>
+          </Reveal>
+        </div>
+      </section>
 
-        <section className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
-          {work.detailImages.map((image, index) => (
-            <Reveal key={image.src} delay={index * 0.08}>
-              <div className="card">
-                <div
-                  className={`media relative ${detailAspectClass[image.aspect]} bg-primary-pale`}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </section>
+      <section className="portfolio-section is-surface">
+        <div className="portfolio-container project-narrative">
+          <Reveal><article><h2>Purpose</h2><p>{work.purpose}</p></article></Reveal>
+          <Reveal delay={0.05}><article><h2>Concept &amp; Process</h2><p>{work.concept}</p><p>{work.process}</p></article></Reveal>
+          <Reveal delay={0.1}><article><h2>What I considered</h2><p>{work.challenge}</p></article></Reveal>
+        </div>
+        {work.video ? <div className="portfolio-container"><Reveal><div className="project-video"><video controls playsInline preload="metadata" poster={work.video.poster}><source src={work.video.src} type="video/mp4" /></video></div></Reveal></div> : null}
+      </section>
 
-        <nav className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2" aria-label="Work pagination">
-          {previous ? (
-            <Link href={`/works/${previous.slug}`} className="card block">
-              <span className="eyebrow">Previous</span>
-              <span className="subhead mt-2 block text-ink">
-                {previous.title}
-              </span>
-            </Link>
-          ) : (
-            <div />
-          )}
-          {next ? (
-            <Link
-              href={`/works/${next.slug}`}
-              className="card block text-left md:text-right"
-            >
-              <span className="eyebrow">Next</span>
-              <span className="subhead mt-2 block text-ink">
-                {next.title}
-              </span>
-            </Link>
-          ) : null}
-        </nav>
-      </Container>
+      <section className="portfolio-section">
+        <div className="portfolio-container">
+          <div className="portfolio-section-heading"><div><p className="portfolio-kicker">Selected frames</p><h2>IMAGES FROM THE PROJECT.</h2></div><p>작업의 분위기와 구성 판단을 보여주는 대표 프레임입니다.</p></div>
+          <div className="project-gallery">
+            {work.detailImages.map((image, index) => <Reveal key={image.src} delay={index * 0.06}><figure><div className={`project-gallery-media is-${image.aspect}`}><Image src={image.src} alt={image.alt} fill className="object-cover" /></div></figure></Reveal>)}
+          </div>
+          {work.links.instagram ? <div className="portfolio-actions"><a href={work.links.instagram} target="_blank" rel="noreferrer" className="portfolio-button">View on Instagram ↗</a></div> : null}
+        </div>
+      </section>
+
+      <nav className="portfolio-section is-surface" aria-label="작업 이동">
+        <div className="portfolio-container portfolio-grid is-two">
+          {previous ? <Link href={`/works/${previous.slug}`} className="portfolio-card"><div className="portfolio-card-body"><div className="portfolio-card-meta"><span>Previous</span></div><h2>{previous.title}</h2><p className="portfolio-card-link">View project ←</p></div></Link> : <div />}
+          {next ? <Link href={`/works/${next.slug}`} className="portfolio-card"><div className="portfolio-card-body"><div className="portfolio-card-meta"><span>Next</span></div><h2>{next.title}</h2><p className="portfolio-card-link">View project →</p></div></Link> : null}
+        </div>
+      </nav>
     </article>
   );
 }

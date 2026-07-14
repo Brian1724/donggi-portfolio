@@ -8,14 +8,9 @@ export function WorkCard({
   work: Work;
   aspect?: "portrait" | "landscape";
 }) {
-  const category = work.categories[0];
-
   return (
-    <Link
-      href={`/works/${work.slug}`}
-      className="card work-card group"
-    >
-      <div className="work-card-media relative bg-canvas-soft">
+    <Link href={`/works/${work.slug}`} className="portfolio-card">
+      <div className="portfolio-card-media">
         <Image
           src={work.thumbnail}
           alt={work.thumbnailAlt}
@@ -23,13 +18,14 @@ export function WorkCard({
           className="object-cover"
         />
       </div>
-      <div className="work-card-body">
-        {category ? <span className="chip w-fit">{category}</span> : null}
-        <p className="eyebrow">{work.year}</p>
-        <h3 className="subhead work-card-title text-ink">
-          {work.title}
-        </h3>
-        <p className="work-card-description">{work.description}</p>
+      <div className="portfolio-card-body">
+        <div className="portfolio-card-meta">
+          <span>{work.categories[0]}</span>
+          <span>{work.year}</span>
+        </div>
+        <h3>{work.title}</h3>
+        <p>{work.description}</p>
+        <p className="portfolio-card-link">View project ↗</p>
       </div>
     </Link>
   );

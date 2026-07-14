@@ -73,7 +73,7 @@ export default function RootLayout({
       lang="ko"
       className={`${manrope.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-canvas-soft text-ink">
+      <body className="site-body">
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>

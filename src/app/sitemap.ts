@@ -4,7 +4,7 @@ import { works } from "@/data/works";
 import { absoluteUrl } from "@/lib/site-url";
 
 const staticRoutes = ["/", "/about", "/works", "/journal", "/contact"];
-const defaultLastModified = new Date("2026-06-04");
+const defaultLastModified = new Date("2026-07-14");
 
 export const dynamic = "force-static";
 

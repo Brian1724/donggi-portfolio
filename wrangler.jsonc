@@ -2,8 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "donggi-portfolio",
   "compatibility_date": "2026-06-05",
+  "main": "./sites/worker.mjs",
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
     "not_found_handling": "single-page-application"
   }
 }

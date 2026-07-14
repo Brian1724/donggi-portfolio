@@ -1,38 +1,27 @@
-import Image from "next/image";
 import Link from "next/link";
 import { profile } from "@/data/profile";
 
 export function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="container grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto]">
-        <div>
-          <Image
-            src="/logo/logo-mono-light.png"
-            alt="YOON DONGGI"
-            width={151}
-            height={28}
-            className="brand-logo"
-          />
-          <p className="body site-footer-copy mt-4">
-            Visual Archive for photography, videography, travel memories, and
-            creative process.
-          </p>
-          <p className="site-footer-copy mt-6 text-sm font-semibold">
-            © 2026 Donggi Yoon. All rights reserved.
-          </p>
+    <footer className="cinema-footer">
+      <div className="cinema-footer-inner">
+        <div className="cinema-footer-brand">
+          <Link href="/" className="cinema-brand">
+            <span aria-hidden="true" /> DONGGI
+          </Link>
+          <p>Videographer · Photographer · Visual storyteller</p>
         </div>
-        <div className="grid grid-cols-1 gap-2 text-sm font-semibold">
-          <a href={`mailto:${profile.email}`} className="email-token site-footer-link">
-            {profile.email}
-          </a>
-          <a href={profile.instagram} target="_blank" rel="noreferrer">
-            Instagram
-          </a>
-          <a href={profile.photoInstagram} target="_blank" rel="noreferrer">
-            Photo Instagram
-          </a>
+        <nav aria-label="푸터 메뉴">
+          <Link href="/works">Works</Link>
+          <Link href="/about">About</Link>
+          <Link href="/journal">Journal</Link>
+          <a href={profile.instagram} target="_blank" rel="noreferrer">Instagram ↗</a>
+          <a href={profile.photoInstagram} target="_blank" rel="noreferrer">DK4FILM ↗</a>
           <Link href="/rss.xml">RSS</Link>
+        </nav>
+        <div className="cinema-footer-bottom">
+          <span>© 2026 Donggi Yoon</span>
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
         </div>
       </div>
     </footer>

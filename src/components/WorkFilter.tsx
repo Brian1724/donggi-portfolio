@@ -17,23 +17,19 @@ export function WorkFilter({ works }: { works: Work[] }) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-4">
+      <div className="work-filter-nav" aria-label="작업 필터">
         {workFilters.map((filter) => (
           <button
             key={filter}
             type="button"
-            className={`min-h-12 text-sm font-semibold transition ${
-              activeFilter === filter
-                ? "text-ink underline underline-offset-4"
-                : "text-body hover:text-ink"
-            }`}
+            className={activeFilter === filter ? "is-active" : ""}
             onClick={() => setActiveFilter(filter)}
           >
             {filter}
           </button>
         ))}
       </div>
-      <div className="grid-3 mt-8">
+      <div className="portfolio-grid">
         {filteredWorks.map((work, index) => (
           <motion.div
             key={`${activeFilter}-${work.slug}`}

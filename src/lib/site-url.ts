@@ -1,4 +1,4 @@
-export const FALLBACK_SITE_URL = "http://localhost:3000";
+export const FALLBACK_SITE_URL = "https://www.donggi.my";
 export const RESERVED_WEBHOOK_HOST = "martin.donggi.my";
 
 function normalizeSiteUrl(value: string | undefined) {

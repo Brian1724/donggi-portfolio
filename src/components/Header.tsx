@@ -1,94 +1,85 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   { href: "/works", label: "Works" },
+  { href: "/about", label: "About" },
   { href: "/journal", label: "Journal" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return (
-    <header className="site-header">
-      <div className="container site-header-inner">
-        <Link
-          href="/"
-          className="brand-logo-link"
-          onClick={() => setIsOpen(false)}
-        >
-          <Image
-            src="/logo/logo-full.png"
-            alt="YOON DONGGI"
-            width={207}
-            height={36}
-            priority
-            className="brand-logo brand-logo-full"
-          />
-          <Image
-            src="/logo/logo-icon.png"
-            alt="YOON DONGGI"
-            width={32}
-            height={32}
-            priority
-            className="brand-logo-icon"
-          />
+    <header className="cinema-header">
+      <div className="cinema-header-inner">
+        <Link href="/" className="cinema-brand" aria-label="Donggi Yoon 홈" onClick={() => setIsOpen(false)}>
+          <span aria-hidden="true" />
+          DONGGI
         </Link>
-        <div className="header-actions">
-          <nav className="header-nav">
+        <nav className="cinema-nav" aria-label="주요 페이지">
             {navLinks.map((link) => {
-              const active =
-                link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+              const active = pathname.startsWith(link.href);
 
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`header-nav-link ${active ? "is-active" : ""}`}
+                  className={active ? "is-active" : ""}
+                  onClick={() => setIsOpen(false)}
                 >
                   {link.label}
                 </Link>
               );
             })}
-          </nav>
-          <Link href="/contact" className="btn btn-primary">
-            Contact
-          </Link>
-        </div>
+        </nav>
         <button
           type="button"
-          className="btn btn-secondary md:!hidden"
+          className={`cinema-menu-button ${isOpen ? "is-open" : ""}`}
           aria-expanded={isOpen}
-          aria-controls="mobile-menu"
+          aria-controls="cinema-mobile-menu"
+          aria-label={isOpen ? "메뉴 닫기" : "메뉴 열기"}
           onClick={() => setIsOpen((current) => !current)}
         >
-          Menu
+          <span />
+          <span />
         </button>
       </div>
-      {isOpen ? (
-        <nav
-          id="mobile-menu"
-          className="absolute inset-x-0 top-full z-40 grid min-h-screen grid-cols-1 content-start gap-4 bg-canvas-soft p-6 md:hidden"
-        >
-          {[...navLinks, { href: "/contact", label: "Contact" }].map((link) => (
+      <nav
+        id="cinema-mobile-menu"
+        className={`cinema-mobile-menu ${isOpen ? "is-open" : ""}`}
+        aria-hidden={!isOpen}
+      >
+        <p>Navigate / Donggi Yoon</p>
+        <div>
+          {navLinks.map((link, index) => (
             <Link
               key={link.href}
               href={link.href}
-              className="heading rounded-[24px] bg-canvas px-6 py-4 text-ink"
+              tabIndex={isOpen ? 0 : -1}
               onClick={() => setIsOpen(false)}
             >
-              {link.label}
+              <span>0{index + 1}</span>
+              {link.label.toUpperCase()}
             </Link>
           ))}
-        </nav>
-      ) : null}
+        </div>
+        <a href="mailto:ydk0717@gmail.com" tabIndex={isOpen ? 0 : -1}>
+          ydk0717@gmail.com
+        </a>
+      </nav>
     </header>
   );
 }

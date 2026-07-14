@@ -1,92 +1,38 @@
-import { Button } from "@/components/Button";
-import { Container } from "@/components/Container";
+import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { profile } from "@/data/profile";
 import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = createPageMetadata({
-  title: "Contact",
-  description:
-    "윤동기 Donggi Yoon에게 촬영, 사진, 영상, 포트폴리오 협업 문의를 보낼 수 있는 연락처.",
-  path: "/contact",
-});
+export const metadata = createPageMetadata({ title: "Contact", description: "윤동기에게 영상 촬영, 사진, 편집, 비주얼 스토리텔링과 콘텐츠 제작 협업을 문의하는 페이지.", path: "/contact" });
 
 export default function ContactPage() {
   return (
-    <section className="band-green">
-      <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <Reveal>
-          <div className="max-w-2xl">
-            <p className="eyebrow text-canvas">Contact</p>
-            <h1 className="heading mt-2 max-w-[16ch] text-canvas">
-              Tell me about the frame you want to keep.
-            </h1>
-            <p className="ko-under text-canvas-soft">
-              촬영, 사진, 영상, 여행 기록, 포트폴리오 협업에 대해 편하게 이야기해주세요. 조용하고 선명한 기록으로 이어질 수 있는 프로젝트를 기다립니다.
-            </p>
-            <div className="mt-8 grid grid-cols-1 gap-4">
-              <div>
-                <p className="eyebrow text-canvas">Email</p>
-                <a href={`mailto:${profile.email}`} className="email-token mt-2 text-canvas">
-                  {profile.email}
-                </a>
-              </div>
-              <div className="flex flex-wrap gap-4 text-base font-semibold text-canvas">
-                <a href={profile.instagram} target="_blank" rel="noreferrer">
-                  Instagram
-                </a>
-                <a href={profile.photoInstagram} target="_blank" rel="noreferrer">
-                  @dk4film
-                </a>
-                <a href={`mailto:${profile.email}`}>
-                  Email
-                </a>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.08}>
-          <form
-            action={`mailto:${profile.email}`}
-            method="post"
-            encType="text/plain"
-            className="card gap-6"
-          >
-            <div>
-              <label className="eyebrow text-ink-deep" htmlFor="name">
-                Name
-              </label>
-              <input id="name" name="name" className="field mt-2" />
-            </div>
-            <div>
-              <label className="eyebrow text-ink-deep" htmlFor="email">
-                Email
-              </label>
-              <input id="email" name="email" type="email" className="field mt-2" />
-            </div>
-            <div>
-              <label className="eyebrow text-ink-deep" htmlFor="message">
-                Project note
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={6}
-                className="field mt-2 resize-none"
-              />
-            </div>
-            <div className="flex flex-wrap items-center gap-4">
-              <button type="submit" className="btn btn-primary">
-                메일 앱으로 보내기
-              </button>
-              <Button href="/works" variant="tertiary">
-                작업 먼저 보기
-              </Button>
-            </div>
-          </form>
-        </Reveal>
-      </Container>
-    </section>
+    <div className="portfolio-page">
+      <section className="portfolio-section">
+        <div className="portfolio-container contact-layout">
+          <Reveal>
+            <p className="portfolio-kicker">Contact / Project inquiries</p>
+            <h1>LET&apos;S MAKE THE NEXT FRAME.</h1>
+            <p className="portfolio-lead">촬영·편집·사진·콘텐츠 제작 협업 문의를 기다립니다. 아직 정리되지 않은 아이디어도 괜찮습니다. 만들고 싶은 분위기와 목적부터 편하게 알려주세요.</p>
+            <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
+            <div className="contact-socials"><a href={profile.instagram} target="_blank" rel="noreferrer">Instagram ↗</a><a href={profile.photoInstagram} target="_blank" rel="noreferrer">DK4FILM ↗</a></div>
+            <dl className="portfolio-facts">
+              <div><dt>Available for</dt><dd>Videography · Photography · Editing · Visual storytelling</dd></div>
+              <div><dt>Based in</dt><dd>Jeonju, South Korea</dd></div>
+              <div><dt>Response</dt><dd>Email is the fastest way to reach me.</dd></div>
+            </dl>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <form action={`mailto:${profile.email}`} method="post" encType="text/plain" className="contact-form">
+              <div><label htmlFor="name">Name</label><input id="name" name="name" autoComplete="name" required /></div>
+              <div><label htmlFor="email">Email</label><input id="email" name="email" type="email" autoComplete="email" required /></div>
+              <div><label htmlFor="project">Project type</label><input id="project" name="project" placeholder="Video, photography, edit..." /></div>
+              <div><label htmlFor="message">Project note</label><textarea id="message" name="message" rows={7} required /></div>
+              <div className="portfolio-actions"><button type="submit" className="portfolio-button">Open email app</button><Link href="/works" className="portfolio-button">View works</Link></div>
+            </form>
+          </Reveal>
+        </div>
+      </section>
+    </div>
   );
 }

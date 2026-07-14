@@ -48,15 +48,15 @@ The static export is written to `out/`.
 The public site URL is controlled in one place:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://donggi.my
+NEXT_PUBLIC_SITE_URL=https://www.donggi.my
 ```
 
 This value is used for `metadataBase`, canonical URLs, Open Graph image URLs, RSS feed URLs, robots, and sitemap URLs.
 
-Local fallback:
+Production fallback:
 
 ```bash
-http://localhost:3000
+https://www.donggi.my
 ```
 
 Production domains for this portfolio:
@@ -91,7 +91,7 @@ Recommended Cloudflare Pages setup:
 - Framework preset: `Next.js (Static HTML Export)`
 - Build command: `npm run build`
 - Build output directory: `out`
-- Environment variable: `NEXT_PUBLIC_SITE_URL=https://donggi.my`
+- Environment variable: `NEXT_PUBLIC_SITE_URL=https://www.donggi.my`
 - Custom domains: `donggi.my` and `www.donggi.my`
 
 Do not add `martin.donggi.my` to this Pages project. Do not edit its DNS record, route, worker, webhook, or Pages custom domain configuration.
