@@ -217,9 +217,9 @@
 .dialogBar button { padding: 14px 0 14px 20px; border: 0; background: transparent; cursor: pointer; color: var(--cinema-muted); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
 .dialog video { align-self: center; max-height: calc(100dvh - 68px); object-fit: contain; }
 
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 900ms var(--ease), transform 1s var(--ease); }
-.visible { opacity: 1; transform: translateY(0); }
-.hero .reveal { opacity: 1; transform: none; }
+.reveal { opacity: 1; transform: none; }
+.motionReady .reveal { opacity: 0; transform: translateY(28px); transition: opacity 900ms var(--ease), transform 1s var(--ease); }
+.motionReady .visible, .motionReady .hero .reveal { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 800px) {
   .heroInner { padding-top: 116px; padding-bottom: 64px; }

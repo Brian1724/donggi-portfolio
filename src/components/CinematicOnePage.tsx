@@ -124,10 +124,11 @@ const journalTeasers = [
 ];
 
 export function CinematicOnePage() {
+  const pageRef = useRef<HTMLDivElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const filmVideoRef = useRef<HTMLVideoElement>(null);
-  const [videoEnabled, setVideoEnabled] = useState(false);
+  const shouldAutoplayRef = useRef(true);
   const [soundOn, setSoundOn] = useState(false);
   const [selectedFilm, setSelectedFilm] = useState<Film | null>(null);
   const dialogLabel = selectedFilm
@@ -137,9 +138,29 @@ export function CinematicOnePage() {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    const enableVideoFrame = window.requestAnimationFrame(() => {
-      setVideoEnabled(!reduceMotion && !connection?.saveData);
-    });
+    const shouldAutoplay = !reduceMotion && !connection?.saveData;
+    shouldAutoplayRef.current = shouldAutoplay;
+
+    const heroVideo = heroVideoRef.current;
+    if (heroVideo) {
+      heroVideo.defaultMuted = true;
+      heroVideo.muted = true;
+      if (shouldAutoplay) {
+        heroVideo.play().catch(() => undefined);
+      } else {
+        heroVideo.pause();
+        heroVideo.removeAttribute("autoplay");
+      }
+    }
+
+    const page = pageRef.current;
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>(`.${styles.reveal}`));
+
+    if (page && !reduceMotion && "IntersectionObserver" in window) {
+      page.classList.add(styles.motionReady);
+    } else {
+      revealElements.forEach((element) => element.classList.add(styles.visible));
+    }
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -153,8 +174,21 @@ export function CinematicOnePage() {
       { rootMargin: "0px 0px -8%", threshold: 0.06 },
     );
 
-    const revealElements = document.querySelectorAll(`.${styles.reveal}`);
-    revealElements.forEach((element) => revealObserver.observe(element));
+    revealElements.forEach((element) => {
+      const rect = element.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) {
+        element.classList.add(styles.visible);
+      } else {
+        revealObserver.observe(element);
+      }
+    });
+
+    // Safari occasionally misses an observer callback after restoring a tab.
+    // Content must remain readable even when the entrance animation is skipped.
+    const revealSafetyTimer = window.setTimeout(() => {
+      revealElements.forEach((element) => element.classList.add(styles.visible));
+      revealObserver.disconnect();
+    }, 1800);
 
     const parallaxElements = Array.from(
       document.querySelectorAll<HTMLElement>(`[data-cinematic-parallax]`),
@@ -188,34 +222,13 @@ export function CinematicOnePage() {
     }
 
     return () => {
-      window.cancelAnimationFrame(enableVideoFrame);
+      window.clearTimeout(revealSafetyTimer);
       window.removeEventListener("scroll", requestParallax);
       window.removeEventListener("resize", requestParallax);
       revealObserver.disconnect();
+      page?.classList.remove(styles.motionReady);
     };
   }, []);
-
-  useEffect(() => {
-    if (videoEnabled) {
-      heroVideoRef.current?.play().catch(() => undefined);
-    }
-  }, [videoEnabled]);
-
-  useEffect(() => {
-    if (!selectedFilm) return;
-
-    const dialog = dialogRef.current;
-    const film = filmVideoRef.current;
-    if (!dialog || !film) return;
-
-    heroVideoRef.current?.pause();
-    if (!dialog.open) dialog.showModal();
-    document.body.style.overflow = "hidden";
-    film.load();
-    film.currentTime = 0;
-    film.muted = false;
-    film.play().catch(() => undefined);
-  }, [selectedFilm]);
 
   const toggleSound = async () => {
     const video = heroVideoRef.current;
@@ -227,37 +240,60 @@ export function CinematicOnePage() {
   };
 
   const closeFilm = () => {
-    filmVideoRef.current?.pause();
-    dialogRef.current?.close();
+    const film = filmVideoRef.current;
+    const dialog = dialogRef.current;
+    film?.pause();
+    film?.removeAttribute("src");
+    film?.load();
+    if (dialog?.open) {
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+    }
     document.body.style.overflow = "";
     setSelectedFilm(null);
-    if (videoEnabled) heroVideoRef.current?.play().catch(() => undefined);
+    if (shouldAutoplayRef.current) heroVideoRef.current?.play().catch(() => undefined);
+  };
+
+  const openFilm = (film: Film) => {
+    const dialog = dialogRef.current;
+    const player = filmVideoRef.current;
+    if (!dialog || !player) return;
+
+    setSelectedFilm(film);
+    heroVideoRef.current?.pause();
+    player.pause();
+    player.src = film.src;
+    player.poster = film.poster;
+    player.muted = false;
+    player.load();
+    player.currentTime = 0;
+
+    if (!dialog.open) {
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+    }
+    document.body.style.overflow = "hidden";
+    player.play().catch(() => undefined);
   };
 
   return (
-    <div className={styles.page}>
+    <div ref={pageRef} className={styles.page}>
       <a className={styles.skipLink} href="#profile">본문으로 건너뛰기</a>
 
       <section className={styles.hero} id="top" aria-labelledby="hero-title">
         <video
           ref={heroVideoRef}
           className={styles.heroVideo}
-          autoPlay={videoEnabled}
+          autoPlay
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           poster={`${mediaBase}/frame-opening.jpg`}
           aria-label="대련의 도시 풍경과 여행 장면"
         >
-          {videoEnabled ? (
-            <>
-              <source media="(max-width: 720px)" src={`${mediaBase}/donggi-hero-mobile-v2.webm`} type="video/webm" />
-              <source media="(max-width: 720px)" src={`${mediaBase}/donggi-hero-mobile-v2.mp4`} type="video/mp4" />
-              <source src={`${mediaBase}/donggi-hero-v2.webm`} type="video/webm" />
-              <source src={`${mediaBase}/donggi-hero-v2.mp4`} type="video/mp4" />
-            </>
-          ) : null}
+          <source media="(max-width: 720px)" src={`${mediaBase}/donggi-hero-mobile-v2.mp4`} type="video/mp4" />
+          <source src={`${mediaBase}/donggi-hero-v2.mp4`} type="video/mp4" />
         </video>
         <div className={styles.heroShade} aria-hidden="true" />
         <div className={styles.grain} aria-hidden="true" />
@@ -274,15 +310,13 @@ export function CinematicOnePage() {
           <div className={`${styles.heroFooter} ${styles.reveal}`}>
             <p>여행과 일상, 사람과 공간의 분위기를<br />사진과 짧은 영화로 기록합니다.</p>
             <div className={styles.heroActions}>
-              <button className={styles.playLink} type="button" onClick={() => setSelectedFilm(films[2])}>
+              <button className={styles.playLink} type="button" onClick={() => openFilm(films[2])}>
                 <i aria-hidden="true" /> Play Dalian <span>00:21</span>
               </button>
-              {videoEnabled ? (
-                <button className={styles.sound} type="button" onClick={toggleSound} aria-pressed={soundOn}>
-                  <span className={soundOn ? styles.soundActive : ""} aria-hidden="true"><i /><i /><i /></span>
-                  {soundOn ? "Sound on" : "Sound off"}
-                </button>
-              ) : null}
+              <button className={styles.sound} type="button" onClick={toggleSound} aria-pressed={soundOn}>
+                <span className={soundOn ? styles.soundActive : ""} aria-hidden="true"><i /><i /><i /></span>
+                {soundOn ? "Sound on" : "Sound off"}
+              </button>
             </div>
           </div>
         </div>
@@ -320,7 +354,7 @@ export function CinematicOnePage() {
           <div className={styles.parallaxMedia} data-cinematic-parallax="0.06">
             <Image src={`${mediaBase}/frame-opening.jpg`} alt="푸른 저녁빛 아래 펼쳐진 대련 도심" fill sizes="100vw" priority />
           </div>
-          <button type="button" className={styles.framePlay} onClick={() => setSelectedFilm(films[2])} aria-label="Dalian 전체 영상 재생">
+          <button type="button" className={styles.framePlay} onClick={() => openFilm(films[2])} aria-label="Dalian 전체 영상 재생">
             <i aria-hidden="true" /> Watch full film
           </button>
         </div>
@@ -340,7 +374,7 @@ export function CinematicOnePage() {
         <p className={`${styles.filmIntro} ${styles.reveal}`}>서로 다른 계절과 화면비를 촬영하고 편집하며, 장면 사이의 호흡과 색을 실험한 세 편의 짧은 기록입니다.</p>
         <div className={styles.filmGrid}>
           {films.map((film, index) => (
-            <FilmCard key={film.title} film={film} index={index + 1} onPlay={() => setSelectedFilm(film)} />
+            <FilmCard key={film.title} film={film} index={index + 1} onPlay={() => openFilm(film)} />
           ))}
         </div>
         <div className={`${styles.inlineContact} ${styles.reveal}`}>
@@ -394,9 +428,7 @@ export function CinematicOnePage() {
 
       <dialog ref={dialogRef} className={styles.dialog} onCancel={(event) => { event.preventDefault(); closeFilm(); }}>
         <div className={styles.dialogBar}><span>DONGGI / {dialogLabel}</span><button type="button" onClick={closeFilm}>Close ×</button></div>
-        <video ref={filmVideoRef} controls playsInline preload="metadata" poster={selectedFilm?.poster}>
-          {selectedFilm ? <source src={selectedFilm.src} type="video/mp4" /> : null}
-        </video>
+        <video ref={filmVideoRef} controls playsInline preload="metadata" poster={selectedFilm?.poster} />
       </dialog>
     </div>
   );
