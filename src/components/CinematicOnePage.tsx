@@ -256,7 +256,7 @@ export function CinematicOnePage() {
             poster={`${mediaBase}/frame-opening.jpg`}
             aria-label="대련의 도시 풍경과 여행 장면"
           >
-            <source src={`${mediaBase}/donggi-trailer.mp4`} type="video/mp4" />
+            <source src={`${mediaBase}/donggi-hero.mp4`} type="video/mp4" />
           </video>
           <div className={styles.heroShade} aria-hidden="true" />
           <div className={styles.grain} aria-hidden="true" />
