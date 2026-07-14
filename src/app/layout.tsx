@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { SiteChrome } from "@/components/SiteChrome";
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_KEYWORDS,
@@ -75,9 +74,7 @@ export default function RootLayout({
       className={`${manrope.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-canvas-soft text-ink">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
