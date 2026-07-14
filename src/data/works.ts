@@ -58,6 +58,11 @@ export const works: Work[] = [
         alt: "넓은 하늘 아래 철길을 따라 이어지는 여행지의 풍경",
         aspect: "portrait",
       },
+      {
+        src: "/images/archive/detail-underground-stair.jpg",
+        alt: "어두운 지하 통로 계단에 홀로 멈춰 선 사람",
+        aspect: "portrait",
+      },
     ],
     links: {
       instagram: "https://instagram.com/donggi_03",
@@ -96,6 +101,11 @@ export const works: Work[] = [
         alt: "서도역 앞 철길과 사람들의 오후 풍경",
         aspect: "landscape",
       },
+      {
+        src: "/images/archive/detail-night-couple.jpg",
+        alt: "야간 거리의 불빛 아래 서로를 바라보는 두 사람의 실루엣",
+        aspect: "landscape",
+      },
     ],
     links: {
       instagram: "https://instagram.com/dk4film",
@@ -127,6 +137,11 @@ export const works: Work[] = [
       {
         src: "/images/archive/journal-starting-dk4film.jpg",
         alt: "필름적인 질감으로 기록한 거리의 세로 사진",
+        aspect: "portrait",
+      },
+      {
+        src: "/images/archive/detail-architectural-rhythm-bw.jpg",
+        alt: "반복되는 지붕 구조와 긴 그림자를 흑백으로 기록한 공간",
         aspect: "portrait",
       },
     ],
@@ -189,6 +204,11 @@ export const works: Work[] = [
       {
         src: "/images/archive/hero-cherry-portrait.jpg",
         alt: "강변 너머 도시의 밤 실루엣을 기록한 사진",
+        aspect: "landscape",
+      },
+      {
+        src: "/images/archive/detail-light-trace.jpg",
+        alt: "붉은 실내 공간을 가로지르는 흰빛의 장노출 궤적",
         aspect: "landscape",
       },
     ],

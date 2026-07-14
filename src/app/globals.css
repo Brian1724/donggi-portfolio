@@ -197,6 +197,7 @@ button, input, textarea { font: inherit; }
 .project-video { width: 100%; margin-top: 64px; background: #000; }
 .project-video video { width: 100%; max-height: 80vh; }
 .project-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 56px); }
+.project-gallery > :nth-child(3):last-child { grid-column: 1 / -1; width: min(100%, 760px); justify-self: center; }
 .project-gallery figure { margin: 0; }
 .project-gallery-media { position: relative; overflow: hidden; aspect-ratio: 4 / 5; background: var(--site-surface-raised); }
 .project-gallery-media.is-landscape, .project-gallery-media.is-wide { aspect-ratio: 4 / 3; }
@@ -240,6 +241,7 @@ button, input, textarea { font: inherit; }
   .project-info-grid { grid-template-columns: 1fr 1fr; }
   .project-narrative { grid-template-columns: 1fr; }
   .project-gallery { grid-template-columns: 1fr; gap: 40px; }
+  .project-gallery > :nth-child(3):last-child { grid-column: auto; width: 100%; }
   .contact-email { font-size: clamp(20px, 6vw, 28px); }
 }
 
