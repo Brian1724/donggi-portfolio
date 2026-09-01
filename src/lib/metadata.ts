@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { absoluteUrl, metadataBase, siteHost } from "@/lib/site-url";
 
-export const SITE_NAME = "Donggi Yoon";
-export const DEFAULT_TITLE = "Donggi Yoon | Videographer & Photographer";
+export const SITE_NAME = "윤동기 · Donggi Yoon";
+export const DEFAULT_TITLE = "윤동기 | Videographer & Photographer";
 export const DEFAULT_DESCRIPTION =
-  "윤동기 Donggi Yoon의 개인 포트폴리오 사이트. 사진, 영상, 여행, 일상 기록과 시네마틱 비주얼 작업을 아카이브합니다.";
+  "사진과 영상으로 여행과 일상, 사람과 공간의 분위기를 기록하는 윤동기의 한국어 비주얼 아카이브.";
 export const DEFAULT_KEYWORDS = [
   "윤동기",
   "Donggi Yoon",
