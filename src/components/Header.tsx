@@ -2,23 +2,31 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const navLinks = [
-  { href: "/works", label: "Works" },
-  { href: "/about", label: "About" },
-  { href: "/journal", label: "Journal" },
-  { href: "/contact", label: "Contact" },
+  { href: "/works", label: "작업" },
+  { href: "/about", label: "소개" },
+  { href: "/journal", label: "저널" },
+  { href: "/contact", label: "연락" },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || !isOpen) return;
+      setIsOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    window.addEventListener("keydown", closeOnEscape);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
     };
   }, [isOpen]);
 
@@ -46,6 +54,7 @@ export function Header() {
             })}
         </nav>
         <button
+          ref={menuButtonRef}
           type="button"
           className={`cinema-menu-button ${isOpen ? "is-open" : ""}`}
           aria-expanded={isOpen}
@@ -62,7 +71,7 @@ export function Header() {
         className={`cinema-mobile-menu ${isOpen ? "is-open" : ""}`}
         aria-hidden={!isOpen}
       >
-        <p>Navigate / Donggi Yoon</p>
+        <p>메뉴 / Donggi Yoon</p>
         <div>
           {navLinks.map((link, index) => (
             <Link
@@ -72,7 +81,7 @@ export function Header() {
               onClick={() => setIsOpen(false)}
             >
               <span>0{index + 1}</span>
-              {link.label.toUpperCase()}
+              {link.label}
             </Link>
           ))}
         </div>

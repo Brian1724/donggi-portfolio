@@ -9,12 +9,12 @@ export function Footer() {
           <Link href="/" className="cinema-brand">
             <span aria-hidden="true" /> DONGGI
           </Link>
-          <p>Videographer · Photographer · Visual storyteller</p>
+          <p>사진과 영상으로 여행과 일상의 분위기를 기록합니다.</p>
         </div>
         <nav aria-label="푸터 메뉴">
-          <Link href="/works">Works</Link>
-          <Link href="/about">About</Link>
-          <Link href="/journal">Journal</Link>
+          <Link href="/works">작업</Link>
+          <Link href="/about">소개</Link>
+          <Link href="/journal">저널</Link>
           <a href={profile.instagram} target="_blank" rel="noreferrer">Instagram ↗</a>
           <a href={profile.photoInstagram} target="_blank" rel="noreferrer">DK4FILM ↗</a>
           <Link href="/rss.xml">RSS</Link>
