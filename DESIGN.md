@@ -1,147 +1,226 @@
-# DESIGN.md — donggi.my (Bright Wise-Inspired Editorial)
+# DESIGN.md - donggi.my Korean-First Cinematic Archive
 
-> **READ FIRST (Codex):** Single source of truth. Apply every token EXACTLY.
-> Do NOT invent colors, radii, sizes, weights, or spacing. Prefer these values over your own judgment.
-> Stack FIXED: Next.js App Router + TypeScript + Tailwind + Framer Motion + static export (`output:"export"`).
-> NEVER touch DNS / Cloudflare / `martin.donggi.my`. Only website UI code. Keep Cloudflare Pages deployable.
-> Finish: `npm run build`, fix ALL errors, verify §11, commit, push origin main.
+> 이 문서는 `donggi.my`의 디자인과 콘텐츠를 판단하는 단일 기준이다.
+> 현재의 영화적 홈페이지를 보존하고 확장한다. 밝은 SaaS, Wise, 대시보드, 범용 포트폴리오 방향으로 되돌리지 않는다.
 
----
+## 0. 핵심 원칙
 
-## 0. Identity & Wise mapping
-A premium personal **visual archive** for 윤동기 / Donggi Yoon (aspiring videographer + photographer),
-built on the REAL Wise homepage structure: BRIGHT sage hero, dark-ink headline, lime CTA only,
-white cards, ONE dark-green accent section. Calm, confident, editorial — like a large brand/product team.
+`donggi.my`는 윤동기가 사진과 영상으로 바라본 여행, 일상, 사람과 공간을 축적하는 **진행형 한국어 비주얼 아카이브**다.
 
-**Wise primitive → portfolio mapping (use this):**
-| Wise original | Portfolio version |
-|---|---|
-| Currency-converter card (hero right) | Featured work / reel card |
-| "£12 billion/month" trust row | Work stats row (videos · places · since 2026) |
-| "Receive money fast" feature cards | Selected Works cards |
-| Trustpilot quotes | Journal / short notes |
-| "Send money to…" country links | Footer mini-sitemap |
+**English creates atmosphere. Korean tells the story.**
 
-**Hard bans:** dark cinematic black look · pure black large areas · glassmorphism · neon ·
-heavy shadows · gradient noise · second accent · sharp-corner CTAs · hero lighter than 800 ·
-cramped bilingual blocks · more than ONE dark-green section.
+- 한국어는 설명, 서사, 작업 과정, 저널, 소개, 연락 문구의 주 언어다.
+- 영어는 `BETWEEN FRAMES.`, 작품명, 섹션 번호, 역할, 날짜와 같은 짧은 에디토리얼 요소에만 사용한다.
+- 좋은 한국어 문장을 국제적인 인상을 이유로 영어로 교체하지 않는다.
+- 영어 문장 아래에 한국어 번역을 붙이는 구조보다, 영어는 표식으로 두고 한국어가 내용을 이끄는 구조를 선택한다.
 
----
+> **경고:** 영어 디스플레이 타이포그래피를 사용하더라도 `donggi.my`를 영어 우선 포트폴리오로 재설계하지 않는다. 한국어가 사이트의 목소리이자 주요 독해 경험이다.
 
-## 1. Color tokens — USE THESE EXACT HEX
+## 1. 정체성
 
-| Token          | Hex       | Use                                       |
-|----------------|-----------|-------------------------------------------|
-| canvas         | `#ffffff` | Card interiors                            |
-| canvas-soft    | `#e8ebe6` | Page / hero background (sage)             |
-| ink            | `#0e0f0c` | Headlines + default text (warm near-black)|
-| ink-deep       | `#163300` | Text on lime; deep-green section bg       |
-| body           | `#454745` | Secondary body text                       |
-| mute           | `#868685` | Captions, eyebrow, fine print             |
-| primary        | `#9fe870` | Lime CTA — the ONLY accent                |
-| primary-active | `#cdffad` | CTA hover/active                          |
-| primary-pale   | `#e2f6d5` | Soft green chips / tints                   |
+- 브랜드 문장: `BETWEEN FRAMES.`
+- 이름: 윤동기 / Donggi Yoon
+- 역할: Videographer & Photographer in Progress
+- 관점: 여행과 일상에서 마주한 빛, 움직임, 사람 사이의 거리와 장소의 분위기를 기록한다.
+- 인상: 독립 영화감독의 쇼릴, 작은 사진전, 개인 작업 노트를 한 공간에서 차분히 넘겨보는 경험.
+- 우선순위: 이미지와 영상 -> 한국어 글 -> 리듬과 여백 -> 인터페이스.
 
-Rules: lime only on CTAs + positive chips · never lime-on-green · no pure black · no other accent ·
-deep-green `#163300` only on the single Contact section.
+사이트는 완성작만 전시하는 쇼케이스가 아니다. 무엇을 보고, 왜 촬영하고, 어떻게 고르고 편집하며, 다음 작업에서 무엇을 발전시키려는지 함께 남기는 살아 있는 아카이브다.
 
----
+## 2. 시각 철학
 
-## 2. Surface flow (Wise rhythm)
-sage hero → white content bands (cards float on contrast) → sage About → white Journal →
-ONE deep-green `#163300` Contact CTA → ink footer. Surface contrast = elevation. No heavy shadows.
+유지할 것:
 
----
+- 전체 화면의 움직이는 이미지
+- 검정에 가까운 차콜 배경과 따뜻한 아이보리 글자
+- 절제된 골드 포인트
+- 큰 영문 디스플레이 타이포그래피
+- 넓고 의도적인 여백
+- 다양한 비율의 사진 시퀀스
+- 얇은 선, 조용한 메타데이터, 필름 크레디트 같은 마감
+- 약한 그레인과 느린 패럴랙스
 
-## 3. Typography
-Display = **Manrope 800/900** (`--font-display`). Body = **Inter 400/600** (`--font-body`).
-Korean = **Pretendard**.
+금지할 것:
 
-| Role             | Size                     | Weight | Notes                          |
-|------------------|--------------------------|--------|--------------------------------|
-| hero headline    | `clamp(48px,7vw,104px)`  | 900    | ink, lh 0.95, tracking -0.02em |
-| section heading  | `clamp(28px,4vw,44px)`   | 800    | ink                            |
-| sub-section      | `24px`                   | 600    |                                |
-| lead             | `20px`                   | 400    | lh 1.6, body                   |
-| body             | `16px`                   | 400/600| lh 1.7                         |
-| stat number      | `clamp(28px,3vw,40px)`   | 800    | ink                            |
-| eyebrow          | `12px`                   | 600    | uppercase, tracking 0.14em, mute |
+- Wise, Stripe, Notion, Apple을 흉내 낸 밝은 제품 페이지
+- 세이지/라임 SaaS 팔레트
+- 카드가 반복되는 범용 포트폴리오
+- 개발자 대시보드 같은 필터와 UI
+- 글래스모피즘, 네온, 과한 그라디언트와 그림자
+- 사진보다 눈에 띄는 장식
+- 가짜 고객 작업, 스톡 이미지, 과장된 에이전시 문구
 
-**Bilingual rule (critical):** Korean NEVER touches English. Always `margin-top:20px`,
-body color, 16px / lh 1.7, `word-break:keep-all`. Headlines `text-wrap:balance`.
-Allowed sizes: 12·16·20·24·40·hero·stat. Hero 900, sections 800, rest 600.
+## 3. 색상
 
----
+공통 토큰은 `src/app/globals.css`와 홈 CSS 모듈에서 같은 의미로 사용한다.
 
-## 4. Spacing — ONLY `4·8·12·16·20·24·32·48·96`
-Section padding 96 desktop / 56 mobile · card padding 24 · container max **1200**, gutter 24 · body max 640.
+| 토큰 | 값 | 용도 |
+|---|---:|---|
+| background | `#070808` | 기본 배경 |
+| surface | `#0d0f0f` | 섹션 구분 |
+| raised | `#141616` | 이미지 로딩 면, 보조 표면 |
+| ink | `#f2efe8` | 제목과 주요 텍스트 |
+| soft | `#c9c4ba` | 한국어 본문 |
+| muted | `#92918c` | 캡션과 메타데이터 |
+| accent | `#c8a36a` | 섹션 번호, 포커스, 작은 강조 |
+| line | `rgba(242,239,232,.16)` | 헤어라인 |
+| paper | `#f2efe8` | 마지막 크레디트형 밝은 면 |
 
-## 5. Radius — `12` chip/input · `16` mid · **`24` card/button** · `9999` pill/circle. No sharp corners.
+골드는 작은 표식과 상호작용에만 사용한다. 넓은 배경이나 본문 색으로 확장하지 않는다.
 
----
+## 4. 타이포그래피
 
-## 6. Components
-**Buttons** (min-h 48px, radius 24 or pill, 16/600):
-- primary: lime bg · ink-deep text · secondary: canvas-soft bg · ink · ghost: text link + arrow.
-- Max 2 buttons per section.
+- 영문 디스플레이: Manrope 800
+- 본문과 UI: Inter 400/600
+- 한국어: Pretendard가 설치된 환경을 우선하고, `Apple SD Gothic Neo`, system sans-serif로 안전하게 폴백한다.
+- 새로운 폰트는 명확한 이유 없이 추가하지 않는다.
 
-**Chips:** primary-pale bg · ink-deep text · radius 12 · 14/600. Max 1 per work card, 3 in hero.
+### 한국어 규칙
 
-**Cards (radius 24, no shadow):**
-- `featured-card` (hero right): white, 1px ink border allowed (Wise's converter slot) → large
-  reel/work image aspect-[4/5] + title + 2 chips. The ONLY hero card.
-- `work-card`: image aspect-[4/5] + eyebrow(category·year) + title + 1-line desc. EQUAL height
-  (items-stretch, flex-col, mt-auto). Max 1 badge.
-- `feature-sage` (about): sage bg, radius 24. `journal-card`: thumb + date eyebrow + title + 1-line.
+- 모든 한국어 문단은 `word-break: keep-all`을 기본으로 한다.
+- 본문 행간은 1.65-1.9 범위로 유지한다.
+- 문단 폭은 보통 620-780px이며 모바일에서 지나치게 좁은 2열을 만들지 않는다.
+- 한국어에는 장식적인 자간을 적용하지 않는다.
+- 한 글자만 다음 줄에 남는 문장은 폭, 크기 또는 문장 자체를 자연스럽게 조정한다.
+- 영문 표식과 한국어 설명 사이에는 최소 20-28px의 명확한 간격을 둔다.
+- 제목은 `text-wrap: balance`, 본문은 지원되는 환경에서 `text-wrap: pretty`를 사용한다.
 
-**Stats strip (Wise trust row):** white or sage, 3–4 inline stats — big number (800) + small
-label. e.g. "12 Films · 8 Cities · Since 2026". Thin, horizontal, no boxes.
+### 위계
 
-**Hero (Wise split):** left huge ink headline + 20px gap Korean tagline + 32px gap two buttons
-(lime "작업 보기" + ghost "연락하기"). Right: featured-card. Mobile: stacked.
+1. 영문 대형 타이포그래피는 분위기와 장면 전환을 만든다.
+2. 한국어 제목과 문단은 실제 정보를 전달한다.
+3. 역할, 장소, 날짜, 장비는 조용한 메타데이터다.
 
-**Nav:** white sticky, logo "Donggi Yoon" left, links 14/600, lime pill CTA right. Mobile hamburger → sage sheet.
-**Contact CTA:** deep-green `#163300` rounded section, white heading + lime line + lime button. The ONE dark moment.
-**Footer:** ink bg, canvas-soft text, mini-sitemap links, pad 48/24.
+## 5. 레이아웃과 여백
 
----
+- 최대 콘텐츠 폭: 1200px
+- 페이지 거터: `clamp(22px, 4vw, 64px)`
+- 섹션 간격: `clamp(80px, 9vw, 144px)`
+- 긴 글의 가독 폭: 720-780px
+- 얇은 선으로 섹션을 나누고 불필요한 카드 테두리는 사용하지 않는다.
+- 사진의 비율과 여백을 일정하게 만들지 말고, 시퀀스의 강약에 따라 의도적으로 달리한다.
+- 모서리는 기능적으로 필요한 버튼, 모달, 원형 재생 컨트롤에만 사용한다.
 
-## 7. Homepage — exactly these, in order
-1. **Hero** (sage, split): ink headline "Everyday moments, cinematic memories." + Korean tagline + 2 buttons; right featured-card.
-2. **Stats strip**: 3–4 work stats inline.
-3. **Selected Works** (white): heading + "모든 작업 보기 →" · 3 equal-height work-cards.
-4. **About preview** (sage): short Korean paragraph + one image + ghost link.
-5. **Journal** (white): 3 simple journal-cards.
-6. **Contact CTA** (deep-green #163300): one heading + short line + lime button + ghost link.
-7. **Footer** (ink): mini-sitemap.
+## 6. 홈페이지 구조
 
-## 8. Other pages
-- `/about`: sage hero (윤동기 + role) → bilingual bio + timeline + skill chips (max 3/group).
-- `/works`: quiet text-link filters → work-card grid, 1 badge each, minimal meta.
-- `/works/[slug]`: large hero image → meta sidebar (year·role·gear) → image sequence.
-- `/journal`: editorial, body max-width 680, spacious cards.
-- `/contact`: deep-green hero (NOT black), two cols — left intro+email+3 socials, right white form card (inputs radius 12, lime button).
+1. **HERO** - 전체 화면 영상, `BETWEEN FRAMES.`, 한국어 핵심 문장, 대표 필름 재생과 사운드 제어.
+2. **PROFILE** - 윤동기가 누구이며 무엇을 기록하는지 짧은 한국어 소개와 최소 메타데이터.
+3. **SELECTED WORK** - 가장 강한 한 작품, 현재는 Dalian. 장소, 역할, 한국어 콘셉트와 필름 재생.
+4. **SHORT FILMS** - 실제 세 편 `2025`, `NEW YEAR 2026`, `DALIAN`.
+5. **STILL ARCHIVE** - 여섯 장 안팎의 전시형 사진 시퀀스. 균일 그리드로 바꾸지 않는다.
+6. **FIELD NOTES** - 촬영과 편집 과정에 관한 한국어 저널 미리보기.
+7. **CONTACT** - 엔딩 크레디트처럼 간결한 한국어 협업 안내, 이메일, Instagram, DK4FILM.
 
-## 9. Responsive
-mobile <768 (stack, 1-up, pad 56) · tablet 768–1023 (2-up) · desktop ≥1024 (split, 3-up, pad 96).
-Touch ≥48px · no horizontal scroll.
+## 7. 작업 목록과 상세
 
-## 10. Motion (restrained)
-fadeUp {opacity:0,y:24}→{0} dur .6 ease [.2,.8,.2,1] viewport{once:true,margin:"-80px"}.
-Only image hover scale 1.03 beyond this.
+`/works`는 앱처럼 보이지 않는 조용한 필터와 큰 이미지 중심의 목록을 사용한다. 필터의 의미는 한국어가 우선이며 Film, Photography 같은 분야명은 보조적으로 유지할 수 있다.
 
----
+작업 상세는 콘텐츠가 있을 때 다음 흐름을 따른다.
 
-## 11. Acceptance (verify before commit)
-- [ ] `npm run build` passes, static export intact
-- [ ] Page bg sage `#e8ebe6`, cards white; NO pure black large areas
-- [ ] Hero ink headline weight 900, clamp scales; featured-card on right (ONE card)
-- [ ] Stats strip present (Wise trust-row mapping)
-- [ ] Korean never touches English (margin-top 20px, keep-all)
-- [ ] Selected Works = 3 EQUAL-height cards, 1 badge max
-- [ ] EXACTLY ONE deep-green `#163300` section (Contact CTA); lime only on CTAs
-- [ ] All radii ∈ {12,16,24,9999}; padding 96/56; container 1200
-- [ ] No glass / heavy shadow / neon / gradient / second accent
-- [ ] /, /about, /works, /journal, /contact render
-- [ ] DNS / Cloudflare / martin.donggi.my untouched
-- [ ] Commit: "feat: bright Wise-inspired editorial system" → push origin main
+1. INTRO - 제목, 형식, 연도, 장소
+2. CONTEXT - 왜 만들었는가
+3. CONCEPT - 어떤 시선과 감정을 중심에 두었는가
+4. PROCESS - 촬영, 선별, 편집, 색, 사운드의 과정
+5. FILM / VISUALS - 영상 또는 대표 비주얼
+6. SELECTED FRAMES - 에디토리얼 이미지 시퀀스
+7. ROLE / TOOLS - 역할과 장비, 소프트웨어
+8. REFLECTION - 어려웠던 점과 다음 작업에서 발전시킬 부분
+9. PREVIOUS / NEXT - 인접 작업
+
+영문은 섹션 표식으로, 설명은 자연스러운 한국어로 쓴다. 내용이 빈약한 섹션을 형식적으로 만들지 않는다.
+
+## 8. About, Journal, Contact
+
+### About
+
+- 윤동기가 누구인지, 왜 기록하는지, 어떤 장면에 관심이 있는지 한국어로 설명한다.
+- 학교와 전공은 맥락으로만 두며 이력서처럼 보이지 않게 한다.
+- 퍼센트 바, 숙련도 수치, 과장된 경력 표현을 사용하지 않는다.
+
+### Journal
+
+- 한국어 읽기 경험을 최우선으로 한다.
+- 제목, 본문, 요약은 한국어가 주도하고 카테고리와 날짜는 보조 정보로 둔다.
+- 본문 행간과 이미지 사이의 호흡을 넉넉하게 유지한다.
+
+### Contact
+
+- 이메일, Instagram, DK4FILM을 가장 쉽게 찾을 수 있어야 한다.
+- 서버나 연락처 폼을 억지로 만들지 않는다.
+- `CONTACT` 같은 영문 제목 아래 실제 안내는 담백한 한국어로 쓴다.
+
+## 9. 이미지와 영상
+
+- 사용자 본인이 촬영한 실제 미디어만 사용한다.
+- `next/image`는 실제 렌더 폭에 맞는 `sizes`를 지정한다.
+- 첫 화면에 필요한 자산만 우선 로드하고 나머지는 기본 지연 로딩을 사용한다.
+- 인물 얼굴과 장면의 중심이 어색하게 잘리지 않도록 페이지별 `object-position`을 확인한다.
+- 안정적인 비율로 레이아웃 이동을 막는다.
+
+영상 규칙:
+
+- 히어로는 허용되는 환경에서 음소거 자동 재생, `playsInline`, poster를 사용한다.
+- Safari를 위해 MP4 폴백을 유지하고 레이어 합성 안전장치를 제거하지 않는다.
+- WebM은 지원 브라우저용 선택지이며 MP4를 대체하지 않는다.
+- Save-Data와 `prefers-reduced-motion`에서는 자동 재생하지 않는다.
+- 전체 필름은 클릭하기 전 미리 로드하지 않는다.
+- 필름 모달이 열리면 히어로 영상을 멈추고, 닫히면 사용자 환경이 허용할 때만 재개한다.
+
+## 10. 모션
+
+- 모션은 장면 전환을 돕는 느린 페이드와 작은 수직 이동으로 제한한다.
+- 사진 패럴랙스는 최대 약 60px 범위로 억제한다.
+- hover 확대는 1.03 이하로 사용한다.
+- 콘텐츠는 모션 실패 시에도 항상 보여야 한다. Safari용 reveal 안전 타이머를 유지한다.
+- `prefers-reduced-motion`에서는 패럴랙스, 자동 재생, 긴 전환을 제거한다.
+
+## 11. 반응형 전략
+
+- 점검 폭: 375, 430, 768, 1024px과 넓은 데스크톱.
+- 모바일은 단순히 데스크톱을 한 열로 쌓지 않는다. 사진 폭과 좌우 정렬을 달리해 시퀀스를 유지한다.
+- 모바일 메뉴로 Works, About, Journal, Contact에 접근할 수 있어야 한다.
+- 대형 타이포그래피, 이메일, 긴 프로젝트명이 가로로 넘치지 않아야 한다.
+- 필름 모달은 `100dvh` 안에서 영상과 닫기 버튼을 함께 보여야 한다.
+- 한국어 문장이 너무 좁아지거나 한 글자 줄이 생기지 않도록 폭과 글자 크기를 함께 조정한다.
+
+## 12. 접근성
+
+- `header`, `nav`, `main`, `section`, `article`, `footer`, `dialog` 등 의미 있는 요소를 사용한다.
+- 페이지마다 하나의 명확한 `h1`과 순차적인 제목 위계를 유지한다.
+- 이미지 alt는 보이는 장면과 맥락을 자연스러운 한국어로 설명한다.
+- 모든 동작은 실제 `button`, 모든 이동은 실제 링크를 사용한다.
+- 키보드 포커스는 골드 2px 외곽선으로 분명하게 표시한다.
+- 모바일 메뉴와 영상 대화상자는 열림 상태, Escape 닫기, 스크롤 잠금, 적절한 레이블을 제공한다.
+- 본문과 메타데이터의 대비를 유지한다.
+
+## 13. 콘텐츠와 코드 구조
+
+- 작품, 필름, 스틸, 저널, 프로필은 `src/data`에서 관리한다.
+- 컴포넌트는 한 섹션 또는 한 상호작용을 책임질 때만 분리한다.
+- `CinematicOnePage.tsx`는 홈 섹션을 조합하고 공유 영상 상태를 관리하는 얇은 컴포넌트로 유지한다.
+- 새 필름이나 사진을 추가하기 위해 거대한 JSX 파일을 수정하지 않도록 한다.
+- 사용하지 않는 밝은 디자인용 컴포넌트와 CSS는 확인 후 제거한다.
+
+## 14. SEO와 배포
+
+- `NEXT_PUBLIC_SITE_URL` 한 곳에서 canonical, Open Graph, RSS, sitemap, robots 주소를 만든다.
+- 기본값은 `https://www.donggi.my`다.
+- 제목과 설명은 자연스러운 한국어가 우선이며 `Donggi Yoon`, `Videographer & Photographer`를 보조한다.
+- 상세 작업과 저널은 해당 이미지와 설명을 공유 메타데이터로 사용한다.
+- Next.js App Router, TypeScript, 정적 export와 Cloudflare의 `out/` 배포를 유지한다.
+- 완료 전 `npm run lint`, `npm run build`를 통과하고 주요 경로와 미디어를 확인한다.
+
+## 15. 인프라 금지 사항
+
+- DNS, 네임서버, Cloudflare 도메인 라우팅, 배포 자격 증명을 변경하지 않는다.
+- 포트폴리오 도메인은 `donggi.my`, `www.donggi.my`다.
+- **`martin.donggi.my`는 Hermes Telegram webhook 전용이다. 어떤 경우에도 읽거나 수정하거나 포트폴리오에 연결하지 않는다.**
+
+변경 전 다음을 묻는다.
+
+- 한국어 가독성이 좋아지는가?
+- 이미지와 영상의 힘이 더 잘 보이는가?
+- 윤동기의 시선과 제작 과정이 선명해지는가?
+- 접근성, 성능 또는 유지보수가 실제로 개선되는가?
+
+아니라면 바꾸지 않는다.

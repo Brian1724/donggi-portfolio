@@ -10,6 +10,7 @@ export function JournalCard({ post }: { post: JournalPost }) {
           src={post.thumbnail}
           alt={post.imageAlt}
           fill
+          sizes="(max-width: 800px) 100vw, (max-width: 1100px) 50vw, 33vw"
           className="object-cover"
         />
       </div>
@@ -17,7 +18,7 @@ export function JournalCard({ post }: { post: JournalPost }) {
         <div className="portfolio-card-meta"><span>{post.category}</span><span>{post.date}</span></div>
         <h3>{post.title}</h3>
         <p>{post.excerpt}</p>
-        <p className="portfolio-card-link">Read note ↗</p>
+        <p className="portfolio-card-link">기록 읽기 ↗</p>
       </div>
     </Link>
   );
