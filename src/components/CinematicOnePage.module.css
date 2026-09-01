@@ -21,18 +21,6 @@
 .page button { color: inherit; font: inherit; }
 .page img, .page video { display: block; width: 100%; }
 
-.skipLink {
-  position: fixed;
-  z-index: 200;
-  top: 12px;
-  left: 12px;
-  padding: 12px 16px;
-  background: var(--cinema-ink);
-  color: var(--cinema-bg) !important;
-  transform: translateY(-150%);
-}
-.skipLink:focus { transform: translateY(0); }
-
 .hero {
   position: relative;
   min-height: 100vh;

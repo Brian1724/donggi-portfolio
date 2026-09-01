@@ -177,10 +177,6 @@ export function CinematicOnePage() {
 
   return (
     <div ref={pageRef} className={styles.page}>
-      <a className={styles.skipLink} href="#profile">
-        본문으로 건너뛰기
-      </a>
-
       <CinematicHero
         videoRef={heroVideoRef}
         soundOn={soundOn}
