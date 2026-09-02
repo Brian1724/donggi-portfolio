@@ -15,9 +15,7 @@ export function StillArchiveSection() {
         <div>
           <p className={styles.eyebrow}>04 / STILL ARCHIVE</p>
           <h2 className={styles.display} id="archive-title">
-            BETWEEN
-            <br />
-            THE CUTS.
+            장면과 장면 사이.
           </h2>
         </div>
         <p>{homeCopy.stills.description}</p>
@@ -28,7 +26,7 @@ export function StillArchiveSection() {
         ))}
       </div>
       <div className={styles.archiveMore}>
-        <Link href="/works">사진 작업 더 보기 ↗</Link>
+        <Link href="/works">사진 작업 더 보기</Link>
       </div>
     </section>
   );

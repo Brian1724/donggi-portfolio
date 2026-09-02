@@ -15,27 +15,37 @@ export const metadata = createPageMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="portfolio-page">
-      <section className="portfolio-hero">
-        <div className="portfolio-container">
+    <div className="portfolio-page about-page">
+      <section className="portfolio-section about-intro">
+        <div className="portfolio-container about-intro-grid">
           <Reveal>
-            <p className="portfolio-kicker">About / Donggi Yoon</p>
-            <h1 className="portfolio-title is-korean">장면을 오래 바라보고,<br />천천히 기록합니다.</h1>
+            <div className="about-intro-media">
+              <Image
+                src="/images/archive/journal-why-capture-everyday.jpg"
+                alt="대련의 밤거리에서 지나가는 장면을 바라보는 윤동기"
+                fill
+                priority
+                sizes="(max-width: 800px) 100vw, 58vw"
+                className="object-cover"
+              />
+            </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="portfolio-lead">
-              <strong>사진과 영상으로 나만의 시선을 만들어가는 중입니다.</strong>
-              {profile.intro}
-            </p>
-            <div className="portfolio-actions">
-              <Link href="/works" className="portfolio-button is-accent">작업 보기</Link>
-              <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="portfolio-button">이력서 ↗</a>
+            <div className="about-intro-copy">
+              <p className="portfolio-kicker">About / Donggi Yoon</p>
+              <h1>윤동기</h1>
+              <p className="about-statement">사진과 영상으로<br />평범한 하루가 오래 남는 방식을<br />찾고 있습니다.</p>
+              <p className="portfolio-lead">{profile.intro}</p>
+              <div className="about-links">
+                <Link href="/works">작업 보기</Link>
+                <a href={profile.resumeUrl} target="_blank" rel="noreferrer">이력서</a>
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="portfolio-section">
+      <section className="portfolio-section about-essay">
         <div className="portfolio-container portfolio-editorial-grid">
           <Reveal>
             <div className="portfolio-editorial-media">
@@ -58,21 +68,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="portfolio-section is-surface">
+      <section className="portfolio-section about-timeline-section">
         <div className="portfolio-container">
           <div className="portfolio-section-heading">
             <div><p className="portfolio-kicker">Learning path</p><h2>배우고 기록하며 작업의 기준을 만들어갑니다.</h2></div>
             <p>학교에서 배우는 미디어적 관점과 개인 촬영 경험을 연결하며 작업의 기준을 만들어갑니다.</p>
           </div>
-          <div className="portfolio-grid">
+          <div className="about-timeline-list">
             {timeline.map((item, index) => (
               <Reveal key={`${item.period}-${item.title}`} delay={index * 0.05}>
-                <article className="portfolio-card">
-                  <div className="portfolio-card-body">
-                    <div className="portfolio-card-meta"><span>{item.period}</span><span>0{index + 1}</span></div>
-                    <h2>{item.title}</h2>
-                    <p>{item.description}</p>
-                  </div>
+                <article className="about-timeline-item">
+                  <span>0{index + 1}</span>
+                  <div><p>{item.period}</p><h2>{item.title}</h2></div>
+                  <p>{item.description}</p>
                 </article>
               </Reveal>
             ))}
@@ -86,21 +94,18 @@ export default function AboutPage() {
             <div><p className="portfolio-kicker">Practice</p><h2>반복하며 조금씩 깊어지는 것들.</h2></div>
             <p>촬영, 편집, 색감, 스토리텔링을 작게 반복하며 작업의 깊이를 더하고 있습니다.</p>
           </div>
-          <div className="portfolio-grid is-two">
+          <div className="about-practice-list">
             {skills.map((skill, index) => (
               <Reveal key={skill.title} delay={index * 0.04}>
-                <article className="portfolio-card">
-                  <div className="portfolio-card-body">
-                    <div className="portfolio-card-meta"><span>0{index + 1}</span><span>Practice</span></div>
-                    <h2>{skill.title}</h2>
-                    <p>{skill.description}</p>
-                    <div className="portfolio-tags">{skill.items.slice(0, 3).map((item) => <span className="portfolio-tag" key={item}>{item}</span>)}</div>
-                  </div>
+                <article className="about-practice-item">
+                  <span>0{index + 1}</span>
+                  <div><h2>{skill.title}</h2><p>{skill.description}</p></div>
+                  <p>{skill.items.slice(0, 3).join(" · ")}</p>
                 </article>
               </Reveal>
             ))}
           </div>
-          <div className="portfolio-actions"><Link href="/contact" className="portfolio-button is-accent">작업 이야기 나누기</Link></div>
+          <Link href="/contact" className="portfolio-text-link">작업 이야기 나누기</Link>
         </div>
       </section>
     </div>

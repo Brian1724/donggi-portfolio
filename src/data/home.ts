@@ -8,6 +8,8 @@ export const homeCopy = {
     role: "Videographer & Photographer in Progress",
     description:
       "사진과 영상으로 여행, 일상, 사람과 공간의 분위기를 기록하며 나만의 시각 언어를 만들어가고 있습니다.",
+    note:
+      "아직 하나의 스타일을 완성했다기보다, 계속 찍고 편집하며 내가 오래 바라보게 되는 장면이 무엇인지 찾아가고 있습니다.",
   },
   featuredWork: {
     description: "빠르게 움직이는 도시 안에서 발견한 정적인 순간을 기록한 짧은 여행 영화.",

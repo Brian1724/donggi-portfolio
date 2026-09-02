@@ -56,11 +56,11 @@ export function WorkFilter({ works }: { works: Work[] }) {
       <p className="sr-only" aria-live="polite">
         {filteredWorks.length}개의 작업이 표시됩니다.
       </p>
-      <div className="portfolio-grid">
+      <div className="work-archive">
         {filteredWorks.map((work, index) => (
           <motion.div
             key={`${activeFilter}-${work.slug}`}
-            className="h-full"
+            className="work-archive-item"
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -70,7 +70,7 @@ export function WorkFilter({ works }: { works: Work[] }) {
               delay: reduceMotion ? 0 : index * 0.04,
             }}
           >
-            <WorkCard work={work} />
+            <WorkCard work={work} index={index} />
           </motion.div>
         ))}
       </div>

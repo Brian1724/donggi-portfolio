@@ -12,7 +12,7 @@ export const metadata = createPageMetadata({
 export default function WorksPage() {
   return (
     <div className="portfolio-page">
-      <section className="portfolio-hero">
+      <section className="portfolio-hero works-hero">
         <div className="portfolio-container">
           <Reveal>
             <p className="portfolio-kicker">Works / 2025—2026</p>
@@ -26,7 +26,7 @@ export default function WorksPage() {
           </Reveal>
         </div>
       </section>
-      <section className="portfolio-section is-surface">
+      <section className="portfolio-section works-archive-section">
         <div className="portfolio-container"><WorkFilter works={works} /></div>
       </section>
     </div>

@@ -267,12 +267,12 @@ export const works: Work[] = [
 
 export const workFilters = [
   { value: "all", label: "전체", category: null },
-  { value: "film", label: "Film", category: "Film" },
-  { value: "photography", label: "Photography", category: "Photography" },
-  { value: "travel", label: "Travel", category: "Travel" },
-  { value: "personal", label: "Personal", category: "Personal" },
-  { value: "campus", label: "Campus", category: "Campus" },
-  { value: "essay", label: "Essay", category: "Essay" },
+  { value: "film", label: "영상", category: "Film" },
+  { value: "photography", label: "사진", category: "Photography" },
+  { value: "travel", label: "여행", category: "Travel" },
+  { value: "personal", label: "개인 작업", category: "Personal" },
+  { value: "campus", label: "캠퍼스", category: "Campus" },
+  { value: "essay", label: "에세이", category: "Essay" },
 ] as const;
 
 export function getWorkBySlug(slug: string) {

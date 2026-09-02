@@ -15,9 +15,7 @@ export function JournalPreviewSection() {
         <div>
           <p className={styles.eyebrow}>05 / FIELD NOTES</p>
           <h2 className={styles.display} id="journal-title">
-            HOW I SEE
-            <br />
-            AND MAKE.
+            기록하며 알게 된 것들.
           </h2>
         </div>
         <p>{homeCopy.journal.description}</p>
@@ -34,7 +32,7 @@ export function JournalPreviewSection() {
             <em>
               {post.category} · {post.date.slice(0, 4)}
             </em>
-            <i aria-hidden="true">↗</i>
+            <i aria-hidden="true">읽기</i>
           </Link>
         ))}
       </div>

@@ -42,20 +42,16 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
       </div>
       <dl className={`${styles.projectBrief} ${styles.reveal}`}>
         <div>
-          <dt>Purpose</dt>
-          <dd>{featured.purpose}</dd>
+          <dt>Film / Place</dt>
+          <dd>{featured.purpose}<br />{featured.location}</dd>
         </div>
-        <div>
-          <dt>Location</dt>
-          <dd>{featured.location}</dd>
-        </div>
-        <div>
-          <dt>Role</dt>
-          <dd>{featured.role}</dd>
-        </div>
-        <div>
-          <dt>Concept</dt>
+        <div className={styles.projectBriefStory}>
+          <dt>About the film</dt>
           <dd>{featured.concept}</dd>
+        </div>
+        <div>
+          <dt>Credits / Year</dt>
+          <dd>{featured.role}<br />2026</dd>
         </div>
       </dl>
     </section>

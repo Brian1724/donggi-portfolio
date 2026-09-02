@@ -61,19 +61,15 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
             </div>
             <dl className="project-info-grid">
               <div>
-                <dt>Year</dt>
-                <dd>{work.year}</dd>
+                <dt>Project</dt>
+                <dd>{work.archiveMeta?.medium ?? work.categories[0]} · {work.year}</dd>
+              </div>
+              <div className="project-info-location">
+                <dt>Place / Note</dt>
+                <dd>{work.location}<br />{work.concept}</dd>
               </div>
               <div>
-                <dt>Type</dt>
-                <dd>{work.archiveMeta?.medium ?? work.categories[0]}</dd>
-              </div>
-              <div>
-                <dt>Location</dt>
-                <dd>{work.location}</dd>
-              </div>
-              <div>
-                <dt>Role</dt>
+                <dt>Credits</dt>
                 <dd>{work.role.join(" · ")}</dd>
               </div>
             </dl>
@@ -81,7 +77,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         </div>
       </section>
 
-      <section className="portfolio-section is-surface">
+      <section className="portfolio-section project-story-section">
         <div className="portfolio-container project-narrative">
           <Reveal>
             <article>
@@ -147,7 +143,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         </div>
       </section>
 
-      <section className="portfolio-section is-surface">
+      <section className="portfolio-section project-paper">
         <div className="portfolio-container project-closing">
           <Reveal>
             <div>
@@ -184,7 +180,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
                   rel="noreferrer"
                   className="portfolio-text-link"
                 >
-                  Instagram에서 이어보기 ↗
+                  Instagram에서 이어보기
                 </a>
               ) : null}
             </div>

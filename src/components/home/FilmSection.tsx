@@ -15,9 +15,7 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
         <div>
           <p className={styles.eyebrow}>03 / SHORT FILMS</p>
           <h2 className={styles.display} id="film-title">
-            THREE FILMS.
-            <br />
-            ONE POINT OF VIEW.
+            세 편의 짧은 기록.
           </h2>
         </div>
         <p>
@@ -39,7 +37,7 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
       </div>
       <div className={`${styles.inlineContact} ${styles.reveal}`}>
         <p>{homeCopy.films.contact}</p>
-        <Link href="/contact">협업 이야기 나누기 ↗</Link>
+        <Link href="/contact">협업 이야기 나누기</Link>
       </div>
     </section>
   );
@@ -72,7 +70,6 @@ function FilmCard({ film, index, onPlay }: { film: Film; index: number; onPlay: 
         <div>
           <h3>{film.title}</h3>
           <p className={styles.filmDescription}>{film.description}</p>
-          <p>{film.role}</p>
         </div>
         <p>
           {film.year}

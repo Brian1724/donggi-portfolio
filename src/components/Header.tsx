@@ -7,14 +7,22 @@ import { useEffect, useRef, useState } from "react";
 const navLinks = [
   { href: "/works", label: "작업" },
   { href: "/about", label: "소개" },
-  { href: "/journal", label: "저널" },
+  { href: "/journal", label: "기록" },
   { href: "/contact", label: "연락" },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const updateHeader = () => setIsScrolled(window.scrollY > 32);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -31,11 +39,13 @@ export function Header() {
   }, [isOpen]);
 
   return (
-    <header className="cinema-header">
+    <header
+      className={`cinema-header ${pathname === "/" ? "is-home" : ""} ${isScrolled ? "is-scrolled" : ""}`}
+    >
       <div className="cinema-header-inner">
         <Link href="/" className="cinema-brand" aria-label="Donggi Yoon 홈" onClick={() => setIsOpen(false)}>
           <span aria-hidden="true" />
-          DONGGI
+          DONGGI / VISUAL ARCHIVE
         </Link>
         <nav className="cinema-nav" aria-label="주요 페이지">
             {navLinks.map((link) => {
