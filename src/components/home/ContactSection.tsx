@@ -9,7 +9,7 @@ export function ContactSection() {
       id="contact"
       aria-labelledby="credits-title"
     >
-      <p className={`${styles.eyebrow} ${styles.reveal}`}>06 / END CREDITS</p>
+      <p className={`${styles.eyebrow} ${styles.reveal}`}>07 / END CREDITS</p>
       <h2 className={`${styles.creditsTitle} ${styles.reveal}`} id="credits-title">
         다음 장면을
         <br />함께 만들어요

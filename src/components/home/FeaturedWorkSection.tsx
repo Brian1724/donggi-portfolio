@@ -13,7 +13,7 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
     >
       <div className={`${styles.featureHeading} ${styles.reveal}`}>
         <div>
-          <p className={styles.eyebrow}>02 / SELECTED WORK</p>
+          <p className={styles.eyebrow}>03 / SELECTED WORK</p>
           <h2 className={styles.display} id="feature-title">
             DALIAN,
             <br />

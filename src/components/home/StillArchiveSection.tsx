@@ -13,7 +13,7 @@ export function StillArchiveSection() {
     >
       <div className={`${styles.archiveHeading} ${styles.reveal}`}>
         <div>
-          <p className={styles.eyebrow}>04 / STILL ARCHIVE</p>
+          <p className={styles.eyebrow}>05 / STILL ARCHIVE</p>
           <h2 className={styles.display} id="archive-title">
             장면과 장면 사이.
           </h2>

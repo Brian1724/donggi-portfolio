@@ -13,7 +13,7 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
     >
       <div className={`${styles.filmHeading} ${styles.reveal}`}>
         <div>
-          <p className={styles.eyebrow}>03 / SHORT FILMS</p>
+          <p className={styles.eyebrow}>04 / SHORT FILMS</p>
           <h2 className={styles.display} id="film-title">
             세 편의 짧은 기록.
           </h2>

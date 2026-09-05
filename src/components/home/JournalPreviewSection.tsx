@@ -13,7 +13,7 @@ export function JournalPreviewSection() {
     >
       <div className={`${styles.journalHeading} ${styles.reveal}`}>
         <div>
-          <p className={styles.eyebrow}>05 / FIELD NOTES</p>
+          <p className={styles.eyebrow}>06 / FIELD NOTES</p>
           <h2 className={styles.display} id="journal-title">
             기록하며 알게 된 것들.
           </h2>
