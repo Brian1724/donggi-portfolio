@@ -158,17 +158,17 @@ const archivePlanes: readonly ArchivePlane[] = [
 ];
 
 const desktopCamera = [
-  { angle: -16, radius: 9.8, y: 0.12, targetY: 0, groupYaw: 0 },
-  { angle: 28, radius: 10.2, y: 0.52, targetY: 0.08, groupYaw: 12 },
-  { angle: 92, radius: 9.1, y: -0.08, targetY: -0.02, groupYaw: 43 },
-  { angle: 10, radius: 9.4, y: 0.08, targetY: 0, groupYaw: 5 },
+  { angle: -12, radius: 9.8, y: 0.12, targetY: 0, groupYaw: 0 },
+  { angle: 24, radius: 10, y: 0.4, targetY: 0.06, groupYaw: 8 },
+  { angle: 76, radius: 9.35, y: 0, targetY: -0.02, groupYaw: 30 },
+  { angle: 6, radius: 9.5, y: 0.08, targetY: 0, groupYaw: 4 },
 ] as const;
 
 const mobileCamera = [
-  { angle: -8, radius: 10.2, y: 0, targetY: -0.2, groupYaw: 0 },
-  { angle: 16, radius: 10.35, y: 0.25, targetY: -0.18, groupYaw: 7 },
-  { angle: 52, radius: 9.8, y: -0.04, targetY: -0.25, groupYaw: 25 },
-  { angle: 6, radius: 10.05, y: 0, targetY: -0.2, groupYaw: 3 },
+  { angle: -6, radius: 10.2, y: 0, targetY: -0.2, groupYaw: 0 },
+  { angle: 12, radius: 10.3, y: 0.2, targetY: -0.18, groupYaw: 4 },
+  { angle: 38, radius: 9.9, y: 0, targetY: -0.23, groupYaw: 16 },
+  { angle: 4, radius: 10.05, y: 0, targetY: -0.2, groupYaw: 2 },
 ] as const;
 
 const toRadians = (degrees: number) => degrees * (Math.PI / 180);
@@ -281,7 +281,7 @@ export function SpatialArchive() {
           throw new Error("Archive textures could not be loaded");
         }
 
-        const particleCount = isMobile ? 56 : 120;
+        const particleCount = isMobile ? 36 : 90;
         const particlePositions = new Float32Array(particleCount * 3);
         for (let index = 0; index < particleCount; index += 1) {
           const offset = index * 3;
@@ -295,7 +295,7 @@ export function SpatialArchive() {
           color: 0xd6d3ca,
           size: isMobile ? 0.016 : 0.02,
           transparent: true,
-          opacity: 0.12,
+          opacity: 0.08,
           sizeAttenuation: true,
         });
         const particles = new THREE.Points(particleGeometry, particleMaterial);
@@ -332,7 +332,7 @@ export function SpatialArchive() {
             if (!chapter) return;
             const distance = Math.abs(chapterPosition - index);
             const opacity = THREE.MathUtils.clamp(1 - distance * 1.65, 0, 1);
-            const offset = THREE.MathUtils.clamp((index - chapterPosition) * 22, -22, 22);
+            const offset = THREE.MathUtils.clamp((index - chapterPosition) * 18, -18, 18);
             chapter.style.opacity = String(opacity);
             chapter.style.transform = `translate3d(0, ${offset}px, 0)`;
             chapter.style.visibility = opacity > 0.015 ? "visible" : "hidden";
@@ -350,8 +350,8 @@ export function SpatialArchive() {
           const targetY = THREE.MathUtils.lerp(cameraFrom.targetY, cameraTo.targetY, mix);
           const groupYaw = toRadians(THREE.MathUtils.lerp(cameraFrom.groupYaw, cameraTo.groupYaw, mix));
 
-          archiveGroup.rotation.y = groupYaw + pointer.x * (isMobile ? 0 : 0.03);
-          archiveGroup.rotation.x = -pointer.y * (isMobile ? 0 : 0.018);
+          archiveGroup.rotation.y = groupYaw + pointer.x * (isMobile ? 0 : 0.02);
+          archiveGroup.rotation.x = -pointer.y * (isMobile ? 0 : 0.012);
           archiveGroup.position.y = isMobile ? -0.36 : 0;
 
           camera.position.set(
@@ -366,7 +366,7 @@ export function SpatialArchive() {
             const frames = photo.userData.frames as PlaneLayout["frames"];
             const start = frames[from];
             const end = frames[to];
-            const float = reduceMotion ? 0 : Math.sin(seconds * 0.23 + Number(photo.userData.phase)) * 0.022;
+            const float = reduceMotion ? 0 : Math.sin(seconds * 0.2 + Number(photo.userData.phase)) * 0.016;
 
             photo.position.set(
               THREE.MathUtils.lerp(start.position[0], end.position[0], mix),
@@ -383,7 +383,7 @@ export function SpatialArchive() {
           });
 
           const memoryWeight = THREE.MathUtils.clamp(1 - Math.abs(progress - 0.67) / 0.3, 0, 1);
-          particleMaterial.opacity = 0.1 + memoryWeight * 0.18;
+          particleMaterial.opacity = 0.07 + memoryWeight * 0.11;
           particles.rotation.y = reduceMotion ? 0 : seconds * 0.006;
         };
 
@@ -425,7 +425,7 @@ export function SpatialArchive() {
           }
           lastRenderTime = time;
 
-          currentProgress += (targetProgress - currentProgress) * 0.055;
+          currentProgress += (targetProgress - currentProgress) * 0.072;
           pointer.x += (pointerTarget.x - pointer.x) * 0.04;
           pointer.y += (pointerTarget.y - pointer.y) * 0.04;
           applyScene(currentProgress, time);
@@ -597,16 +597,12 @@ export function SpatialArchive() {
                 className={`${styles.spatialChapter} ${activeChapter === index ? styles.spatialChapterActive : ""}`}
                 aria-hidden={activeChapter !== index}
               >
-                <p className={styles.spatialChapterIndex}>Chapter 0{index + 1} / 04</p>
                 <h2>{chapter.title}</h2>
                 <p>{chapter.description}</p>
               </article>
             ))}
           </div>
         </div>
-        <p className={styles.spatialHint} aria-hidden="true">
-          Scroll through / 04 chapters
-        </p>
       </div>
       <p className="sr-only">
         서도역, 앙코르, 겨울 산길, 밤거리의 반사와 홍콩의 풍경을 네 장면으로 연결한 입체 사진 아카이브입니다.

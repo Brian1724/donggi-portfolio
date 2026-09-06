@@ -127,8 +127,8 @@
 
 .spatialArchive {
   position: relative;
-  min-height: 360vh;
-  min-height: 360svh;
+  min-height: 260vh;
+  min-height: 260svh;
   scroll-margin-top: 64px;
   background: #070808;
 }
@@ -148,7 +148,7 @@
 .spatialArchive.ready .spatialCanvas { opacity: 1; }
 .spatialArchive.ready .spatialFallback { opacity: 0; }
 .spatialArchive.loading .spatialFallback { opacity: .34; }
-.spatialArchive.fallback { min-height: 120vh; min-height: 120svh; }
+.spatialArchive.fallback { min-height: 100vh; min-height: 100svh; }
 .spatialArchive.fallback .spatialFallback { opacity: .42; }
 .spatialShade {
   z-index: 2;
@@ -176,22 +176,13 @@
   width: 100%;
   visibility: hidden;
   opacity: 0;
-  transform: translate3d(0, 22px, 0);
+  transform: translate3d(0, 18px, 0);
   will-change: opacity, transform;
 }
 .spatialChapterActive { visibility: visible; opacity: 1; transform: translate3d(0, 0, 0); }
-.spatialChapterIndex {
-  margin: 0;
-  color: var(--cinema-muted);
-  font-size: var(--text-meta);
-  font-weight: 700;
-  line-height: var(--leading-meta);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
 .spatialChapter h2 {
   max-width: 10ch;
-  margin: 16px 0 0;
+  margin: 0;
   font-family: var(--font-display), Pretendard, sans-serif;
   font-size: var(--text-section);
   font-weight: 800;
@@ -207,19 +198,6 @@
   font-size: var(--text-body);
   line-height: var(--leading-body);
   word-break: keep-all;
-}
-.spatialHint {
-  position: absolute;
-  z-index: 3;
-  right: var(--page-pad);
-  bottom: clamp(42px, 6vh, 72px);
-  margin: 0;
-  color: var(--cinema-muted);
-  font-size: var(--text-meta);
-  font-weight: 700;
-  line-height: var(--leading-meta);
-  letter-spacing: .1em;
-  text-transform: uppercase;
 }
 
 .featureSection { background: var(--cinema-surface); border-top: 0; }
@@ -328,13 +306,12 @@
   .identityGrid, .featureHeading, .archiveHeading, .journalHeading { grid-template-columns: 1fr; gap: 48px; align-items: start; }
   .identityMedia { width: calc(100% + (var(--page-pad) * 2)); margin-left: calc(var(--page-pad) * -1); aspect-ratio: 4 / 5; }
   .identityCopy { max-width: 620px; }
-  .spatialArchive { min-height: 300vh; min-height: 300svh; }
-  .spatialArchive.fallback { min-height: 112vh; min-height: 112svh; }
+  .spatialArchive { min-height: 240vh; min-height: 240svh; }
+  .spatialArchive.fallback { min-height: 100vh; min-height: 100svh; }
   .spatialCopy { top: 72px; }
   .spatialChapterStage { height: 284px; margin-top: 24px; }
   .spatialChapter h2 { max-width: 9ch; }
   .spatialChapter > p:last-child { max-width: 320px; }
-  .spatialHint { display: none; }
   .spatialShade {
     background:
       linear-gradient(180deg, rgba(7, 8, 8, .94), rgba(7, 8, 8, .82) 34%, transparent 54%, transparent 68%, rgba(7, 8, 8, .82)),
@@ -378,7 +355,7 @@
   .page *, .page *::before, .page *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
   .page [data-cinematic-parallax] { transform: none !important; }
-  .spatialArchive { min-height: 180vh; min-height: 180svh; }
-  .spatialArchive.fallback { min-height: 112vh; min-height: 112svh; }
+  .spatialArchive { min-height: 120vh; min-height: 120svh; }
+  .spatialArchive.fallback { min-height: 100vh; min-height: 100svh; }
   .spatialChapter { transition: none !important; }
 }
