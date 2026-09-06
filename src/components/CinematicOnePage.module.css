@@ -14,7 +14,6 @@
   --section-space: clamp(88px, 10vw, 160px);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   min-height: 100vh;
-  overflow-x: hidden;
   background: var(--cinema-bg);
   color: var(--cinema-ink);
   font-family: var(--font-body), Pretendard, "Apple SD Gothic Neo", system-ui, sans-serif;
@@ -128,26 +127,35 @@
 
 .spatialArchive {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 360vh;
+  min-height: 360svh;
   scroll-margin-top: 64px;
+  background: #070808;
+}
+.spatialSticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   isolation: isolate;
   background: #070808;
 }
 .spatialFallback, .spatialCanvas, .spatialShade { position: absolute; inset: 0; width: 100%; height: 100%; }
-.spatialFallback { z-index: 0; opacity: .3; transition: opacity 900ms var(--ease); }
+.spatialFallback { z-index: 0; opacity: .34; transition: opacity 900ms var(--ease); }
 .spatialFallback img { height: 100%; object-fit: cover; filter: brightness(.34) saturate(.72); transform: scale(1.04); }
 .spatialCanvas { z-index: 1; display: block; opacity: 0; touch-action: pan-y; transition: opacity 1.2s var(--ease); }
 .spatialArchive.ready .spatialCanvas { opacity: 1; }
 .spatialArchive.ready .spatialFallback { opacity: 0; }
-.spatialArchive.fallback .spatialFallback { opacity: .38; }
+.spatialArchive.loading .spatialFallback { opacity: .34; }
+.spatialArchive.fallback { min-height: 120vh; min-height: 120svh; }
+.spatialArchive.fallback .spatialFallback { opacity: .42; }
 .spatialShade {
   z-index: 2;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(7, 8, 8, .72), transparent 28%, transparent 68%, rgba(7, 8, 8, .76)),
-    linear-gradient(90deg, rgba(7, 8, 8, .56), transparent 48%);
+    linear-gradient(180deg, rgba(7, 8, 8, .72), transparent 30%, transparent 68%, rgba(7, 8, 8, .78)),
+    linear-gradient(90deg, rgba(7, 8, 8, .68), rgba(7, 8, 8, .22) 38%, transparent 62%);
 }
 .spatialCopy {
   position: absolute;
@@ -157,17 +165,42 @@
   width: min(470px, calc(100% - (var(--page-pad) * 2)));
   pointer-events: none;
 }
-.spatialCopy h2 {
+.spatialChapterStage {
+  position: relative;
+  height: clamp(260px, 31vh, 340px);
+  margin-top: 28px;
+}
+.spatialChapter {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  will-change: opacity, transform;
+}
+.spatialChapterActive { visibility: visible; opacity: 1; transform: translate3d(0, 0, 0); }
+.spatialChapterIndex {
+  margin: 0;
+  color: var(--cinema-muted);
+  font-size: var(--text-meta);
+  font-weight: 700;
+  line-height: var(--leading-meta);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.spatialChapter h2 {
   max-width: 10ch;
-  margin: 24px 0 0;
+  margin: 16px 0 0;
   font-family: var(--font-display), Pretendard, sans-serif;
   font-size: var(--text-section);
   font-weight: 800;
-  letter-spacing: -.035em;
+  letter-spacing: -.025em;
   line-height: var(--leading-heading);
   text-wrap: balance;
+  word-break: keep-all;
 }
-.spatialCopy > p:last-child {
+.spatialChapter > p:last-child {
   max-width: 390px;
   margin: 24px 0 0;
   color: var(--cinema-soft);
@@ -295,9 +328,12 @@
   .identityGrid, .featureHeading, .archiveHeading, .journalHeading { grid-template-columns: 1fr; gap: 48px; align-items: start; }
   .identityMedia { width: calc(100% + (var(--page-pad) * 2)); margin-left: calc(var(--page-pad) * -1); aspect-ratio: 4 / 5; }
   .identityCopy { max-width: 620px; }
-  .spatialArchive { min-height: 88svh; }
+  .spatialArchive { min-height: 300vh; min-height: 300svh; }
+  .spatialArchive.fallback { min-height: 112vh; min-height: 112svh; }
   .spatialCopy { top: 72px; }
-  .spatialCopy > p:last-child { max-width: 320px; }
+  .spatialChapterStage { height: 284px; margin-top: 24px; }
+  .spatialChapter h2 { max-width: 9ch; }
+  .spatialChapter > p:last-child { max-width: 320px; }
   .spatialHint { display: none; }
   .spatialShade {
     background:
@@ -342,4 +378,7 @@
   .page *, .page *::before, .page *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
   .page [data-cinematic-parallax] { transform: none !important; }
+  .spatialArchive { min-height: 180vh; min-height: 180svh; }
+  .spatialArchive.fallback { min-height: 112vh; min-height: 112svh; }
+  .spatialChapter { transition: none !important; }
 }

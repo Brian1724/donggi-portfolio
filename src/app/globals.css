@@ -42,9 +42,8 @@
 
 * { box-sizing: border-box; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-html { scroll-behavior: smooth; background: var(--site-bg); }
-html, body { max-width: 100%; overflow-x: hidden; }
-body { margin: 0; }
+html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; background: var(--site-bg); }
+body { max-width: 100%; margin: 0; }
 
 .site-body {
   min-height: 100%;
