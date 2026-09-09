@@ -7,6 +7,7 @@ import styles from "../CinematicOnePage.module.css";
 
 type SceneState = "loading" | "ready" | "fallback";
 const photograph = "/media/stills/still-04-seodo-station.jpg";
+const coverPhotograph = "/media/stills/still-02-light-study.jpg";
 
 export function SpatialArchive() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -36,6 +37,7 @@ export function SpatialArchive() {
     const startScene = async () => {
       try {
         const THREE = await import("three");
+        const { RoundedBoxGeometry } = await import("three/addons/geometries/RoundedBoxGeometry.js");
         if (cancelled) return;
         const mobile = window.matchMedia("(max-width: 800px)").matches;
         const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
@@ -78,6 +80,14 @@ export function SpatialArchive() {
         texture.colorSpace = THREE.SRGBColorSpace;
         texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
         textures.add(texture);
+        const coverMap = await new THREE.TextureLoader().loadAsync(coverPhotograph);
+        if (cancelled || disposed) {
+          coverMap.dispose();
+          return;
+        }
+        coverMap.colorSpace = THREE.SRGBColorSpace;
+        coverMap.anisotropy = texture.anisotropy;
+        textures.add(coverMap);
         const makePrintTexture = (offset: number, repeat: number) => {
           const map = texture.clone();
           map.offset.x = offset;
@@ -90,36 +100,55 @@ export function SpatialArchive() {
         // One photograph spans the binding; the inside cover reverses its UVs when opened.
         const rightMap = makePrintTexture(0.5, 0.5);
         const leftMap = makePrintTexture(0.5, -0.5);
-        const coverMap = makePrintTexture(0.25, 0.5);
-        const paperMaterial = new THREE.MeshStandardMaterial({ color: 0xd9d7cf, roughness: 0.95 });
-        const clothMaterial = new THREE.MeshStandardMaterial({ color: 0x181c1a, roughness: 0.92 });
+        // A repeating woven height field gives the cloth texture without another image download.
+        const weavePixels = new Uint8Array(128 * 128 * 4);
+        for (let y = 0; y < 128; y += 1) {
+          for (let x = 0; x < 128; x += 1) {
+            const value = Math.round(128 + 32 * Math.sin(x * Math.PI / 4) + 24 * Math.sin(y * Math.PI / 4));
+            const index = (y * 128 + x) * 4;
+            weavePixels.set([value, value, value, 255], index);
+          }
+        }
+        const weave = new THREE.DataTexture(weavePixels, 128, 128);
+        weave.wrapS = weave.wrapT = THREE.RepeatWrapping;
+        weave.repeat.set(12, 16);
+        weave.magFilter = THREE.LinearFilter;
+        weave.minFilter = THREE.LinearMipmapLinearFilter;
+        weave.generateMipmaps = true;
+        weave.needsUpdate = true;
+        textures.add(weave);
+        const paperMaterial = new THREE.MeshStandardMaterial({ color: 0xdedcd3, roughness: 0.96 });
+        const clothMaterial = new THREE.MeshStandardMaterial({ color: 0x303631, roughness: 0.9, bumpMap: weave, bumpScale: 0.012 });
+        const linerMaterial = new THREE.MeshPhysicalMaterial({ color: 0xe6e3da, roughness: 0.94 });
+        const insideLinerMaterial = linerMaterial.clone();
+        insideLinerMaterial.side = THREE.BackSide;
         const photoMaterial = (map: InstanceType<typeof THREE.Texture>, side: 0 | 1 | 2 = THREE.FrontSide) => new THREE.MeshPhysicalMaterial({
-          map, side, roughness: 0.82, clearcoat: 0.06, clearcoatRoughness: 0.8,
-          emissiveMap: map, emissive: 0xffffff, emissiveIntensity: 0.12,
+          map, side, roughness: 0.72, clearcoat: 0.12, clearcoatRoughness: 0.65,
+          emissiveMap: map, emissive: 0xffffff, emissiveIntensity: 0.08,
         });
         const width = 3;
         const height = 4;
-        const backCover = new THREE.Mesh(new THREE.BoxGeometry(width + 0.12, 0.08, height + 0.12), clothMaterial);
+        const backCover = new THREE.Mesh(new RoundedBoxGeometry(width + 0.12, 0.08, height + 0.12, 3, 0.026), clothMaterial);
         backCover.position.set(width / 2, -0.04, 0);
         backCover.castShadow = true;
         backCover.receiveShadow = true;
         book.add(backCover);
-        const leafGeometry = new THREE.BoxGeometry(width - 0.025, 0.014, height - 0.025);
-        for (let index = 0; index < 10; index += 1) {
+        const leafGeometry = new THREE.BoxGeometry(width - 0.04, 0.007, height - 0.04);
+        for (let index = 0; index < 20; index += 1) {
           const leaf = new THREE.Mesh(leafGeometry, paperMaterial);
-          leaf.position.set(width / 2, 0.009 + index * 0.017, 0);
-          leaf.castShadow = true;
+          leaf.position.set(width / 2 + Math.sin(index * 1.7) * 0.002, 0.009 + index * 0.0085, 0);
+          leaf.castShadow = false;
           leaf.receiveShadow = true;
           book.add(leaf);
         }
-        const makePage = (material: InstanceType<typeof THREE.MeshPhysicalMaterial>, y: number, pageWidth = width, pageHeight = height) => {
+        const makePage = (material: InstanceType<typeof THREE.MeshPhysicalMaterial>, y: number, pageWidth = width, pageHeight = height, curvature = 0.045) => {
           const geometry = new THREE.PlaneGeometry(pageWidth, pageHeight, 40, 20);
           const positions = geometry.getAttribute("position");
           for (let index = 0; index < positions.count; index += 1) {
             const x = positions.getX(index) + width / 2;
             const z = -positions.getY(index);
             // The paper rises slightly at its bound edge, without free-floating waves.
-            const curve = 0.025 * Math.pow(1 - x / width, 3);
+            const curve = curvature * Math.exp(-x * 4) * (material.side === THREE.BackSide ? -1 : 1);
             positions.setXYZ(index, x, y + curve, z);
           }
           geometry.computeVertexNormals();
@@ -128,17 +157,49 @@ export function SpatialArchive() {
           page.receiveShadow = true;
           return page;
         };
-        book.add(makePage(photoMaterial(rightMap), 0.179));
+        book.add(makePage(linerMaterial, 0.179));
+        const rightPrint = makePage(photoMaterial(rightMap), 0.184, 2.76, 3.68);
+        rightPrint.position.z = -0.025;
+        book.add(rightPrint);
         const hinge = new THREE.Group();
         hinge.position.y = 0.212;
         book.add(hinge);
-        const frontCover = new THREE.Mesh(new THREE.BoxGeometry(width + 0.12, 0.064, height + 0.12), clothMaterial);
+        const frontCover = new THREE.Mesh(new RoundedBoxGeometry(width + 0.12, 0.064, height + 0.12, 3, 0.022), clothMaterial);
         frontCover.position.set(width / 2, 0, 0);
         frontCover.castShadow = true;
         frontCover.receiveShadow = true;
         hinge.add(frontCover);
-        hinge.add(makePage(photoMaterial(coverMap), 0.034, width - 0.24, height - 0.24));
-        hinge.add(makePage(photoMaterial(leftMap, THREE.BackSide), -0.059));
+        const coverPrint = makePage(photoMaterial(coverMap), 0.036, 2.08, 2.08 * coverMap.image.height / coverMap.image.width, 0);
+        coverPrint.position.z = 0.16;
+        coverPrint.castShadow = false;
+        hinge.add(coverPrint);
+        hinge.add(makePage(insideLinerMaterial, -0.04));
+        const leftPrint = makePage(photoMaterial(leftMap, THREE.BackSide), -0.046, 2.76, 3.68);
+        leftPrint.position.z = -0.025;
+        hinge.add(leftPrint);
+
+        // Typography is printed on the cloth, separate from the untouched photograph.
+        const titleCanvas = document.createElement("canvas");
+        titleCanvas.width = 1024;
+        titleCanvas.height = 180;
+        const titleContext = titleCanvas.getContext("2d");
+        if (titleContext) {
+          titleContext.fillStyle = "#e6e3da";
+          titleContext.textAlign = "center";
+          titleContext.font = "500 84px sans-serif";
+          titleContext.fillText("FIELD NOTES", 512, 85);
+          titleContext.font = "400 28px sans-serif";
+          titleContext.fillText("DONGGI YOON / VISUAL ARCHIVE", 512, 144);
+          const titleMap = new THREE.CanvasTexture(titleCanvas);
+          titleMap.colorSpace = THREE.SRGBColorSpace;
+          titleMap.anisotropy = texture.anisotropy;
+          textures.add(titleMap);
+          const titleMaterial = new THREE.MeshPhysicalMaterial({ map: titleMap, transparent: true, roughness: 0.88, depthWrite: false });
+          const title = makePage(titleMaterial, 0.038, 2.52, 0.443, 0);
+          title.position.z = -1.66;
+          title.castShadow = false;
+          hinge.add(title);
+        }
         const spine = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, height + 0.1, 20), clothMaterial);
         spine.rotation.x = Math.PI / 2;
         spine.position.set(-0.025, 0.075, 0);
@@ -149,8 +210,8 @@ export function SpatialArchive() {
         floor.position.y = -0.083;
         floor.receiveShadow = true;
         scene.add(floor);
-        const ambient = new THREE.HemisphereLight(0xf4f4f1, 0x444b45, 2.1);
-        const key = new THREE.DirectionalLight(0xfffaf3, 3.2);
+        const ambient = new THREE.HemisphereLight(0xf4f4f1, 0x444b45, 2.4);
+        const key = new THREE.DirectionalLight(0xfffaf3, 2.7);
         key.position.set(-3, 9, 5);
         key.castShadow = true;
         key.shadow.mapSize.set(mobile ? 512 : 1024, mobile ? 512 : 1024);
@@ -352,7 +413,7 @@ export function SpatialArchive() {
           <Link href="/works/dk4film-photo-archive/">사진 작업 보기 <span aria-hidden="true">↗</span></Link>
         </div>
       </div>
-      <p className="sr-only">서도역의 사진을 한 권의 가상 사진집으로 펼쳐 보는 비주얼 아카이브입니다.</p>
+      <p className="sr-only">앙코르의 돌기둥에 비친 빛과 그림자를 담은 표지를 열면 서도역의 가을 사진이 펼쳐지는 가상 사진집입니다.</p>
     </section>
   );
 }
