@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { photoBook } from "@/data/photo-book";
+import { bookSequence, pagePoint } from "@/lib/book-motion";
 import styles from "../CinematicOnePage.module.css";
 
 type SceneState = "loading" | "ready" | "fallback";
-const photograph = "/media/stills/still-04-seodo-station.jpg";
-const coverPhotograph = "/media/stills/still-02-light-study.jpg";
+const photograph = photoBook.panorama;
+const coverPhotograph = photoBook.cover;
 
 export function SpatialArchive() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -15,6 +17,7 @@ export function SpatialArchive() {
   const headingRef = useRef<HTMLDivElement>(null);
   const captionRef = useRef<HTMLDivElement>(null);
   const [sceneState, setSceneState] = useState<SceneState>("loading");
+  const [spread, setSpread] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -88,6 +91,17 @@ export function SpatialArchive() {
         coverMap.colorSpace = THREE.SRGBColorSpace;
         coverMap.anisotropy = texture.anisotropy;
         textures.add(coverMap);
+        const loadPrint = async (path: string) => {
+          const map = await new THREE.TextureLoader().loadAsync(path);
+          if (cancelled || disposed) { map.dispose(); throw new Error("Scene disposed"); }
+          map.colorSpace = THREE.SRGBColorSpace;
+          map.anisotropy = texture.anisotropy;
+          textures.add(map);
+          return map;
+        };
+        const portraitMap = await loadPrint(photoBook.portrait);
+        const detailMap = await loadPrint(photoBook.detail);
+        const closingMap = await loadPrint(photoBook.closing);
         const makePrintTexture = (offset: number, repeat: number) => {
           const map = texture.clone();
           map.offset.x = offset;
@@ -158,9 +172,9 @@ export function SpatialArchive() {
           return page;
         };
         book.add(makePage(linerMaterial, 0.179));
-        const rightPrint = makePage(photoMaterial(rightMap), 0.184, 2.76, 3.68);
-        rightPrint.position.z = -0.025;
-        book.add(rightPrint);
+        const closingPrint = makePage(photoMaterial(closingMap), 0.184, 2.32, 2.32 * closingMap.image.height / closingMap.image.width);
+        closingPrint.position.z = -0.12;
+        book.add(closingPrint);
         const hinge = new THREE.Group();
         hinge.position.y = 0.212;
         book.add(hinge);
@@ -177,6 +191,58 @@ export function SpatialArchive() {
         const leftPrint = makePage(photoMaterial(leftMap, THREE.BackSide), -0.046, 2.76, 3.68);
         leftPrint.position.z = -0.025;
         hinge.add(leftPrint);
+
+        type MovingSurface = { mesh: InstanceType<typeof THREE.Mesh>; original: Float32Array; back: boolean };
+        const makeLeaf = (frontMap: InstanceType<typeof THREE.Texture>, backMap: InstanceType<typeof THREE.Texture> | null, fullSpread: boolean, layer: number) => {
+          const surfaces: MovingSurface[] = [];
+          const addSurface = (map: InstanceType<typeof THREE.Texture> | null, back: boolean, print: boolean) => {
+            let w = print ? (fullSpread && !back ? 2.76 : 2.32) : width;
+            const image = map?.image as HTMLImageElement | undefined;
+            const ratio = image ? image.height / image.width : 1;
+            const h = print ? (fullSpread && !back ? 3.68 : Math.min(3.36, w * ratio)) : height;
+            if (print && !(fullSpread && !back)) w = h / ratio;
+            const geometry = new THREE.PlaneGeometry(w, h, mobile ? 32 : 48, mobile ? 12 : 20);
+            const original = new Float32Array(geometry.getAttribute("position").array);
+            const material = map ? photoMaterial(map, back ? THREE.BackSide : THREE.FrontSide) : new THREE.MeshPhysicalMaterial({ color: 0xe6e3da, roughness: 0.94, side: back ? THREE.BackSide : THREE.FrontSide });
+            if (map && back) {
+              const reversed = map.clone();
+              reversed.offset.x = 1;
+              reversed.repeat.x = -1;
+              textures.add(reversed);
+              material.map = reversed;
+              material.emissiveMap = reversed;
+            }
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.castShadow = !print;
+            mesh.receiveShadow = true;
+            book.add(mesh);
+            surfaces.push({ mesh, original, back });
+          };
+          addSurface(null, false, false);
+          addSurface(null, true, false);
+          addSurface(frontMap, false, true);
+          if (backMap) addSurface(backMap, true, true);
+          let previous = -1;
+          return (turn: number) => {
+            if (turn === previous) return;
+            previous = turn;
+            surfaces.forEach(({ mesh, original, back }, surfaceIndex) => {
+              const positions = mesh.geometry.getAttribute("position");
+              const thickness = (back ? -1 : 1) * (surfaceIndex > 1 ? 0.006 : 0.002);
+              for (let index = 0; index < positions.count; index += 1) {
+                const point = pagePoint(original[index * 3] + width / 2, -original[index * 3 + 1], turn, layer + (layer === 0.012 ? turn * 0.04 : 0));
+                positions.setXYZ(index, point.x - Math.sin(turn * Math.PI) * thickness, point.y + Math.cos(turn * Math.PI) * thickness, point.z);
+              }
+              positions.needsUpdate = true;
+              mesh.geometry.computeVertexNormals();
+              mesh.geometry.computeBoundingBox();
+              mesh.geometry.computeBoundingSphere();
+            });
+          };
+        };
+        // Lower leaf turns second; each reverse carries the next spread's left page.
+        const turnSecond = makeLeaf(detailMap, null, false, 0.012);
+        const turnFirst = makeLeaf(rightMap, portraitMap, true, 0.024);
 
         // Typography is printed on the cloth, separate from the untouched photograph.
         const titleCanvas = document.createElement("canvas");
@@ -242,12 +308,21 @@ export function SpatialArchive() {
         const center = new THREE.Vector3();
         const corner = new THREE.Vector3();
         const offset = new THREE.Vector3();
-        const direction = new THREE.Vector3(0.6, 8.5, 7.2).normalize();
-        const right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), direction).normalize();
-        const up = new THREE.Vector3().crossVectors(direction, right).normalize();
+        const direction = new THREE.Vector3();
+        const right = new THREE.Vector3();
+        const up = new THREE.Vector3();
+        let shownSpread = 0;
         const renderScene = () => {
-          const opening = THREE.MathUtils.smoothstep(currentProgress, 0, 0.82);
+          const { opening, firstTurn, secondTurn, exit, spread: nextSpread } = bookSequence(currentProgress);
           hinge.rotation.z = THREE.MathUtils.lerp(0.035, Math.PI + 0.088, opening);
+          turnFirst(firstTurn);
+          turnSecond(secondTurn);
+          direction.set(0.6 + Math.sin(firstTurn * Math.PI) * 0.12, viewportWidth <= 800 ? 13 : 8.5 + opening * 1.5, 7.2 - opening * 0.7).normalize();
+          right.crossVectors(new THREE.Vector3(0, 1, 0), direction).normalize();
+          up.crossVectors(direction, right).normalize();
+          if (shownSpread !== nextSpread) { shownSpread = nextSpread; setSpread(nextSpread); }
+          canvas.dataset.spread = String(nextSpread);
+          canvas.dataset.progress = currentProgress.toFixed(3);
           book.updateMatrixWorld(true);
           bounds.setFromObject(book);
           bounds.getCenter(center);
@@ -263,7 +338,7 @@ export function SpatialArchive() {
             const vertical = Math.abs(offset.dot(up)) / (tanV * artworkHeight / viewportHeight);
             distance = Math.max(distance, offset.dot(direction) + Math.max(horizontal, vertical) * 1.1);
           }
-          camera.position.copy(center).addScaledVector(direction, distance);
+          camera.position.copy(center).addScaledVector(direction, distance * (1 + exit * 0.035));
           camera.lookAt(center);
           renderer.render(scene, camera);
           canvas.dataset.frames = String(++renderedFrames);
@@ -402,18 +477,18 @@ export function SpatialArchive() {
             <p className={styles.eyebrow}>02 / PHOTO STUDY</p>
             <h2 id="spatial-archive-title">장면을 펼치다.</h2>
           </div>
-          <p className={styles.spatialIntroduction}>서도역에서 기록한<br className={styles.spatialDesktopBreak} /> 가을의 빛과 사람들.</p>
+          <p className={styles.spatialIntroduction}>가을빛의 서도역에서<br className={styles.spatialDesktopBreak} /> 도시의 저녁까지.</p>
         </div>
         <div className={styles.spatialFallback}>
           <Image src={photograph} alt="가을빛이 머문 서도역 앞을 오가는 사람들" width={1600} height={1067} sizes="(max-width: 800px) 90vw, 80vw" />
         </div>
         <canvas ref={canvasRef} className={styles.spatialCanvas} aria-hidden="true" />
         <div ref={captionRef} className={styles.spatialCaption}>
-          <p>서도역, 남원<span>Photography / Donggi Yoon</span></p>
+          <p>{sceneState === "fallback" ? photoBook.captions[1] : photoBook.captions[spread]}<span>Photography / Donggi Yoon</span></p>
           <Link href="/works/dk4film-photo-archive/">사진 작업 보기 <span aria-hidden="true">↗</span></Link>
         </div>
       </div>
-      <p className="sr-only">앙코르의 돌기둥에 비친 빛과 그림자를 담은 표지를 열면 서도역의 가을 사진이 펼쳐지는 가상 사진집입니다.</p>
+      <p className="sr-only">앙코르의 빛을 담은 표지, 서도역의 가을 풍경, 역으로 향하는 사람들과 밤의 도로, 해 질 무렵의 도시로 이어지는 가상 사진집입니다. 같은 사진은 사진 작업 페이지에서도 볼 수 있습니다.</p>
     </section>
   );
 }
