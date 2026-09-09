@@ -127,10 +127,10 @@
 
 .spatialArchive {
   position: relative;
-  min-height: 260vh;
-  min-height: 260svh;
+  min-height: 190vh;
+  min-height: 190svh;
   scroll-margin-top: 64px;
-  background: #070808;
+  background: #080808;
 }
 .spatialSticky {
   position: sticky;
@@ -139,50 +139,28 @@
   height: 100svh;
   overflow: hidden;
   isolation: isolate;
-  background: #070808;
+  background: #080808;
 }
-.spatialFallback, .spatialCanvas, .spatialShade { position: absolute; inset: 0; width: 100%; height: 100%; }
-.spatialFallback { z-index: 0; opacity: .34; transition: opacity 900ms var(--ease); }
-.spatialFallback img { height: 100%; object-fit: cover; filter: brightness(.34) saturate(.72); transform: scale(1.04); }
-.spatialCanvas { z-index: 1; display: block; opacity: 0; touch-action: pan-y; transition: opacity 1.2s var(--ease); }
+.spatialFallback, .spatialCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.spatialFallback { z-index: 0; display: flex; align-items: center; justify-content: center; padding: 240px var(--page-pad) 112px; opacity: 1; transition: opacity 400ms ease; }
+.spatialFallback img { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
+.spatialCanvas { z-index: 1; display: block; opacity: 0; touch-action: pan-y; transition: opacity 400ms ease; }
 .spatialArchive.ready .spatialCanvas { opacity: 1; }
 .spatialArchive.ready .spatialFallback { opacity: 0; }
-.spatialArchive.loading .spatialFallback { opacity: .34; }
 .spatialArchive.fallback { min-height: 100vh; min-height: 100svh; }
-.spatialArchive.fallback .spatialFallback { opacity: .42; }
-.spatialShade {
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(7, 8, 8, .32), transparent 24%, transparent 80%, rgba(7, 8, 8, .4));
-}
 .spatialCopy {
   position: absolute;
   z-index: 3;
-  top: 50%;
+  top: 96px;
   left: var(--page-pad);
-  width: min(32%, 390px);
-  transform: translateY(-50%);
-  pointer-events: none;
+  right: var(--page-pad);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
 }
-.spatialChapterStage {
-  position: relative;
-  height: 256px;
-  margin-top: 24px;
-}
-.spatialChapter {
-  position: absolute;
-  inset: 0 auto auto 0;
-  width: 100%;
-  visibility: hidden;
-  opacity: 0;
-  transform: translate3d(0, 8px, 0);
-  transition: opacity 280ms ease, transform 280ms ease;
-  will-change: opacity, transform;
-}
-.spatialChapterActive { visibility: visible; opacity: 1; transform: translate3d(0, 0, 0); }
-.spatialChapter h2 {
-  max-width: 10ch;
-  margin: 0;
+.spatialCopy h2 {
+  margin: 16px 0 0;
   font-family: var(--font-display), Pretendard, sans-serif;
   font-size: var(--text-section);
   font-weight: 800;
@@ -191,9 +169,9 @@
   text-wrap: balance;
   word-break: keep-all;
 }
-.spatialChapter > p:last-child {
-  max-width: 390px;
-  margin: 24px 0 0;
+.spatialIntroduction {
+  max-width: 360px;
+  margin: 0;
   color: var(--cinema-soft);
   font-size: var(--text-body);
   line-height: var(--leading-body);
@@ -201,6 +179,10 @@
   word-break: keep-all;
   text-wrap: pretty;
 }
+.spatialCaption { position: absolute; z-index: 3; bottom: 32px; left: var(--page-pad); right: var(--page-pad); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.spatialCaption p { margin: 0; font-size: var(--text-small); line-height: var(--leading-meta); }
+.spatialCaption p span { display: block; margin-top: 4px; color: var(--cinema-muted); font-size: var(--text-meta); }
+.spatialCaption a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--cinema-ink); font-size: var(--text-small); text-underline-offset: 6px; }
 
 .featureSection { background: var(--cinema-surface); border-top: 0; }
 .featureHeading, .archiveHeading, .journalHeading { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr); gap: clamp(48px, 8vw, 128px); align-items: end; }
@@ -308,15 +290,14 @@
   .identityGrid, .featureHeading, .archiveHeading, .journalHeading { grid-template-columns: 1fr; gap: 48px; align-items: start; }
   .identityMedia { width: calc(100% + (var(--page-pad) * 2)); margin-left: calc(var(--page-pad) * -1); aspect-ratio: 4 / 5; }
   .identityCopy { max-width: 620px; }
-  .spatialArchive { min-height: 240vh; min-height: 240svh; }
+  .spatialArchive { min-height: 170vh; min-height: 170svh; }
   .spatialArchive.fallback { min-height: 100vh; min-height: 100svh; }
-  .spatialCopy { top: 88px; width: calc(100% - (var(--page-pad) * 2)); transform: none; }
-  .spatialChapterStage { height: 224px; margin-top: 24px; }
-  .spatialChapter h2 { max-width: 12ch; }
-  .spatialChapter > p:last-child { max-width: 320px; }
-  .spatialShade {
-    background: linear-gradient(180deg, rgba(7, 8, 8, .5), transparent 40%, transparent 86%, rgba(7, 8, 8, .4));
-  }
+  .spatialCopy { top: 88px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .spatialCopy h2 { margin-top: 12px; }
+  .spatialIntroduction { max-width: 320px; }
+  .spatialDesktopBreak { display: none; }
+  .spatialFallback { padding: 240px 24px 112px; }
+  .spatialCaption { bottom: 24px; gap: 16px; }
   .wideFrame { min-height: 460px; height: 116vw; margin-top: 56px; }
   .wideFrame img { object-position: 58% center; }
   .framePlay { right: 18px; bottom: 18px; }
@@ -351,8 +332,9 @@
 }
 
 @media (min-width: 801px) and (max-height: 560px) {
-  .spatialCopy { top: calc(50% + 32px); }
-  .spatialChapterStage { height: 208px; }
+  .spatialCopy { top: 80px; }
+  .spatialCopy h2 { margin-top: 8px; font-size: var(--text-title); }
+  .spatialCaption { bottom: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -360,7 +342,6 @@
   .page *, .page *::before, .page *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
   .page [data-cinematic-parallax] { transform: none !important; }
-  .spatialArchive { min-height: 120vh; min-height: 120svh; }
+  .spatialArchive { min-height: 100vh; min-height: 100svh; }
   .spatialArchive.fallback { min-height: 100vh; min-height: 100svh; }
-  .spatialChapter { transition: none !important; }
 }
