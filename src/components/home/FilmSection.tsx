@@ -13,16 +13,11 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
     >
       <div className={`${styles.filmHeading} ${styles.reveal}`}>
         <div>
-          <p className={styles.eyebrow}>04 / SHORT FILMS</p>
+          <p className={styles.eyebrow}>04 / SHORT FILMS · 2023–2026</p>
           <h2 className={styles.display} id="film-title">
             계절을 이어온 기록.
           </h2>
         </div>
-        <p>
-          Travel · Memory · Portrait
-          <br />
-          2023—2026
-        </p>
       </div>
       <p className={`${styles.filmIntro} ${styles.reveal}`}>{homeCopy.films.intro}</p>
       <div className={styles.filmGrid}>
@@ -73,9 +68,7 @@ function FilmCard({ film, index, onPlay }: { film: Film; index: number; onPlay: 
           <p className={styles.filmDescription}>{film.description}</p>
         </div>
         <p>
-          {film.year}
-          <br />
-          {film.duration}
+          {film.year} · {film.duration}
         </p>
       </div>
     </article>

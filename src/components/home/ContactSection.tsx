@@ -11,8 +11,7 @@ export function ContactSection() {
     >
       <p className={`${styles.eyebrow} ${styles.reveal}`}>07 / END CREDITS</p>
       <h2 className={`${styles.creditsTitle} ${styles.reveal}`} id="credits-title">
-        다음 장면을
-        <br />함께 만들어요
+        다음 장면을 함께 만들어요
       </h2>
       <p className={`${styles.creditsKo} ${styles.reveal}`}>{homeCopy.contact.description}</p>
       <div className={`${styles.contactRow} ${styles.reveal}`}>

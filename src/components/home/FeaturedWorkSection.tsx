@@ -15,9 +15,7 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
         <div>
           <p className={styles.eyebrow}>03 / SELECTED WORK</p>
           <h2 className={styles.display} id="feature-title">
-            DALIAN,
-            <br />
-            2026.
+            DALIAN, 2026.
           </h2>
         </div>
         <p>{featured.description}</p>

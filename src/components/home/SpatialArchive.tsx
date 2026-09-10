@@ -485,7 +485,7 @@ export function SpatialArchive() {
             <p className={styles.eyebrow}>02 / PHOTO STUDY</p>
             <h2 id="spatial-archive-title">장면을 펼치다.</h2>
           </div>
-          <p className={styles.spatialIntroduction}>가을빛의 서도역에서<br className={styles.spatialDesktopBreak} /> 도시의 저녁까지.</p>
+          <p className={styles.spatialIntroduction}>가을빛의 서도역에서 도시의 저녁까지.</p>
         </div>
         <div className={styles.spatialFallback}>
           <Image src={photograph} alt="가을빛이 머문 서도역 앞을 오가는 사람들" width={1600} height={1067} sizes="(max-width: 800px) 90vw, 80vw" />
