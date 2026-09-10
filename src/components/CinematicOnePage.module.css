@@ -209,7 +209,6 @@
 .filmIntro { max-width: 560px; margin: 0 0 clamp(56px, 7vw, 88px); color: var(--cinema-soft); font-size: var(--text-body); line-height: var(--leading-body); word-break: keep-all; }
 .filmGrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(24px, 4vw, 58px); align-items: end; }
 .filmGrid > article { grid-column: span 2; }
-.filmGrid > article:nth-child(n + 4) { grid-column: span 3; }
 .filmCard { display: flex; min-width: 0; flex-direction: column; gap: 20px; }
 .filmMedia { position: relative; width: 100%; overflow: hidden; padding: 0; border: 0; background: #111; cursor: pointer; }
 .filmPortrait .filmMedia { aspect-ratio: 9 / 16; }

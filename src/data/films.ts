@@ -18,6 +18,18 @@ const filmsBase = "/media/films";
 
 export const films: Film[] = [
   {
+    id: "hanoi-sapa-2026",
+    title: "HANOI & SAPA",
+    description: "2026년 베트남 하노이와 사파에서 담은 여행의 장면들",
+    role: "Film · Edit",
+    year: "2026",
+    duration: "00:21",
+    format: "landscape",
+    src: `${filmsBase}/hanoi-sapa-2026.mp4`,
+    poster: `${filmsBase}/hanoi-sapa-2026-poster.jpg`,
+    alt: "흐린 하늘 아래 붉은 지붕의 건물과 광장이 펼쳐진 사파의 풍경",
+  },
+  {
     id: "year-2025",
     title: "2025",
     description: "스쳐 지나간 빛으로 돌아보는 한 해",
