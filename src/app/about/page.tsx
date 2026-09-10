@@ -19,7 +19,7 @@ export default function AboutPage() {
       <section className="portfolio-section about-intro">
         <div className="portfolio-container about-intro-grid">
           <Reveal>
-            <div className="about-intro-media">
+            <div className="about-intro-media" data-image-reveal>
               <Image
                 src="/images/archive/journal-why-capture-everyday.jpg"
                 alt="대련의 밤거리에서 지나가는 장면을 바라보는 윤동기"
@@ -34,7 +34,7 @@ export default function AboutPage() {
             <div className="about-intro-copy">
               <p className="portfolio-kicker">About / Donggi Yoon</p>
               <h1>윤동기</h1>
-              <p className="about-statement">사진과 영상으로<br />평범한 하루가 오래 남는 방식을<br />찾고 있습니다.</p>
+              <p className="about-statement">사진과 영상으로 평범한 하루가 오래 남는 방식을 찾고 있습니다.</p>
               <p className="portfolio-lead">{profile.intro}</p>
               <div className="about-links">
                 <Link href="/works">작업 보기</Link>
@@ -48,14 +48,14 @@ export default function AboutPage() {
       <section className="portfolio-section about-essay">
         <div className="portfolio-container portfolio-editorial-grid">
           <Reveal>
-            <div className="portfolio-editorial-media">
+            <div className="portfolio-editorial-media" data-image-reveal>
               <Image src="/images/archive/about-cherry-portrait.jpg" alt="서도역 앞 철길과 사람들의 오후 풍경을 기록하는 윤동기" fill sizes="(max-width: 800px) 100vw, 42vw" className="object-cover" />
             </div>
           </Reveal>
           <Reveal delay={0.08}>
             <div className="portfolio-copy">
               <p className="portfolio-kicker">Point of view</p>
-              <h2>장소의 정보보다<br />그곳의 감각을 기록합니다.</h2>
+              <h2>장소의 정보보다 그곳의 감각을 기록합니다.</h2>
               <p>{profile.about}</p>
               <dl className="portfolio-facts">
                 <div><dt>Study</dt><dd>{profile.school}<br />{profile.department}</dd></div>

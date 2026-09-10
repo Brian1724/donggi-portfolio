@@ -35,7 +35,7 @@ export function StillArchiveSection() {
 function ArchiveFrame({ still }: { still: ArchiveStill }) {
   return (
     <figure className={`${styles.archiveFigure} ${styles[still.placement]} ${styles.reveal}`}>
-      <div className={styles.archiveMedia}>
+      <div className={styles.archiveMedia} data-image-reveal>
         <div className={styles.archiveImage} data-cinematic-parallax={still.speed}>
           <Image
             src={still.src}
@@ -45,7 +45,7 @@ function ArchiveFrame({ still }: { still: ArchiveStill }) {
           />
         </div>
       </div>
-      <figcaption>{still.label}</figcaption>
+      <figcaption>{still.label}<span className={styles.stillCaption}>{still.alt}</span></figcaption>
     </figure>
   );
 }

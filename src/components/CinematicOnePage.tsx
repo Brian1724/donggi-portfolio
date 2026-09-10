@@ -20,16 +20,20 @@ export function CinematicOnePage() {
   const filmVideoRef = useRef<HTMLVideoElement>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
   const shouldAutoplayRef = useRef(true);
+  const heroInViewRef = useRef(true);
+  const previousOverflowRef = useRef("");
   const [soundOn, setSoundOn] = useState(false);
   const [selectedFilm, setSelectedFilm] = useState<Film | null>(null);
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const reduceMotion = motionPreference.matches;
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
     const shouldAutoplay = !reduceMotion && !connection?.saveData;
     shouldAutoplayRef.current = shouldAutoplay;
 
     const heroVideo = heroVideoRef.current;
+    const dialog = dialogRef.current;
     if (heroVideo) {
       heroVideo.defaultMuted = true;
       heroVideo.muted = true;
@@ -45,82 +49,65 @@ export function CinematicOnePage() {
     const page = pageRef.current;
     if (!page) return;
 
-    const revealElements = Array.from(page.querySelectorAll<HTMLElement>(`.${styles.reveal}`));
-    const supportsObserver = "IntersectionObserver" in window;
-
-    if (!reduceMotion && supportsObserver) {
-      page.classList.add(styles.motionReady);
-    } else {
-      revealElements.forEach((element) => element.classList.add(styles.visible));
-    }
-
-    let revealObserver: IntersectionObserver | null = null;
-    if (supportsObserver) {
-      revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add(styles.visible);
-              revealObserver?.unobserve(entry.target);
-            }
-          });
-        },
-        { rootMargin: "0px 0px -8%", threshold: 0.06 },
-      );
-
-      revealElements.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) {
-          element.classList.add(styles.visible);
-        } else {
-          revealObserver?.observe(element);
-        }
-      });
-    }
-
-    // Safari can miss an observer callback after restoring a background tab.
-    // The archive must remain readable even if the entrance animation is skipped.
-    const revealSafetyTimer = window.setTimeout(() => {
-      revealElements.forEach((element) => element.classList.add(styles.visible));
-      revealObserver?.disconnect();
-    }, 1800);
-
+    const hero = page.querySelector<HTMLElement>("#top");
     const parallaxElements = Array.from(
       page.querySelectorAll<HTMLElement>("[data-cinematic-parallax]"),
     );
-    let ticking = false;
+    let frameId = 0;
 
     const updateParallax = () => {
+      frameId = 0;
+      const reduced = motionPreference.matches;
+      const heroRect = hero?.getBoundingClientRect();
+      if (heroRect && heroRect.bottom > 0) {
+        const progress = reduced ? 0 : Math.max(0, Math.min(1, -heroRect.top / heroRect.height));
+        hero!.style.setProperty("--hero-scale", String(1.025 + progress * 0.02));
+        hero!.style.setProperty("--hero-title-y", `${progress * -28}px`);
+        hero!.style.setProperty("--hero-copy-y", `${progress * -12}px`);
+        hero!.style.setProperty("--hero-darken", String(progress * 0.4));
+      }
       const viewportCenter = window.innerHeight / 2;
       parallaxElements.forEach((element) => {
         const frame = element.parentElement?.getBoundingClientRect();
-        if (!frame) return;
+        if (!frame || frame.bottom < 0 || frame.top > innerHeight) return;
         const distance = frame.top + frame.height / 2 - viewportCenter;
         const speed = Number(element.dataset.cinematicParallax ?? 0.05);
-        const offset = Math.max(-60, Math.min(60, -distance * speed));
+        const offset = reduced ? 0 : Math.max(-40, Math.min(40, -distance * speed));
         element.style.transform = `translate3d(0, ${offset}px, 0)`;
       });
-      ticking = false;
     };
 
     const requestParallax = () => {
-      if (ticking) return;
-      window.requestAnimationFrame(updateParallax);
-      ticking = true;
+      if (frameId) return;
+      frameId = window.requestAnimationFrame(updateParallax);
     };
 
-    if (!reduceMotion) {
-      updateParallax();
-      window.addEventListener("scroll", requestParallax, { passive: true });
-      window.addEventListener("resize", requestParallax);
-    }
+    const syncPlayback = () => {
+      shouldAutoplayRef.current = !motionPreference.matches && !connection?.saveData;
+      if (shouldAutoplayRef.current && heroInViewRef.current && !document.hidden && !dialogRef.current?.open) heroVideo?.play().catch(() => undefined);
+      else heroVideo?.pause();
+      requestParallax();
+    };
+    const visibility = window.IntersectionObserver ? new IntersectionObserver(([entry]) => {
+      heroInViewRef.current = entry.isIntersecting;
+      syncPlayback();
+    }) : null;
+    if (hero) visibility?.observe(hero);
+    updateParallax();
+    window.addEventListener("scroll", requestParallax, { passive: true });
+    window.addEventListener("resize", requestParallax);
+    document.addEventListener("visibilitychange", syncPlayback);
+    motionPreference.addEventListener("change", syncPlayback);
 
     return () => {
-      window.clearTimeout(revealSafetyTimer);
+      cancelAnimationFrame(frameId);
       window.removeEventListener("scroll", requestParallax);
       window.removeEventListener("resize", requestParallax);
-      revealObserver?.disconnect();
-      page.classList.remove(styles.motionReady);
+      visibility?.disconnect();
+      document.removeEventListener("visibilitychange", syncPlayback);
+      motionPreference.removeEventListener("change", syncPlayback);
+      heroVideo?.pause();
+      if (dialog?.open) document.body.style.overflow = previousOverflowRef.current;
     };
   }, []);
 
@@ -145,9 +132,9 @@ export function CinematicOnePage() {
       else dialog.removeAttribute("open");
     }
 
-    document.body.style.overflow = "";
+    document.body.style.overflow = previousOverflowRef.current;
     setSelectedFilm(null);
-    if (shouldAutoplayRef.current) heroVideoRef.current?.play().catch(() => undefined);
+    if (shouldAutoplayRef.current && heroInViewRef.current && !document.hidden) heroVideoRef.current?.play().catch(() => undefined);
 
     window.requestAnimationFrame(() => lastFocusedRef.current?.focus());
   };
@@ -158,6 +145,7 @@ export function CinematicOnePage() {
     if (!dialog || !player) return;
 
     lastFocusedRef.current = document.activeElement as HTMLElement | null;
+    previousOverflowRef.current = document.body.style.overflow;
     setSelectedFilm(film);
     heroVideoRef.current?.pause();
     player.pause();

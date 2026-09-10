@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { DocumentLink } from "@/components/DocumentLink";
 import { Reveal } from "@/components/Reveal";
 import { getJournalPostBySlug, getSortedJournalPosts, journalPosts } from "@/data/journal";
 import { createPageMetadata } from "@/lib/metadata";
@@ -18,8 +19,8 @@ export default async function JournalDetailPage({ params }: JournalPageProps) {
     <article className="portfolio-page journal-paper-page">
       <section className="portfolio-section journal-reading-section">
         <div className="portfolio-container journal-article">
-          <Reveal><header className="journal-article-header"><Link href="/journal" className="portfolio-kicker">저널 목록 / Journal</Link><h1>{post.title}</h1><div className="journal-article-meta"><span>{post.category}</span><time dateTime={post.date}>{post.date.replaceAll("-", ".")}</time></div></header></Reveal>
-          <Reveal delay={0.08}><div className="journal-cover"><Image src={post.thumbnail} alt={post.imageAlt} fill priority sizes="(max-width: 900px) 100vw, 780px" className="object-cover" /></div></Reveal>
+          <Reveal><header className="journal-article-header"><DocumentLink href="/journal/" className="portfolio-kicker">저널 목록 / Journal</DocumentLink><h1>{post.title}</h1><p className="journal-deck">{post.excerpt}</p><div className="journal-article-meta"><span>{post.category}</span><time dateTime={post.date}>{post.date.replaceAll("-", ".")}</time></div></header></Reveal>
+          <Reveal><figure className="journal-cover-figure"><div className="journal-cover" style={{ viewTransitionName: `journal-${post.slug}` }}><Image src={post.thumbnail} alt={post.imageAlt} fill priority sizes="(max-width: 1084px) calc(100vw - 44px), 1040px" className="object-cover" /></div><figcaption>사진 · 윤동기</figcaption></figure></Reveal>
           <Reveal delay={0.12}><div className="journal-body">{post.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></Reveal>
         </div>
       </section>

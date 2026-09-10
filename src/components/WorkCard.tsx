@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
+import { DocumentLink } from "@/components/DocumentLink";
 import type { Work } from "@/data/works";
 
 export function WorkCard({ work, index = 0 }: { work: Work; index?: number }) {
   return (
-    <Link href={`/works/${work.slug}`} className="portfolio-card work-entry">
-      <div className="portfolio-card-media">
+    <DocumentLink href={`/works/${work.slug}/`} className="portfolio-card work-entry">
+      <div className="portfolio-card-media" data-image-reveal style={{ viewTransitionName: `work-${work.slug}` }}>
         <Image
           src={work.thumbnail}
           alt={work.thumbnailAlt}
@@ -23,6 +23,6 @@ export function WorkCard({ work, index = 0 }: { work: Work; index?: number }) {
         <p>{work.description}</p>
         <p className="portfolio-card-link">작업 열기</p>
       </div>
-    </Link>
+    </DocumentLink>
   );
 }

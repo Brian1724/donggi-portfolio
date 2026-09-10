@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { WorkCard } from "@/components/WorkCard";
 import { workFilters, type Work } from "@/data/works";
@@ -14,7 +13,6 @@ function readFilterFromUrl(): FilterValue {
 }
 
 export function WorkFilter({ works }: { works: Work[] }) {
-  const reduceMotion = useReducedMotion();
   const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
 
   useEffect(() => {
@@ -58,20 +56,12 @@ export function WorkFilter({ works }: { works: Work[] }) {
       </p>
       <div className="work-archive">
         {filteredWorks.map((work, index) => (
-          <motion.div
+          <div
             key={`${activeFilter}-${work.slug}`}
             className="work-archive-item"
-            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{
-              duration: reduceMotion ? 0 : 0.6,
-              ease: [0.2, 0.8, 0.2, 1],
-              delay: reduceMotion ? 0 : index * 0.04,
-            }}
           >
             <WorkCard work={work} index={index} />
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

@@ -15,13 +15,13 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
         <div>
           <p className={styles.eyebrow}>04 / SHORT FILMS</p>
           <h2 className={styles.display} id="film-title">
-            세 편의 짧은 기록.
+            계절을 이어온 기록.
           </h2>
         </div>
         <p>
           Travel · Memory · Portrait
           <br />
-          2025—2026
+          2023—2026
         </p>
       </div>
       <p className={`${styles.filmIntro} ${styles.reveal}`}>{homeCopy.films.intro}</p>
@@ -51,6 +51,7 @@ function FilmCard({ film, index, onPlay }: { film: Film; index: number; onPlay: 
       <button
         type="button"
         className={styles.filmMedia}
+        data-image-reveal
         onClick={onPlay}
         aria-label={`${film.title} 전체 영상 재생`}
       >

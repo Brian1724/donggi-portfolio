@@ -27,6 +27,13 @@ export function Header() {
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Tab" && isOpen) {
+        const items = [menuButtonRef.current, ...document.querySelectorAll<HTMLElement>("#cinema-mobile-menu a")].filter((item): item is HTMLElement => !!item);
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
       if (event.key !== "Escape" || !isOpen) return;
       setIsOpen(false);
       menuButtonRef.current?.focus();
@@ -56,6 +63,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={active ? "is-active" : ""}
+                  aria-current={active ? "page" : undefined}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
+import { DocumentLink } from "@/components/DocumentLink";
 import { getAdjacentWorks, getWorkBySlug, works } from "@/data/works";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -35,9 +36,9 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
       <section className="portfolio-hero project-intro">
         <div className="portfolio-container">
           <Reveal>
-            <Link href="/works" className="portfolio-kicker">
+            <DocumentLink href="/works/" className="portfolio-kicker">
               작업 목록 / Works
-            </Link>
+            </DocumentLink>
             <h1 className="portfolio-title is-wide">{work.title}</h1>
           </Reveal>
           <Reveal delay={0.08}>
@@ -49,7 +50,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         </div>
         <div className="portfolio-container project-visual-wrap">
           <Reveal delay={0.12}>
-            <div className="project-hero-media">
+            <div className="project-hero-media" style={{ viewTransitionName: `work-${work.slug}` }}>
               <Image
                 src={work.thumbnail}
                 alt={work.thumbnailAlt}
@@ -86,6 +87,14 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
               <p>{work.purpose}</p>
             </article>
           </Reveal>
+          {work.detailImages[0] ? (
+            <figure className="project-interlude">
+              <div className={`project-gallery-media is-${work.detailImages[0].aspect}`} data-image-reveal>
+                <Image src={work.detailImages[0].src} alt={work.detailImages[0].alt} fill sizes="(max-width: 1200px) 100vw, 1200px" />
+              </div>
+              <figcaption>{work.detailImages[0].alt}</figcaption>
+            </figure>
+          ) : null}
           <Reveal delay={0.05}>
             <article>
               <p className="portfolio-kicker">Concept</p>
@@ -124,10 +133,10 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
             <p>완성된 결과뿐 아니라 프레이밍과 색, 공간을 바라본 판단이 드러나는 장면을 골랐습니다.</p>
           </div>
           <div className="project-gallery">
-            {work.detailImages.map((image, index) => (
+            {work.detailImages.slice(1).map((image, index) => (
               <Reveal key={image.src} delay={index * 0.06}>
                 <figure>
-                  <div className={`project-gallery-media is-${image.aspect}`}>
+                  <div className={`project-gallery-media is-${image.aspect}`} data-image-reveal>
                     <Image
                       src={image.src}
                       alt={image.alt}
@@ -136,6 +145,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
                       className="object-cover"
                     />
                   </div>
+                  <figcaption>{image.alt}</figcaption>
                 </figure>
               </Reveal>
             ))}

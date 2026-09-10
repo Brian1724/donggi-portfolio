@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
+import { DocumentLink } from "@/components/DocumentLink";
 import type { JournalPost } from "@/data/journal";
 
 export function JournalCard({ post, index = 0 }: { post: JournalPost; index?: number }) {
   return (
-    <Link href={`/journal/${post.slug}`} className="portfolio-card journal-entry">
-      <div className="portfolio-card-media is-landscape">
+    <DocumentLink href={`/journal/${post.slug}/`} className="portfolio-card journal-entry">
+      <div className="portfolio-card-media is-landscape" data-image-reveal style={{ viewTransitionName: `journal-${post.slug}` }}>
         <Image
           src={post.thumbnail}
           alt={post.imageAlt}
@@ -20,6 +20,6 @@ export function JournalCard({ post, index = 0 }: { post: JournalPost; index?: nu
         <p>{post.excerpt}</p>
         <p className="portfolio-card-link">기록 읽기</p>
       </div>
-    </Link>
+    </DocumentLink>
   );
 }
