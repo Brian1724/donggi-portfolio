@@ -13,6 +13,15 @@ export function bookSequence(progress: number) {
   };
 }
 
+// Bound scroll-driven velocity so trackpad bursts cannot flip several pages at once.
+export function advanceBook(current: number, target: number, seconds: number) {
+  const dt = Math.max(0, Math.min(0.05, seconds));
+  const difference = target - current;
+  if (Math.abs(difference) < 0.0001) return target;
+  const step = difference * (1 - Math.exp(-6 * dt));
+  return current + Math.max(-0.18 * dt, Math.min(0.18 * dt, step));
+}
+
 // Integrate the tangent along the sheet: the spine stays fixed and the outer
 // edge describes an arc, rather than stretching a rectangle or waving like cloth.
 export function pagePoint(x: number, z: number, progress: number, layer = 0) {

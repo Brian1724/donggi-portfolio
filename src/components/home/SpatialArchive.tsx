@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { photoBook } from "@/data/photo-book";
-import { bookSequence, pagePoint } from "@/lib/book-motion";
+import { advanceBook, bookSequence, pagePoint } from "@/lib/book-motion";
 import styles from "../CinematicOnePage.module.css";
 
 type SceneState = "loading" | "ready" | "fallback";
@@ -305,6 +305,16 @@ export function SpatialArchive() {
         let artworkHeight = 1;
         let renderedFrames = 0;
         const bounds = new THREE.Box3();
+        // Fit the whole sequence once: page turns must not drive camera zoom or panning.
+        const poseBounds = new THREE.Box3();
+        for (let sample = 0; sample <= 24; sample += 1) {
+          const pose = bookSequence(sample / 24);
+          hinge.rotation.z = THREE.MathUtils.lerp(0.035, Math.PI + 0.088, pose.opening);
+          turnFirst(pose.firstTurn);
+          turnSecond(pose.secondTurn);
+          book.updateMatrixWorld(true);
+          bounds.union(poseBounds.setFromObject(book));
+        }
         const center = new THREE.Vector3();
         const corner = new THREE.Vector3();
         const offset = new THREE.Vector3();
@@ -313,18 +323,17 @@ export function SpatialArchive() {
         const up = new THREE.Vector3();
         let shownSpread = 0;
         const renderScene = () => {
-          const { opening, firstTurn, secondTurn, exit, spread: nextSpread } = bookSequence(currentProgress);
+          const { opening, firstTurn, secondTurn, spread: nextSpread } = bookSequence(currentProgress);
           hinge.rotation.z = THREE.MathUtils.lerp(0.035, Math.PI + 0.088, opening);
           turnFirst(firstTurn);
           turnSecond(secondTurn);
-          direction.set(0.6 + Math.sin(firstTurn * Math.PI) * 0.12, viewportWidth <= 800 ? 13 : 8.5 + opening * 1.5, 7.2 - opening * 0.7).normalize();
+          direction.set(0.6, viewportWidth <= 800 ? 13 : 10, 6.5).normalize();
           right.crossVectors(new THREE.Vector3(0, 1, 0), direction).normalize();
           up.crossVectors(direction, right).normalize();
           if (shownSpread !== nextSpread) { shownSpread = nextSpread; setSpread(nextSpread); }
           canvas.dataset.spread = String(nextSpread);
           canvas.dataset.progress = currentProgress.toFixed(3);
           book.updateMatrixWorld(true);
-          bounds.setFromObject(book);
           bounds.getCenter(center);
           // Fit the hinged object between heading and caption. A fixed viewing direction
           // and long lens keep the motion coherent throughout the opening movement.
@@ -338,7 +347,7 @@ export function SpatialArchive() {
             const vertical = Math.abs(offset.dot(up)) / (tanV * artworkHeight / viewportHeight);
             distance = Math.max(distance, offset.dot(direction) + Math.max(horizontal, vertical) * 1.1);
           }
-          camera.position.copy(center).addScaledVector(direction, distance * (1 + exit * 0.035));
+          camera.position.copy(center).addScaledVector(direction, distance);
           camera.lookAt(center);
           renderer.render(scene, camera);
           canvas.dataset.frames = String(++renderedFrames);
@@ -353,8 +362,7 @@ export function SpatialArchive() {
           if (!shouldRender()) return;
           const delta = Math.min(0.05, Math.max(1 / 120, (time - lastTime) / 1000));
           lastTime = time;
-          currentProgress += (targetProgress - currentProgress) * (1 - Math.exp(-12 * delta));
-          if (Math.abs(targetProgress - currentProgress) < 0.0001) currentProgress = targetProgress;
+          currentProgress = advanceBook(currentProgress, targetProgress, delta);
           renderScene();
           if (currentProgress !== targetProgress) frameId = requestAnimationFrame(tick);
         };

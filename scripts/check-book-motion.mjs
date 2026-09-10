@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { bookSequence, pagePoint } from "../src/lib/book-motion.ts";
+import { advanceBook, bookSequence, pagePoint } from "../src/lib/book-motion.ts";
 
 let previous = bookSequence(0);
 for (let step = 0; step <= 1000; step += 1) {
@@ -24,4 +24,14 @@ assert.equal(pagePoint(3, 0, 0).x, 3);
 assert.equal(pagePoint(3, 0, 1).x, -3);
 assert(pagePoint(3, 0, 0.5).y > 2.5, "outer edge must arch over the binding");
 assert.equal(bookSequence(1).spread, 3);
+for (const [start, target] of [[0, 1], [1, 0]]) {
+  let value = start;
+  for (let frame = 0; frame < 900; frame += 1) {
+    const next = advanceBook(value, target, 1 / 60);
+    assert(Math.abs(next - value) <= 0.18 / 60 + 0.0001);
+    assert(next >= 0 && next <= 1);
+    value = next;
+  }
+  assert.equal(value, target, "motion must settle and let the render loop stop");
+}
 console.log("PASS: three spreads, sequential turns, fixed spine axis, finite curved geometry");

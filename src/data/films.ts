@@ -55,7 +55,7 @@ export const films: Film[] = [
   },
   {
     id: "year-2024",
-    title: "2024 회고",
+    title: "2024 recap",
     description: "한 해의 순간들을 다시 이어 붙인 회고 릴스",
     role: "Film · Edit",
     year: "2024",
