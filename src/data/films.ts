@@ -53,6 +53,30 @@ export const films: Film[] = [
     poster: `${dalianBase}/frame-opening.jpg`,
     alt: "푸른 저녁빛 아래 펼쳐진 대련 도심",
   },
+  {
+    id: "year-2024",
+    title: "2024 회고",
+    description: "한 해의 순간들을 다시 이어 붙인 회고 릴스",
+    role: "Film · Edit",
+    year: "2024",
+    duration: "00:19",
+    format: "landscape",
+    src: `${filmsBase}/year-2024.mp4`,
+    poster: `${filmsBase}/year-2024-poster.jpg`,
+    alt: "조명이 켜진 성곽 앞에서 밤 풍경을 바라보는 사람",
+  },
+  {
+    id: "phu-quoc-2023",
+    title: "푸꾸옥, 2023",
+    description: "친구들과 함께한 푸꾸옥 여행의 장면들",
+    role: "Film · Edit",
+    year: "2023",
+    duration: "00:44",
+    format: "landscape",
+    src: `${filmsBase}/phu-quoc-2023.mp4`,
+    poster: `${filmsBase}/phu-quoc-2023-poster.jpg`,
+    alt: "푸꾸옥 바닷가 방파제를 나란히 걷는 두 친구",
+  },
 ];
 
 export const featuredFilm = films.find((film) => film.id === "dalian-2026") ?? films[0];
