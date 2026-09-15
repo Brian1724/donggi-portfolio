@@ -36,7 +36,7 @@ export function CameraStudy() {
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.08;
         renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.shadowMap.type = THREE.PCFShadowMap;
 
         const scene = new THREE.Scene();
         const pmrem = new THREE.PMREMGenerator(renderer);
@@ -98,45 +98,104 @@ export function CameraStudy() {
         const modelBounds = new THREE.Box3().setFromObject(gltf.scene);
         const modelCenter = modelBounds.getCenter(new THREE.Vector3());
         gltf.scene.position.sub(modelCenter);
+        let lcdSwing: import("three").Object3D | undefined;
+        let lcdSwivel: import("three").Object3D | undefined;
         gltf.scene.traverse((child) => {
+          if (child.userData.lcdRole === "swing") lcdSwing = child;
+          if (child.userData.lcdRole === "swivel") lcdSwivel = child;
           if (!(child instanceof THREE.Mesh)) return;
           child.castShadow = true;
           child.receiveShadow = true;
         });
+
+        const swingRest = lcdSwing?.quaternion.clone();
+        const swivelRest = lcdSwivel?.quaternion.clone();
+        const swingRotation = new THREE.Quaternion();
+        const swivelRotation = new THREE.Quaternion();
+        const swingAxis = new THREE.Vector3(0, 1, 0);
+        const swivelAxis = new THREE.Vector3(1, 0, 0);
+
+        const smootherStep = (start: number, end: number, value: number) => {
+          const progress = THREE.MathUtils.clamp((value - start) / (end - start), 0, 1);
+          return progress * progress * progress * (progress * (progress * 6 - 15) + 10);
+        };
+
+        const poseLcd = (progress: number) => {
+          const swingProgress = smootherStep(0.04, 0.72, progress);
+          const swivelProgress = smootherStep(0.52, 1, progress);
+          if (lcdSwing && swingRest) {
+            lcdSwing.quaternion
+              .copy(swingRest)
+              .multiply(swingRotation.setFromAxisAngle(swingAxis, Math.PI * 0.96 * swingProgress));
+          }
+          if (lcdSwivel && swivelRest) {
+            lcdSwivel.quaternion
+              .copy(swivelRest)
+              .multiply(swivelRotation.setFromAxisAngle(swivelAxis, Math.PI * 0.88 * swivelProgress));
+          }
+        };
 
         const object = new THREE.Group();
         object.add(gltf.scene);
         scene.add(object);
         object.updateMatrixWorld(true);
 
-        const bounds = new THREE.Box3().setFromObject(object);
-        const size = bounds.getSize(new THREE.Vector3());
+        poseLcd(0);
+        object.updateMatrixWorld(true);
+        const closedBounds = new THREE.Box3().setFromObject(object);
+        const motionBounds = closedBounds.clone();
+        for (let index = 1; index <= 16; index += 1) {
+          poseLcd(index / 16);
+          object.updateMatrixWorld(true);
+          motionBounds.union(new THREE.Box3().setFromObject(object));
+        }
+        poseLcd(0);
+        object.updateMatrixWorld(true);
+
+        const size = closedBounds.getSize(new THREE.Vector3());
         const ground = new THREE.Mesh(
           new THREE.PlaneGeometry(
-            Math.max(size.x, size.z) * 4.2,
-            Math.max(size.x, size.z) * 4.2,
+            Math.max(motionBounds.max.x - motionBounds.min.x, size.z) * 4.2,
+            Math.max(motionBounds.max.x - motionBounds.min.x, size.z) * 4.2,
           ),
           new THREE.ShadowMaterial({ color: 0x000000, opacity: 0.2 }),
         );
         ground.rotation.x = -Math.PI / 2;
-        ground.position.y = bounds.min.y - size.y * 0.015;
+        ground.position.y = closedBounds.min.y - size.y * 0.015;
         ground.receiveShadow = true;
         scene.add(ground);
 
         const direction = new THREE.Vector3(-0.17, 0.114, 0.23).normalize();
         const origin = new THREE.Vector3();
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-        let currentAngle = 0;
-        let targetAngle = 0;
+        let motionReady = false;
+        let closedDistance = 1;
+        let openDistance = 1;
+        let currentYaw = 0;
+        let targetYaw = 0;
+        let currentPitch = 0;
+        let targetPitch = 0;
+        let currentRoll = 0;
+        let targetRoll = 0;
+        let currentLift = 0;
+        let targetLift = 0;
+        let currentDrift = 0;
+        let targetDrift = 0;
+        let currentScale = 1;
+        let targetScale = 1;
+        let currentZoom = 0;
+        let targetZoom = 0;
+        let currentLcd = 0;
+        let targetLcd = 0;
 
-        const fitDistance = () => {
+        const fitDistance = (fitBounds: import("three").Box3) => {
           const right = new THREE.Vector3(direction.z, 0, -direction.x).normalize();
           const up = direction.clone().cross(right).normalize();
           const tangent = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
           let distance = 0;
-          for (const x of [bounds.min.x, bounds.max.x]) {
-            for (const y of [bounds.min.y, bounds.max.y]) {
-              for (const z of [bounds.min.z, bounds.max.z]) {
+          for (const x of [fitBounds.min.x, fitBounds.max.x]) {
+            for (const y of [fitBounds.min.y, fitBounds.max.y]) {
+              for (const z of [fitBounds.min.z, fitBounds.max.z]) {
                 const point = new THREE.Vector3(x, y, z);
                 distance = Math.max(
                   distance,
@@ -185,24 +244,89 @@ export function CameraStudy() {
           frame = 0;
           const delta = Math.min((now - (last || now)) / 1000, 0.05);
           last = now;
-          currentAngle = reducedMotion.matches
-            ? 0
-            : THREE.MathUtils.lerp(currentAngle, targetAngle, Math.min(1, delta * 3.5));
-          object.rotation.y = currentAngle;
+          const damping = reducedMotion.matches ? 1 : 1 - Math.exp(-delta * 4.8);
+          currentYaw = THREE.MathUtils.lerp(currentYaw, targetYaw, damping);
+          currentPitch = THREE.MathUtils.lerp(currentPitch, targetPitch, damping);
+          currentRoll = THREE.MathUtils.lerp(currentRoll, targetRoll, damping);
+          currentLift = THREE.MathUtils.lerp(currentLift, targetLift, damping);
+          currentDrift = THREE.MathUtils.lerp(currentDrift, targetDrift, damping);
+          currentScale = THREE.MathUtils.lerp(currentScale, targetScale, damping);
+          currentZoom = THREE.MathUtils.lerp(currentZoom, targetZoom, damping);
+          currentLcd = THREE.MathUtils.lerp(currentLcd, targetLcd, damping);
+
+          poseLcd(currentLcd);
+          object.rotation.set(currentPitch, currentYaw, currentRoll, "XYZ");
+          object.position.set(currentDrift, currentLift, 0);
+          object.scale.setScalar(currentScale);
+          object.updateMatrixWorld(true);
+
+          const lcdDistance = THREE.MathUtils.lerp(
+            closedDistance,
+            openDistance,
+            smootherStep(0.12, 0.92, currentLcd),
+          );
+          camera.position.copy(origin).addScaledVector(direction, lcdDistance * (1 - currentZoom));
+          camera.lookAt(origin);
           renderer.render(scene, camera);
           sampleCanvas();
-          if (Math.abs(currentAngle - targetAngle) > 0.0002) request();
+          surface.dataset.lcd = currentLcd.toFixed(3);
+          surface.dataset.yaw = currentYaw.toFixed(3);
+          surface.dataset.motion = "scroll-lcd-v2";
+
+          const moving =
+            Math.abs(currentYaw - targetYaw) +
+            Math.abs(currentPitch - targetPitch) +
+            Math.abs(currentRoll - targetRoll) +
+            Math.abs(currentLift - targetLift) +
+            Math.abs(currentDrift - targetDrift) +
+            Math.abs(currentScale - targetScale) +
+            Math.abs(currentZoom - targetZoom) +
+            Math.abs(currentLcd - targetLcd);
+          if (moving > 0.0003) request();
         };
 
-        const updateAngle = () => {
+        const updateMotion = () => {
           const rect = element.getBoundingClientRect();
           const travel = window.innerHeight + rect.height;
-          const progress = THREE.MathUtils.clamp(
+          const rawProgress = THREE.MathUtils.clamp(
             (window.innerHeight - rect.top) / travel,
             0,
             1,
           );
-          targetAngle = reducedMotion.matches ? 0 : (progress - 0.5) * 0.1;
+          const progress = smootherStep(0.08, 0.92, rawProgress);
+
+          if (reducedMotion.matches) {
+            targetYaw = 0.04;
+            targetPitch = -0.015;
+            targetRoll = 0;
+            targetLift = 0;
+            targetDrift = 0;
+            targetScale = 1;
+            targetZoom = 0;
+            targetLcd = lcdSwing && lcdSwivel ? 0.76 : 0;
+          } else {
+            targetYaw = THREE.MathUtils.lerp(-0.2, 0.28, progress);
+            targetPitch = THREE.MathUtils.lerp(0.045, -0.06, progress);
+            targetRoll = -Math.sin(progress * Math.PI) * 0.016;
+            targetLift = Math.sin(progress * Math.PI) * size.y * 0.045;
+            targetDrift = THREE.MathUtils.lerp(-0.02, 0.028, progress) * size.x;
+            targetScale = 1 + Math.sin(progress * Math.PI) * 0.022;
+            targetZoom = Math.sin(progress * Math.PI) * 0.028;
+            targetLcd = lcdSwing && lcdSwivel ? smootherStep(0.2, 0.9, progress) : 0;
+          }
+
+          surface.dataset.progress = rawProgress.toFixed(3);
+          if (!motionReady) {
+            currentYaw = targetYaw;
+            currentPitch = targetPitch;
+            currentRoll = targetRoll;
+            currentLift = targetLift;
+            currentDrift = targetDrift;
+            currentScale = targetScale;
+            currentZoom = targetZoom;
+            currentLcd = targetLcd;
+            motionReady = true;
+          }
           last = 0;
           request();
         };
@@ -211,9 +335,9 @@ export function CameraStudy() {
           renderer.setSize(element.clientWidth, element.clientHeight, false);
           camera.aspect = element.clientWidth / element.clientHeight;
           camera.updateProjectionMatrix();
-          camera.position.copy(origin).addScaledVector(direction, fitDistance());
-          camera.lookAt(origin);
-          updateAngle();
+          closedDistance = fitDistance(closedBounds) * 1.04;
+          openDistance = Math.max(closedDistance, fitDistance(motionBounds) * 1.035);
+          updateMotion();
         };
 
         const visibilityChange = () => {
@@ -235,7 +359,7 @@ export function CameraStudy() {
           visible = entry.isIntersecting;
           last = 0;
           if (visible) {
-            updateAngle();
+            updateMotion();
           } else {
             cancelAnimationFrame(frame);
             frame = 0;
@@ -244,16 +368,16 @@ export function CameraStudy() {
 
         resizeObserver.observe(element);
         observer.observe(element);
-        window.addEventListener("scroll", updateAngle, { passive: true });
+        window.addEventListener("scroll", updateMotion, { passive: true });
         document.addEventListener("visibilitychange", visibilityChange);
-        reducedMotion.addEventListener("change", updateAngle);
+        reducedMotion.addEventListener("change", updateMotion);
         surface.addEventListener("webglcontextlost", contextLost);
         removeListeners = () => {
           resizeObserver.disconnect();
           observer.disconnect();
-          window.removeEventListener("scroll", updateAngle);
+          window.removeEventListener("scroll", updateMotion);
           document.removeEventListener("visibilitychange", visibilityChange);
-          reducedMotion.removeEventListener("change", updateAngle);
+          reducedMotion.removeEventListener("change", updateMotion);
           surface.removeEventListener("webglcontextlost", contextLost);
         };
 
@@ -285,7 +409,12 @@ export function CameraStudy() {
   const ready = state === "ready";
 
   return (
-    <section id="spatial-archive" className={styles.section} aria-labelledby="camera-title">
+    <section
+      id="spatial-archive"
+      className={styles.section}
+      aria-labelledby="camera-title"
+      data-motion-version="scroll-lcd-v2"
+    >
       <header className={styles.heading}>
         <p className={styles.eyebrow}>02 / OBJECT STUDY</p>
         <h2 id="camera-title">시선을 만드는 도구.</h2>

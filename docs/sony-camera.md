@@ -10,7 +10,7 @@ Source: user-provided Sony_A7C_II.blend. The source is never saved or modified b
 - Blender Z-axis swing becomes glTF Y; the nested X-axis swivel remains X. Both open by 180 degrees, sequentially.
 - Preview is a WebP conversion of the supplied render, used while loading and on failure.
 - Three.js presents the camera as an editorial object study with no visible viewer controls.
-- Rendering is on demand and stops offscreen. Pixel ratio is capped at 1.5. Scroll changes the viewing angle by five degrees total; reduced-motion keeps it still.
+- Rendering is on demand and stops offscreen. Pixel ratio is capped at 1.5. Scroll drives a damped 27-degree camera arc, subtle lift and lens push, then opens and swivels the LCD in sequence. Scrolling upward reverses the motion; reduced-motion shows a composed static open pose.
 
 Re-export with Blender in background mode, source file open, using `--python scripts/export-sony-camera.py -- public/media/Sony_A7C_II.glb`.
 Validate the artifact with `node scripts/check-camera-model.mjs`.
