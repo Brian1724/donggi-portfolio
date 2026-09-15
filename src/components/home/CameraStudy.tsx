@@ -271,7 +271,7 @@ export function CameraStudy() {
           sampleCanvas();
           surface.dataset.lcd = currentLcd.toFixed(3);
           surface.dataset.yaw = currentYaw.toFixed(3);
-          surface.dataset.motion = "scroll-lcd-v3";
+          surface.dataset.motion = "scroll-lcd-rear-v1";
 
           const moving =
             Math.abs(currentYaw - targetYaw) +
@@ -413,7 +413,7 @@ export function CameraStudy() {
       id="spatial-archive"
       className={styles.section}
       aria-labelledby="camera-title"
-      data-motion-version="scroll-lcd-v3"
+      data-motion-version="scroll-lcd-rear-v1"
     >
       <header className={styles.heading}>
         <p className={styles.eyebrow}>02 / OBJECT STUDY</p>
