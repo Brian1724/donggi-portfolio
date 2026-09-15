@@ -271,7 +271,7 @@ export function CameraStudy() {
           sampleCanvas();
           surface.dataset.lcd = currentLcd.toFixed(3);
           surface.dataset.yaw = currentYaw.toFixed(3);
-          surface.dataset.motion = "scroll-lcd-v2";
+          surface.dataset.motion = "scroll-lcd-v3";
 
           const moving =
             Math.abs(currentYaw - targetYaw) +
@@ -305,7 +305,7 @@ export function CameraStudy() {
             targetZoom = 0;
             targetLcd = lcdSwing && lcdSwivel ? 0.76 : 0;
           } else {
-            targetYaw = THREE.MathUtils.lerp(-0.2, 0.28, progress);
+            targetYaw = THREE.MathUtils.lerp(-0.2, 2.18, progress);
             targetPitch = THREE.MathUtils.lerp(0.045, -0.06, progress);
             targetRoll = -Math.sin(progress * Math.PI) * 0.016;
             targetLift = Math.sin(progress * Math.PI) * size.y * 0.045;
@@ -413,7 +413,7 @@ export function CameraStudy() {
       id="spatial-archive"
       className={styles.section}
       aria-labelledby="camera-title"
-      data-motion-version="scroll-lcd-v2"
+      data-motion-version="scroll-lcd-v3"
     >
       <header className={styles.heading}>
         <p className={styles.eyebrow}>02 / OBJECT STUDY</p>
