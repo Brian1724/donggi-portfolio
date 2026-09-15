@@ -1,0 +1,21 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+
+const file = readFileSync(new URL("../public/media/Sony_A7C_II.glb", import.meta.url));
+assert.equal(file.readUInt32LE(0), 0x46546c67);
+assert.equal(file.readUInt32LE(4), 2);
+const gltf = JSON.parse(file.subarray(20, 20 + file.readUInt32LE(12)));
+assert.ok(file.length < 3 * 1024 * 1024, "Model must remain below 3 MiB");
+assert.ok(!gltf.cameras?.length, "No production cameras");
+assert.ok(!gltf.extensions?.KHR_lights_punctual, "No production lights");
+assert.ok(!gltf.nodes.some(node => node.name?.startsWith("Reference")), "No reference images");
+const swing = gltf.nodes.find(node => node.extras?.lcdRole === "swing");
+const swivelIndex = gltf.nodes.findIndex(node => node.extras?.lcdRole === "swivel");
+assert.ok(swing?.children.includes(swivelIndex), "Keep nested LCD hinges");
+assert.equal(gltf.nodes[swivelIndex].children.length, 3, "Keep LCD frame and screen parts");
+assert.equal(gltf.materials.filter(material => material.normalTexture).length, 4, "Four baked rubber normals");
+assert.equal(gltf.images.length, 4);
+assert.ok(gltf.images.every(image => Number.isInteger(image.bufferView)), "Embed textures in GLB");
+const triangles = gltf.meshes.reduce((sum, mesh) => sum + mesh.primitives.reduce((count, primitive) => count + gltf.accessors[primitive.indices].count / 3, 0), 0);
+assert.ok(triangles < 100000, "Keep the model web-sized");
+console.log(`Camera model verified: ${triangles} triangles, ${file.length} bytes, nested LCD hinges, four embedded normal maps.`);

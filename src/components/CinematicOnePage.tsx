@@ -8,7 +8,7 @@ import { FilmDialog } from "@/components/home/FilmDialog";
 import { FilmSection } from "@/components/home/FilmSection";
 import { JournalPreviewSection } from "@/components/home/JournalPreviewSection";
 import { ProfileSection } from "@/components/home/ProfileSection";
-import { SpatialArchive } from "@/components/home/SpatialArchive";
+import { CameraStudy } from "@/components/home/CameraStudy";
 import { StillArchiveSection } from "@/components/home/StillArchiveSection";
 import { featuredFilm, type Film } from "@/data/films";
 import styles from "./CinematicOnePage.module.css";
@@ -173,7 +173,7 @@ export function CinematicOnePage() {
         onToggleSound={toggleSound}
       />
       <ProfileSection />
-      <SpatialArchive />
+      <CameraStudy />
       <FeaturedWorkSection onPlay={() => openFilm(featuredFilm)} />
       <FilmSection onPlay={openFilm} />
       <StillArchiveSection />
