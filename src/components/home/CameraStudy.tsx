@@ -25,13 +25,14 @@ export function CameraStudy() {
         const { RoomEnvironment } = await import("three/addons/environments/RoomEnvironment.js");
         if (cancelled) return;
 
+        const compactRenderer = window.matchMedia("(max-width: 800px)").matches;
         const renderer = new THREE.WebGLRenderer({
           canvas: surface,
           antialias: true,
           alpha: true,
           powerPreference: "high-performance",
         });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, compactRenderer ? 1.2 : 1.4));
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.08;
@@ -50,7 +51,7 @@ export function CameraStudy() {
         const key = new THREE.DirectionalLight(0xffffff, 3.1);
         key.position.set(-2.4, 3.2, 4.8);
         key.castShadow = true;
-        key.shadow.mapSize.set(1024, 1024);
+        key.shadow.mapSize.set(compactRenderer ? 512 : 1024, compactRenderer ? 512 : 1024);
         key.shadow.camera.near = 0.1;
         key.shadow.camera.far = 8;
         const rim = new THREE.DirectionalLight(0x94a9ba, 1.15);
@@ -62,6 +63,9 @@ export function CameraStudy() {
         let last = 0;
         let visible = true;
         let disposed = false;
+        let motionDirty = true;
+        let samplePending = true;
+        let hasRendered = false;
         let removeListeners = () => {};
 
         const disposeObject = (object: import("three").Object3D) => {
@@ -242,9 +246,10 @@ export function CameraStudy() {
 
         const render = (now: number) => {
           frame = 0;
+          if (motionDirty) updateMotion();
           const delta = Math.min((now - (last || now)) / 1000, 0.05);
           last = now;
-          const damping = reducedMotion.matches ? 1 : 1 - Math.exp(-delta * 4.8);
+          const damping = reducedMotion.matches ? 1 : 1 - Math.exp(-delta * 7.2);
           currentYaw = THREE.MathUtils.lerp(currentYaw, targetYaw, damping);
           currentPitch = THREE.MathUtils.lerp(currentPitch, targetPitch, damping);
           currentRoll = THREE.MathUtils.lerp(currentRoll, targetRoll, damping);
@@ -258,7 +263,6 @@ export function CameraStudy() {
           object.rotation.set(currentPitch, currentYaw, currentRoll, "XYZ");
           object.position.set(currentDrift, currentLift, 0);
           object.scale.setScalar(currentScale);
-          object.updateMatrixWorld(true);
 
           const lcdDistance = THREE.MathUtils.lerp(
             closedDistance,
@@ -268,10 +272,17 @@ export function CameraStudy() {
           camera.position.copy(origin).addScaledVector(direction, lcdDistance * (1 - currentZoom));
           camera.lookAt(origin);
           renderer.render(scene, camera);
-          sampleCanvas();
+          if (samplePending) {
+            sampleCanvas();
+            samplePending = false;
+          }
           surface.dataset.lcd = currentLcd.toFixed(3);
           surface.dataset.yaw = currentYaw.toFixed(3);
-          surface.dataset.motion = "scroll-lcd-rear-v1";
+          surface.dataset.motion = "scroll-lcd-smooth-v1";
+          if (!hasRendered) {
+            hasRendered = true;
+            setState("ready");
+          }
 
           const moving =
             Math.abs(currentYaw - targetYaw) +
@@ -282,10 +293,11 @@ export function CameraStudy() {
             Math.abs(currentScale - targetScale) +
             Math.abs(currentZoom - targetZoom) +
             Math.abs(currentLcd - targetLcd);
-          if (moving > 0.0003) request();
+          if (moving > 0.0003 || motionDirty) request();
         };
 
         const updateMotion = () => {
+          motionDirty = false;
           const rect = element.getBoundingClientRect();
           const travel = window.innerHeight + rect.height;
           const rawProgress = THREE.MathUtils.clamp(
@@ -327,7 +339,10 @@ export function CameraStudy() {
             currentLcd = targetLcd;
             motionReady = true;
           }
-          last = 0;
+        };
+
+        const queueMotion = () => {
+          motionDirty = true;
           request();
         };
 
@@ -337,7 +352,8 @@ export function CameraStudy() {
           camera.updateProjectionMatrix();
           closedDistance = fitDistance(closedBounds) * 1.04;
           openDistance = Math.max(closedDistance, fitDistance(motionBounds) * 1.035);
-          updateMotion();
+          samplePending = true;
+          queueMotion();
         };
 
         const visibilityChange = () => {
@@ -346,7 +362,7 @@ export function CameraStudy() {
             cancelAnimationFrame(frame);
             frame = 0;
           } else {
-            request();
+            queueMotion();
           }
         };
         const contextLost = (event: Event) => {
@@ -359,7 +375,7 @@ export function CameraStudy() {
           visible = entry.isIntersecting;
           last = 0;
           if (visible) {
-            updateMotion();
+            queueMotion();
           } else {
             cancelAnimationFrame(frame);
             frame = 0;
@@ -368,23 +384,20 @@ export function CameraStudy() {
 
         resizeObserver.observe(element);
         observer.observe(element);
-        window.addEventListener("scroll", updateMotion, { passive: true });
+        window.addEventListener("scroll", queueMotion, { passive: true });
         document.addEventListener("visibilitychange", visibilityChange);
-        reducedMotion.addEventListener("change", updateMotion);
+        reducedMotion.addEventListener("change", queueMotion);
         surface.addEventListener("webglcontextlost", contextLost);
         removeListeners = () => {
           resizeObserver.disconnect();
           observer.disconnect();
-          window.removeEventListener("scroll", updateMotion);
+          window.removeEventListener("scroll", queueMotion);
           document.removeEventListener("visibilitychange", visibilityChange);
-          reducedMotion.removeEventListener("change", updateMotion);
+          reducedMotion.removeEventListener("change", queueMotion);
           surface.removeEventListener("webglcontextlost", contextLost);
         };
 
         resize();
-        renderer.render(scene, camera);
-        sampleCanvas();
-        setState("ready");
       } catch {
         cleanup();
         if (!cancelled) setState("fallback");
@@ -413,14 +426,14 @@ export function CameraStudy() {
       id="spatial-archive"
       className={styles.section}
       aria-labelledby="camera-title"
-      data-motion-version="scroll-lcd-rear-v1"
+      data-motion-version="scroll-lcd-smooth-v1"
     >
-      <header className={styles.heading}>
+      <header className={styles.heading} data-scroll-reveal>
         <p className={styles.eyebrow}>02 / OBJECT STUDY</p>
         <h2 id="camera-title">시선을 만드는 도구.</h2>
         <p>Sony A7C II, 오래 바라본 장면을 기록하는 카메라.</p>
       </header>
-      <div ref={host} className={styles.stage}>
+      <div ref={host} className={styles.stage} data-scroll-reveal data-reveal-delay="90">
         {!ready && (
           <Image
             src="/media/Sony_A7C_II_preview.webp"
@@ -445,7 +458,7 @@ export function CameraStudy() {
             ? "3D 대신 카메라 미리보기 이미지를 표시합니다"
             : "3D 모델 준비 완료"}
       </p>
-      <Link className={styles.link} href="/works/">
+      <Link className={styles.link} href="/works/" data-scroll-reveal data-reveal-delay="130">
         사진과 영상 보기 <span aria-hidden="true">↗</span>
       </Link>
     </section>

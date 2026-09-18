@@ -46,15 +46,15 @@ export function CinematicHero({
       <div className={styles.grain} aria-hidden="true" />
 
       <div className={styles.heroInner}>
-        <div className={`${styles.heroKicker} ${styles.reveal}`}>
+        <div className={`${styles.heroKicker} ${styles.reveal}`} data-scroll-reveal>
           <span>{homeCopy.hero.eyebrow}</span>
           <span>{homeCopy.hero.role}</span>
         </div>
-        <h1 className={`${styles.heroTitle} ${styles.reveal}`} id="hero-title">
+        <h1 className={`${styles.heroTitle} ${styles.reveal}`} id="hero-title" data-scroll-reveal data-reveal-delay="70">
           <span>BETWEEN</span>
           <span className={styles.outline}>FRAMES.</span>
         </h1>
-        <div className={`${styles.heroFooter} ${styles.reveal}`}>
+        <div className={`${styles.heroFooter} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="130">
           <p>{homeCopy.hero.message}</p>
           <div className={styles.heroActions}>
             <button className={styles.playLink} type="button" onClick={onPlay}>

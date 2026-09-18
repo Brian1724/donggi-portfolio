@@ -489,6 +489,18 @@ button, input, textarea { font: inherit; }
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 [data-image-reveal] { overflow: hidden; }
 .image-enter > img { animation: editorial-image var(--motion-reveal) var(--ease-out) both; }
+html.scroll-reveal-ready [data-scroll-reveal] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition:
+    opacity 760ms var(--ease-out),
+    transform 880ms cubic-bezier(.16, 1, .3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.scroll-reveal-ready [data-scroll-reveal]:not([data-revealed="true"]) {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0) scale(.988);
+}
 @keyframes editorial-image {
   from { clip-path: inset(4% 0 0); translate: 0 4%; }
   to { clip-path: inset(0); translate: 0 0; }
@@ -501,4 +513,10 @@ button, input, textarea { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
   .image-enter > img { animation: none; }
+  html.scroll-reveal-ready [data-scroll-reveal],
+  html.scroll-reveal-ready [data-scroll-reveal]:not([data-revealed="true"]) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

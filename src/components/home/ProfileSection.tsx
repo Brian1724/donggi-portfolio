@@ -11,9 +11,9 @@ export function ProfileSection() {
       id="profile"
       aria-labelledby="profile-title"
     >
-      <p className={`${styles.eyebrow} ${styles.reveal}`}>01 / PROFILE</p>
+      <p className={`${styles.eyebrow} ${styles.reveal}`} data-scroll-reveal>01 / PROFILE</p>
       <div className={styles.identityGrid}>
-        <div className={`${styles.identityMedia} ${styles.reveal}`} data-image-reveal>
+        <div className={`${styles.identityMedia} ${styles.reveal}`} data-image-reveal data-scroll-reveal>
           <Image
             src="/images/archive/journal-why-capture-everyday.jpg"
             alt="대련의 밤거리에서 도시의 흐름을 바라보는 윤동기"
@@ -21,7 +21,7 @@ export function ProfileSection() {
             sizes="(max-width: 800px) 100vw, 54vw"
           />
         </div>
-        <div className={`${styles.identityCopy} ${styles.reveal}`}>
+        <div className={`${styles.identityCopy} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="80">
           <h2 id="profile-title">윤동기</h2>
           <p className={styles.identityRole}>{homeCopy.profile.role}</p>
           <p className={styles.identityKo}>{homeCopy.profile.description}</p>

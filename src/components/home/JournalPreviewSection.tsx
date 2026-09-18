@@ -11,7 +11,7 @@ export function JournalPreviewSection() {
       className={`${styles.section} ${styles.journalSection}`}
       aria-labelledby="journal-title"
     >
-      <div className={`${styles.journalHeading} ${styles.reveal}`}>
+      <div className={`${styles.journalHeading} ${styles.reveal}`} data-scroll-reveal>
         <div>
           <p className={styles.eyebrow}>06 / FIELD NOTES</p>
           <h2 className={styles.display} id="journal-title">
@@ -26,6 +26,8 @@ export function JournalPreviewSection() {
             key={post.slug}
             href={`/journal/${post.slug}`}
             className={`${styles.journalRow} ${styles.reveal}`}
+            data-scroll-reveal
+            data-reveal-delay={String(index * 65)}
           >
             <span>0{index + 1}</span>
             <strong>{post.title}</strong>

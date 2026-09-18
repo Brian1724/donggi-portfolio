@@ -11,7 +11,7 @@ export function StillArchiveSection() {
       id="stills"
       aria-labelledby="archive-title"
     >
-      <div className={`${styles.archiveHeading} ${styles.reveal}`}>
+      <div className={`${styles.archiveHeading} ${styles.reveal}`} data-scroll-reveal>
         <div>
           <p className={styles.eyebrow}>05 / STILL ARCHIVE</p>
           <h2 className={styles.display} id="archive-title">
@@ -34,7 +34,7 @@ export function StillArchiveSection() {
 
 function ArchiveFrame({ still }: { still: ArchiveStill }) {
   return (
-    <figure className={`${styles.archiveFigure} ${styles[still.placement]} ${styles.reveal}`}>
+    <figure className={`${styles.archiveFigure} ${styles[still.placement]} ${styles.reveal}`} data-scroll-reveal>
       <div className={styles.archiveMedia} data-image-reveal>
         <div className={styles.archiveImage} data-cinematic-parallax={still.speed}>
           <Image

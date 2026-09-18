@@ -9,12 +9,12 @@ export function ContactSection() {
       id="contact"
       aria-labelledby="credits-title"
     >
-      <p className={`${styles.eyebrow} ${styles.reveal}`}>07 / END CREDITS</p>
-      <h2 className={`${styles.creditsTitle} ${styles.reveal}`} id="credits-title">
+      <p className={`${styles.eyebrow} ${styles.reveal}`} data-scroll-reveal>07 / END CREDITS</p>
+      <h2 className={`${styles.creditsTitle} ${styles.reveal}`} id="credits-title" data-scroll-reveal data-reveal-delay="60">
         다음 장면을 함께 만들어요
       </h2>
-      <p className={`${styles.creditsKo} ${styles.reveal}`}>{homeCopy.contact.description}</p>
-      <div className={`${styles.contactRow} ${styles.reveal}`}>
+      <p className={`${styles.creditsKo} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="100">{homeCopy.contact.description}</p>
+      <div className={`${styles.contactRow} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="140">
         <div className={styles.contactPrimary}>
           <span>연락 / 프로젝트 문의</span>
           <a href={`mailto:${profile.email}`}>{profile.email}</a>

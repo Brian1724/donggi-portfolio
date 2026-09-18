@@ -11,7 +11,7 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
       id="film"
       aria-labelledby="film-title"
     >
-      <div className={`${styles.filmHeading} ${styles.reveal}`}>
+      <div className={`${styles.filmHeading} ${styles.reveal}`} data-scroll-reveal>
         <div>
           <p className={styles.eyebrow}>04 / SHORT FILMS · 2023–2026</p>
           <h2 className={styles.display} id="film-title">
@@ -19,7 +19,7 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
           </h2>
         </div>
       </div>
-      <p className={`${styles.filmIntro} ${styles.reveal}`}>{homeCopy.films.intro}</p>
+      <p className={`${styles.filmIntro} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="70">{homeCopy.films.intro}</p>
       <div className={styles.filmGrid}>
         {films.map((film, index) => (
           <FilmCard
@@ -30,7 +30,7 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
           />
         ))}
       </div>
-      <div className={`${styles.inlineContact} ${styles.reveal}`}>
+      <div className={`${styles.inlineContact} ${styles.reveal}`} data-scroll-reveal>
         <p>{homeCopy.films.contact}</p>
         <Link href="/contact">협업 이야기 나누기</Link>
       </div>
@@ -42,7 +42,7 @@ function FilmCard({ film, index, onPlay }: { film: Film; index: number; onPlay: 
   const formatClass = `film${film.format[0].toUpperCase()}${film.format.slice(1)}`;
 
   return (
-    <article className={`${styles.filmCard} ${styles[formatClass]} ${styles.reveal}`}>
+    <article className={`${styles.filmCard} ${styles[formatClass]} ${styles.reveal}`} data-scroll-reveal data-reveal-delay={String((index - 1) % 3 * 70)}>
       <button
         type="button"
         className={styles.filmMedia}

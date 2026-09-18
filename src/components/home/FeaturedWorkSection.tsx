@@ -11,7 +11,7 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
       className={`${styles.section} ${styles.featureSection}`}
       aria-labelledby="feature-title"
     >
-      <div className={`${styles.featureHeading} ${styles.reveal}`}>
+      <div className={`${styles.featureHeading} ${styles.reveal}`} data-scroll-reveal>
         <div>
           <p className={styles.eyebrow}>03 / SELECTED WORK</p>
           <h2 className={styles.display} id="feature-title">
@@ -20,7 +20,7 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
         </div>
         <p>{featured.description}</p>
       </div>
-      <div className={styles.wideFrame} aria-label={featuredFilm.alt}>
+      <div className={styles.wideFrame} aria-label={featuredFilm.alt} data-scroll-reveal data-reveal-delay="80">
         <div className={styles.parallaxMedia} data-cinematic-parallax="0.06">
           <Image
             src={featuredFilm.poster}
@@ -38,7 +38,7 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
           <i aria-hidden="true" /> 전체 필름 보기
         </button>
       </div>
-      <dl className={`${styles.projectBrief} ${styles.reveal}`}>
+      <dl className={`${styles.projectBrief} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="120">
         <div>
           <dt>Film / Place</dt>
           <dd>{featured.purpose}<br />{featured.location}</dd>
