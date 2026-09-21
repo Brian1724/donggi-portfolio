@@ -35,7 +35,7 @@ export function CameraStudy() {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, compactRenderer ? 1.2 : 1.4));
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.08;
+        renderer.toneMappingExposure = 0.72;
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFShadowMap;
 
@@ -46,17 +46,18 @@ export function CameraStudy() {
         room.dispose();
         pmrem.dispose();
         scene.environment = environment.texture;
+        scene.environmentIntensity = 0.08;
 
         const camera = new THREE.PerspectiveCamera(30, 1, 0.001, 10);
-        const key = new THREE.DirectionalLight(0xffffff, 3.1);
-        key.position.set(-2.4, 3.2, 4.8);
+        const key = new THREE.DirectionalLight(0xffead4, 0.18);
+        key.position.set(-3.8, 2.4, 4.8);
         key.castShadow = true;
         key.shadow.mapSize.set(compactRenderer ? 512 : 1024, compactRenderer ? 512 : 1024);
         key.shadow.camera.near = 0.1;
         key.shadow.camera.far = 8;
-        const rim = new THREE.DirectionalLight(0x94a9ba, 1.15);
-        rim.position.set(3.5, 1.2, -2.5);
-        const fill = new THREE.HemisphereLight(0xf7f8f6, 0x20262c, 1.25);
+        const rim = new THREE.DirectionalLight(0x9eb9ca, 0.34);
+        rim.position.set(3.8, 1.5, -3.2);
+        const fill = new THREE.HemisphereLight(0xe9eef0, 0x11161a, 0.12);
         scene.add(key, rim, fill);
 
         let frame = 0;
@@ -191,6 +192,8 @@ export function CameraStudy() {
         let targetZoom = 0;
         let currentLcd = 0;
         let targetLcd = 0;
+        let currentLight = 0;
+        let targetLight = 0;
 
         const fitDistance = (fitBounds: import("three").Box3) => {
           const right = new THREE.Vector3(direction.z, 0, -direction.x).normalize();
@@ -258,11 +261,21 @@ export function CameraStudy() {
           currentScale = THREE.MathUtils.lerp(currentScale, targetScale, damping);
           currentZoom = THREE.MathUtils.lerp(currentZoom, targetZoom, damping);
           currentLcd = THREE.MathUtils.lerp(currentLcd, targetLcd, damping);
+          currentLight = THREE.MathUtils.lerp(currentLight, targetLight, damping * 0.82);
 
           poseLcd(currentLcd);
           object.rotation.set(currentPitch, currentYaw, currentRoll, "XYZ");
           object.position.set(currentDrift, currentLift, 0);
           object.scale.setScalar(currentScale);
+
+          const lightRise = smootherStep(0.02, 0.92, currentLight);
+          key.intensity = THREE.MathUtils.lerp(0.18, 3.35, lightRise);
+          rim.intensity = THREE.MathUtils.lerp(0.34, 2.1, lightRise);
+          fill.intensity = THREE.MathUtils.lerp(0.12, 0.92, lightRise);
+          scene.environmentIntensity = THREE.MathUtils.lerp(0.08, 0.72, lightRise);
+          renderer.toneMappingExposure = THREE.MathUtils.lerp(0.72, 1.04, lightRise);
+          key.position.x = THREE.MathUtils.lerp(-3.8, -1.7, lightRise);
+          key.position.y = THREE.MathUtils.lerp(2.4, 3.5, lightRise);
 
           const lcdDistance = THREE.MathUtils.lerp(
             closedDistance,
@@ -278,7 +291,8 @@ export function CameraStudy() {
           }
           surface.dataset.lcd = currentLcd.toFixed(3);
           surface.dataset.yaw = currentYaw.toFixed(3);
-          surface.dataset.motion = "scroll-lcd-rear-fold-v2";
+          surface.dataset.light = lightRise.toFixed(3);
+          surface.dataset.motion = "scroll-light-reveal-v3";
           if (!hasRendered) {
             hasRendered = true;
             setState("ready");
@@ -292,7 +306,8 @@ export function CameraStudy() {
             Math.abs(currentDrift - targetDrift) +
             Math.abs(currentScale - targetScale) +
             Math.abs(currentZoom - targetZoom) +
-            Math.abs(currentLcd - targetLcd);
+            Math.abs(currentLcd - targetLcd) +
+            Math.abs(currentLight - targetLight);
           if (moving > 0.0003 || motionDirty) request();
         };
 
@@ -316,6 +331,7 @@ export function CameraStudy() {
             targetScale = 1;
             targetZoom = 0;
             targetLcd = lcdSwing && lcdSwivel ? 0.76 : 0;
+            targetLight = 0.82;
           } else {
             targetYaw = THREE.MathUtils.lerp(-0.2, 2.18, progress);
             targetPitch = THREE.MathUtils.lerp(0.045, -0.06, progress);
@@ -325,6 +341,7 @@ export function CameraStudy() {
             targetScale = 1 + Math.sin(progress * Math.PI) * 0.022;
             targetZoom = Math.sin(progress * Math.PI) * 0.028;
             targetLcd = lcdSwing && lcdSwivel ? smootherStep(0.2, 0.9, progress) : 0;
+            targetLight = smootherStep(0.04, 0.78, progress);
           }
 
           surface.dataset.progress = rawProgress.toFixed(3);
@@ -337,6 +354,7 @@ export function CameraStudy() {
             currentScale = targetScale;
             currentZoom = targetZoom;
             currentLcd = targetLcd;
+            currentLight = targetLight;
             motionReady = true;
           }
         };
@@ -426,7 +444,7 @@ export function CameraStudy() {
       id="spatial-archive"
       className={styles.section}
       aria-labelledby="camera-title"
-      data-motion-version="scroll-lcd-rear-fold-v2"
+      data-motion-version="scroll-light-reveal-v3"
     >
       <header className={styles.heading} data-scroll-reveal>
         <p className={styles.eyebrow}>02 / OBJECT STUDY</p>
