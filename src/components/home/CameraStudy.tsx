@@ -130,7 +130,7 @@ export function CameraStudy() {
           if (lcdSwing && swingRest) {
             lcdSwing.quaternion
               .copy(swingRest)
-              .multiply(swingRotation.setFromAxisAngle(swingAxis, Math.PI * 0.96 * swingProgress));
+              .multiply(swingRotation.setFromAxisAngle(swingAxis, -Math.PI * 0.96 * swingProgress));
           }
           if (lcdSwivel && swivelRest) {
             lcdSwivel.quaternion
@@ -278,7 +278,7 @@ export function CameraStudy() {
           }
           surface.dataset.lcd = currentLcd.toFixed(3);
           surface.dataset.yaw = currentYaw.toFixed(3);
-          surface.dataset.motion = "scroll-lcd-smooth-v1";
+          surface.dataset.motion = "scroll-lcd-rear-fold-v2";
           if (!hasRendered) {
             hasRendered = true;
             setState("ready");
@@ -426,7 +426,7 @@ export function CameraStudy() {
       id="spatial-archive"
       className={styles.section}
       aria-labelledby="camera-title"
-      data-motion-version="scroll-lcd-smooth-v1"
+      data-motion-version="scroll-lcd-rear-fold-v2"
     >
       <header className={styles.heading} data-scroll-reveal>
         <p className={styles.eyebrow}>02 / OBJECT STUDY</p>
@@ -434,7 +434,7 @@ export function CameraStudy() {
         <p>Sony A7C II, 오래 바라본 장면을 기록하는 카메라.</p>
       </header>
       <div ref={host} className={styles.stage} data-scroll-reveal data-reveal-delay="90">
-        {!ready && (
+        {state === "fallback" && (
           <Image
             src="/media/Sony_A7C_II_preview.webp"
             alt="Sony A7C II의 정면 사선 구도. 검은 몸체와 렌즈 마운트, 상단 다이얼"
