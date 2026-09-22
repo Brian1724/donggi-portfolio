@@ -4,8 +4,12 @@ import type { Work } from "@/data/works";
 
 export function WorkCard({ work, index = 0 }: { work: Work; index?: number }) {
   return (
-    <DocumentLink href={`/works/${work.slug}/`} className="portfolio-card work-entry">
-      <div className="portfolio-card-media" data-image-reveal style={{ viewTransitionName: `work-${work.slug}` }}>
+    <DocumentLink href={`/works/${work.slug}/`} className={`portfolio-card work-entry is-${work.thumbnailAspect}`}>
+      <div
+        className="portfolio-card-media"
+        data-image-reveal
+        style={{ aspectRatio: work.thumbnailRatio, viewTransitionName: `work-${work.slug}` }}
+      >
         <Image
           src={work.thumbnail}
           alt={work.thumbnailAlt}

@@ -116,7 +116,7 @@
 .identity { border-top: 0; }
 .identityGrid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); gap: 64px; align-items: center; max-width: 960px; margin: 32px auto 0; }
 .identity > .eyebrow { text-align: center; }
-.identityMedia { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #111; }
+.identityMedia { position: relative; overflow: hidden; background: #111; }
 .identityMedia img { object-fit: cover; object-position: 72% center; }
 .identityCopy h2 { margin: 0; font-family: var(--font-display), Pretendard, sans-serif; font-size: var(--text-page); font-weight: 800; letter-spacing: -.025em; line-height: var(--leading-heading); }
 .identityRole { margin: 20px 0 0; color: var(--cinema-muted); font-size: var(--text-small); font-weight: 600; line-height: var(--leading-meta); }
@@ -214,11 +214,9 @@
 .filmGrid > article { grid-column: span 2; }
 .filmCard { display: flex; min-width: 0; flex-direction: column; gap: 20px; }
 .filmMedia { position: relative; width: 100%; overflow: hidden; padding: 0; border: 0; background: #111; cursor: pointer; }
-.filmPortrait .filmMedia { aspect-ratio: 16 / 9; }
-.filmSquare .filmMedia { aspect-ratio: 16 / 9; }
-.filmLandscape .filmMedia { aspect-ratio: 16 / 9; }
 .filmMedia { border-radius: 16px; }
-.filmPortrait .filmMedia img, .filmSquare .filmMedia img { object-fit: contain; }
+.filmPortrait .filmMedia { width: 72%; margin-inline: auto; }
+.filmSquare .filmMedia { width: 88%; margin-inline: auto; }
 .filmMedia img { height: 100%; object-fit: cover; transition: transform var(--motion-cinematic) var(--ease), filter var(--motion-cinematic) var(--ease); }
 .posterShade { position: absolute; inset: 0; background: rgba(5, 7, 7, 0.18); }
 .cardPlay { position: absolute; top: 50%; left: 50%; display: grid; width: 64px; height: 64px; border: 1px solid rgba(255, 255, 255, 0.74); border-radius: 50%; place-items: center; opacity: 0; transform: translate(-50%, -45%); transition: opacity var(--motion-ui) ease, transform var(--motion-ui) var(--ease); }
@@ -246,12 +244,9 @@
 .archiveMedia:global(.image-enter) .archiveImage { animation: archive-image-entry var(--motion-reveal) var(--ease-out); }
 @keyframes archive-image-entry { from { clip-path: inset(4% 0 0); } to { clip-path: inset(0); } }
 .archiveLead { grid-column: 1 / 11; }
-.archiveLead .archiveMedia { aspect-ratio: 3 / 2; }
 .archivePortraitA { grid-column: 1 / 6; }
 .archivePortraitB { grid-column: 8 / 13; margin-top: 64px; }
-.archivePortraitA .archiveMedia, .archivePortraitB .archiveMedia, .archivePortraitC .archiveMedia { aspect-ratio: 2 / 3; }
 .archivePanorama { grid-column: 3 / 13; }
-.archivePanorama .archiveMedia, .archiveFinale .archiveMedia { aspect-ratio: 16 / 9; }
 .archivePortraitC { grid-column: 1 / 6; }
 .archiveFinale { grid-column: 6 / 13; align-self: end; }
 .archiveMore { display: flex; justify-content: flex-end; margin-top: 56px; }
@@ -306,7 +301,7 @@
   .playLink { min-width: 0; }
   .playLink > span { display: none; }
   .identityGrid { grid-template-columns: 1fr; gap: 32px; }
-  .identityMedia { width: 100%; max-width: 400px; margin-inline: auto; aspect-ratio: 4 / 5; border-radius: 16px; }
+  .identityMedia { width: 100%; max-width: 400px; margin-inline: auto; border-radius: 16px; }
   .identityCopy { max-width: 620px; }
   .spatialArchive { min-height: 225vh; min-height: 225svh; }
   .spatialArchive.fallback { min-height: 100vh; min-height: 100svh; }

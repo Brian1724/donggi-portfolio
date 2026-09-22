@@ -50,7 +50,10 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         </div>
         <div className="portfolio-container project-visual-wrap">
           <Reveal delay={0.12}>
-            <div className="project-hero-media" style={{ viewTransitionName: `work-${work.slug}` }}>
+            <div
+              className={`project-hero-media is-${work.thumbnailAspect}`}
+              style={{ aspectRatio: work.thumbnailRatio, viewTransitionName: `work-${work.slug}` }}
+            >
               <Image
                 src={work.thumbnail}
                 alt={work.thumbnailAlt}
@@ -89,7 +92,11 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
           </Reveal>
           {work.detailImages[0] ? (
             <figure className="project-interlude">
-              <div className={`project-gallery-media is-${work.detailImages[0].aspect}`} data-image-reveal>
+              <div
+                className={`project-gallery-media is-${work.detailImages[0].aspect}`}
+                data-image-reveal
+                style={{ aspectRatio: work.detailImages[0].ratio }}
+              >
                 <Image src={work.detailImages[0].src} alt={work.detailImages[0].alt} fill sizes="(max-width: 1200px) 100vw, 1200px" />
               </div>
               <figcaption>{work.detailImages[0].alt}</figcaption>
@@ -136,7 +143,11 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
             {work.detailImages.slice(1).map((image, index) => (
               <Reveal key={image.src} delay={index * 0.06}>
                 <figure>
-                  <div className={`project-gallery-media is-${image.aspect}`} data-image-reveal>
+                  <div
+                    className={`project-gallery-media is-${image.aspect}`}
+                    data-image-reveal
+                    style={{ aspectRatio: image.ratio }}
+                  >
                     <Image
                       src={image.src}
                       alt={image.alt}

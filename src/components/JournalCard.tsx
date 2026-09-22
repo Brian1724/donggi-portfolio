@@ -5,7 +5,11 @@ import type { JournalPost } from "@/data/journal";
 export function JournalCard({ post, index = 0 }: { post: JournalPost; index?: number }) {
   return (
     <DocumentLink href={`/journal/${post.slug}/`} className="portfolio-card journal-entry">
-      <div className="portfolio-card-media is-landscape" data-image-reveal style={{ viewTransitionName: `journal-${post.slug}` }}>
+      <div
+        className="portfolio-card-media"
+        data-image-reveal
+        style={{ aspectRatio: post.imageRatio, viewTransitionName: `journal-${post.slug}` }}
+      >
         <Image
           src={post.thumbnail}
           alt={post.imageAlt}

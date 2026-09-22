@@ -13,7 +13,12 @@ export function ProfileSection() {
     >
       <p className={`${styles.eyebrow} ${styles.reveal}`} data-scroll-reveal>01 / PROFILE</p>
       <div className={styles.identityGrid}>
-        <div className={`${styles.identityMedia} ${styles.reveal}`} data-image-reveal data-scroll-reveal>
+        <div
+          className={`${styles.identityMedia} ${styles.reveal}`}
+          data-image-reveal
+          data-scroll-reveal
+          style={{ aspectRatio: "16 / 9" }}
+        >
           <Image
             src="/images/archive/journal-why-capture-everyday.jpg"
             alt="대련의 밤거리에서 도시의 흐름을 바라보는 윤동기"

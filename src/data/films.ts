@@ -10,6 +10,7 @@ export type Film = {
   format: FilmFormat;
   src: string;
   poster: string;
+  posterRatio: string;
   alt: string;
 };
 
@@ -27,6 +28,7 @@ export const films: Film[] = [
     format: "landscape",
     src: `${filmsBase}/hanoi-sapa-2026.mp4`,
     poster: `${filmsBase}/hanoi-sapa-2026-poster.jpg`,
+    posterRatio: "16 / 9",
     alt: "흐린 하늘 아래 붉은 지붕의 건물과 광장이 펼쳐진 사파의 풍경",
   },
   {
@@ -39,6 +41,7 @@ export const films: Film[] = [
     format: "landscape",
     src: `${dalianBase}/donggi-trailer.mp4`,
     poster: `${dalianBase}/frame-opening.jpg`,
+    posterRatio: "16 / 9",
     alt: "푸른 저녁빛 아래 펼쳐진 대련 도심",
   },
   {
@@ -51,6 +54,7 @@ export const films: Film[] = [
     format: "square",
     src: `${filmsBase}/new-year-2026.mp4`,
     poster: `${filmsBase}/new-year-2026-poster.jpg`,
+    posterRatio: "1 / 1",
     alt: "따뜻한 창가의 빛 속에서 새해를 맞는 윤동기",
   },
   {
@@ -63,6 +67,7 @@ export const films: Film[] = [
     format: "portrait",
     src: `${filmsBase}/2025.mp4`,
     poster: `${filmsBase}/2025-poster.jpg`,
+    posterRatio: "9 / 16",
     alt: "눈 덮인 산과 바다를 바라보는 사람을 담은 2025 필름",
   },
   {
@@ -75,6 +80,7 @@ export const films: Film[] = [
     format: "landscape",
     src: `${filmsBase}/year-2024.mp4`,
     poster: `${filmsBase}/year-2024-poster.jpg`,
+    posterRatio: "36 / 19",
     alt: "조명이 켜진 성곽 앞에서 밤 풍경을 바라보는 사람",
   },
   {
@@ -87,6 +93,7 @@ export const films: Film[] = [
     format: "landscape",
     src: `${filmsBase}/phu-quoc-2023.mp4`,
     poster: `${filmsBase}/phu-quoc-2023-poster.jpg`,
+    posterRatio: "16 / 9",
     alt: "푸꾸옥 바닷가 방파제를 나란히 걷는 두 친구",
   },
 ];

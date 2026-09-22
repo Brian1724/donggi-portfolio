@@ -49,6 +49,7 @@ function FilmCard({ film, index, onPlay }: { film: Film; index: number; onPlay: 
         data-image-reveal
         onClick={onPlay}
         aria-label={`${film.title} 전체 영상 재생`}
+        style={{ aspectRatio: film.posterRatio }}
       >
         <Image
           src={film.poster}

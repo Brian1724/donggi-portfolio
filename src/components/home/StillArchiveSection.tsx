@@ -35,7 +35,7 @@ export function StillArchiveSection() {
 function ArchiveFrame({ still }: { still: ArchiveStill }) {
   return (
     <figure className={`${styles.archiveFigure} ${styles[still.placement]} ${styles.reveal}`} data-scroll-reveal>
-      <div className={styles.archiveMedia} data-image-reveal>
+      <div className={styles.archiveMedia} data-image-reveal style={{ aspectRatio: still.ratio }}>
         <div className={styles.archiveImage} data-cinematic-parallax={still.speed}>
           <Image
             src={still.src}

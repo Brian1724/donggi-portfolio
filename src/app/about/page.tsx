@@ -19,7 +19,7 @@ export default function AboutPage() {
       <section className="portfolio-section about-intro">
         <div className="portfolio-container about-intro-grid">
           <Reveal>
-            <div className="about-intro-media" data-image-reveal>
+            <div className="about-intro-media" data-image-reveal style={{ aspectRatio: "16 / 9" }}>
               <Image
                 src="/images/archive/journal-why-capture-everyday.jpg"
                 alt="대련의 밤거리에서 지나가는 장면을 바라보는 윤동기"
@@ -48,7 +48,7 @@ export default function AboutPage() {
       <section className="portfolio-section about-essay">
         <div className="portfolio-container portfolio-editorial-grid">
           <Reveal>
-            <div className="portfolio-editorial-media" data-image-reveal>
+            <div className="portfolio-editorial-media" data-image-reveal style={{ aspectRatio: "1280 / 802" }}>
               <Image src="/images/archive/about-cherry-portrait.jpg" alt="서도역 앞 철길과 사람들의 오후 풍경을 기록하는 윤동기" fill sizes="(max-width: 800px) 100vw, 42vw" className="object-cover" />
             </div>
           </Reveal>

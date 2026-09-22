@@ -23,10 +23,13 @@ export type Work = {
   };
   thumbnail: string;
   thumbnailAlt: string;
+  thumbnailAspect: "landscape" | "portrait" | "wide";
+  thumbnailRatio: string;
   detailImages: {
     src: string;
     alt: string;
     aspect: "landscape" | "portrait" | "wide";
+    ratio: string;
   }[];
   links: {
     instagram?: string;
@@ -64,21 +67,26 @@ export const works: Work[] = [
     },
     thumbnail: "/images/archive/project-cinematic-travel-angkor.jpg",
     thumbnailAlt: "가을빛이 드는 철길 옆 오래된 건물과 푸른 하늘",
+    thumbnailAspect: "portrait",
+    thumbnailRatio: "853 / 1280",
     detailImages: [
       {
         src: "/images/archive/detail-extra-visual-01.jpg",
         alt: "저녁 빛 속 도시 거리와 건물 사이를 흐르는 여행 장면",
         aspect: "wide",
+        ratio: "16 / 9",
       },
       {
         src: "/images/archive/project-cinematic-travel-angkor.jpg",
         alt: "넓은 하늘 아래 철길을 따라 이어지는 여행지의 풍경",
         aspect: "portrait",
+        ratio: "853 / 1280",
       },
       {
         src: "/images/archive/detail-underground-stair.jpg",
         alt: "어두운 지하 통로 계단에 홀로 멈춰 선 사람",
         aspect: "portrait",
+        ratio: "4 / 5",
       },
     ],
     links: {
@@ -114,21 +122,26 @@ export const works: Work[] = [
     },
     thumbnail: "/images/archive/project-dk4film-seodo-station.jpg",
     thumbnailAlt: "세로 프레임에 담긴 서도역 주변의 조용한 아카이브 장면",
+    thumbnailAspect: "portrait",
+    thumbnailRatio: "853 / 1280",
     detailImages: [
       {
         src: "/images/archive/og-seodo-station.jpg",
         alt: "서도역의 나무 건물과 철길을 세로로 기록한 사진",
         aspect: "portrait",
+        ratio: "848 / 1280",
       },
       {
         src: "/images/archive/about-cherry-portrait.jpg",
         alt: "서도역 앞 철길과 사람들의 오후 풍경",
         aspect: "landscape",
+        ratio: "1280 / 802",
       },
       {
         src: "/images/archive/detail-night-couple.jpg",
         alt: "야간 거리의 불빛 아래 서로를 바라보는 두 사람의 실루엣",
         aspect: "landscape",
+        ratio: "2200 / 1237",
       },
     ],
     links: {
@@ -159,21 +172,26 @@ export const works: Work[] = [
     },
     thumbnail: "/images/archive/project-digital-analog-bw-station.jpg",
     thumbnailAlt: "흑백 톤으로 기록한 기차역 주변의 아날로그적인 장면",
+    thumbnailAspect: "portrait",
+    thumbnailRatio: "853 / 1280",
     detailImages: [
       {
         src: "/images/archive/project-digital-analog-bw-station.jpg",
         alt: "흑백 사진처럼 차분하게 남은 역 주변의 구조와 빛",
         aspect: "portrait",
+        ratio: "853 / 1280",
       },
       {
         src: "/images/archive/journal-starting-dk4film.jpg",
         alt: "필름적인 질감으로 기록한 거리의 세로 사진",
         aspect: "portrait",
+        ratio: "853 / 1280",
       },
       {
         src: "/images/archive/detail-architectural-rhythm-bw.jpg",
         alt: "반복되는 지붕 구조와 긴 그림자를 흑백으로 기록한 공간",
         aspect: "portrait",
+        ratio: "1466 / 2200",
       },
     ],
     links: {},
@@ -202,17 +220,21 @@ export const works: Work[] = [
       format: "Documentary notes",
     },
     thumbnail: "/images/archive/project-campus-autumn-rail.jpg",
-    thumbnailAlt: "가을 햇살 아래 철길과 나무가 이어지는 캠퍼스 같은 산책 장면",
+    thumbnailAlt: "벚꽃이 핀 길에서 봄빛을 바라보는 윤동기",
+    thumbnailAspect: "landscape",
+    thumbnailRatio: "3 / 2",
     detailImages: [
       {
         src: "/images/archive/project-campus-autumn-rail.jpg",
         alt: "가을빛이 내려앉은 철길과 나무의 풍경",
         aspect: "landscape",
+        ratio: "3 / 2",
       },
       {
         src: "/images/archive/about-winter-hike.jpg",
         alt: "겨울 산책길에서 기록한 세로 프레임의 풍경",
         aspect: "portrait",
+        ratio: "853 / 1280",
       },
     ],
     links: {},
@@ -238,22 +260,27 @@ export const works: Work[] = [
       format: "Short-form experiments",
     },
     thumbnail: "/images/archive/project-personal-film-night-fortress.jpg",
-    thumbnailAlt: "밤의 성곽과 도시 조명을 세로로 담은 개인 필름 실험 이미지",
+    thumbnailAlt: "눈 덮인 숲길에서 겨울 산행을 이어가는 사람",
+    thumbnailAspect: "portrait",
+    thumbnailRatio: "3 / 4",
     detailImages: [
       {
         src: "/images/archive/project-personal-film-night-fortress.jpg",
         alt: "밤의 성곽과 빛을 따라 구성한 세로 프레임",
         aspect: "portrait",
+        ratio: "3 / 4",
       },
       {
         src: "/images/archive/hero-cherry-portrait.jpg",
         alt: "강변 너머 도시의 밤 실루엣을 기록한 사진",
         aspect: "landscape",
+        ratio: "1280 / 848",
       },
       {
         src: "/images/archive/detail-light-trace.jpg",
         alt: "붉은 실내 공간을 가로지르는 흰빛의 장노출 궤적",
         aspect: "landscape",
+        ratio: "3 / 2",
       },
     ],
     links: {},
