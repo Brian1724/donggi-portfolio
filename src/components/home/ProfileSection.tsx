@@ -17,7 +17,7 @@ export function ProfileSection() {
           className={`${styles.identityMedia} ${styles.reveal}`}
           data-image-reveal
           data-scroll-reveal
-          style={{ aspectRatio: "16 / 9" }}
+          style={{ aspectRatio: "17 / 10" }}
         >
           <Image
             src="/images/archive/journal-why-capture-everyday.jpg"
