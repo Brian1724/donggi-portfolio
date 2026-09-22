@@ -1,6 +1,5 @@
 export const homeCopy = {
   hero: {
-    eyebrow: "Donggi Yoon / Visual Archive",
     role: "Videographer & Photographer",
     message: "여행과 일상, 사람과 공간의 분위기를 사진과 짧은 영화로 기록합니다.",
   },

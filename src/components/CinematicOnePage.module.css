@@ -298,7 +298,7 @@
   .page { --section-space: 64px; }
   .heroInner { padding-top: 116px; padding-bottom: 64px; }
   .heroVideo { object-position: 55% center; }
-  .heroKicker span:last-child { display: none; }
+  .heroKicker { display: none; }
   .heroTitle { max-width: 100%; row-gap: 14px; }
   .heroFooter { align-items: flex-start; flex-direction: column; gap: 26px; }
   .heroFooter > p br { display: none; }

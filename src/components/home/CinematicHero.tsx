@@ -47,7 +47,6 @@ export function CinematicHero({
 
       <div className={styles.heroInner}>
         <div className={`${styles.heroKicker} ${styles.reveal}`} data-scroll-reveal>
-          <span>{homeCopy.hero.eyebrow}</span>
           <span>{homeCopy.hero.role}</span>
         </div>
         <h1 className={`${styles.heroTitle} ${styles.reveal}`} id="hero-title" data-scroll-reveal data-reveal-delay="70">
