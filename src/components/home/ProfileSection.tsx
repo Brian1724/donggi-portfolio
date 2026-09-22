@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { homeCopy } from "@/data/home";
+import { getHomeSectionLabel, homeCopy } from "@/data/home";
 import { profile } from "@/data/profile";
 import styles from "../CinematicOnePage.module.css";
 
@@ -11,7 +11,9 @@ export function ProfileSection() {
       id="profile"
       aria-labelledby="profile-title"
     >
-      <p className={`${styles.eyebrow} ${styles.reveal}`} data-scroll-reveal>01 / PROFILE</p>
+      <p className={`${styles.eyebrow} ${styles.reveal}`} data-scroll-reveal>
+        {getHomeSectionLabel("profile")}
+      </p>
       <div className={styles.identityGrid}>
         <div
           className={`${styles.identityMedia} ${styles.reveal}`}

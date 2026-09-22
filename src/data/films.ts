@@ -10,6 +10,7 @@ export type Film = {
   format: FilmFormat;
   src: string;
   poster: string;
+  posterAlt?: string;
   posterRatio: string;
   alt: string;
 };
@@ -41,6 +42,7 @@ export const films: Film[] = [
     format: "landscape",
     src: `${dalianBase}/donggi-trailer.mp4`,
     poster: `${dalianBase}/frame-opening.jpg`,
+    posterAlt: `${dalianBase}/frame-night.jpg`,
     posterRatio: "16 / 9",
     alt: "푸른 저녁빛 아래 펼쳐진 대련 도심",
   },

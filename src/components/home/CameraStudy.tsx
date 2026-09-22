@@ -1,11 +1,14 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./CameraStudy.module.css";
 
-export function CameraStudy() {
+type CameraStudyProps = {
+  onFallback: () => void;
+  onReady: () => void;
+};
+
+export function CameraStudy({ onFallback, onReady }: CameraStudyProps) {
   const host = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const [state, setState] = useState<"loading" | "ready" | "fallback">("loading");
@@ -296,6 +299,7 @@ export function CameraStudy() {
           if (!hasRendered) {
             hasRendered = true;
             setState("ready");
+            onReady();
           }
 
           const moving =
@@ -386,7 +390,10 @@ export function CameraStudy() {
         const contextLost = (event: Event) => {
           event.preventDefault();
           cleanup();
-          if (!cancelled) setState("fallback");
+          if (!cancelled) {
+            setState("fallback");
+            onFallback();
+          }
         };
         const resizeObserver = new ResizeObserver(resize);
         const observer = new IntersectionObserver(([entry]) => {
@@ -418,7 +425,10 @@ export function CameraStudy() {
         resize();
       } catch {
         cleanup();
-        if (!cancelled) setState("fallback");
+        if (!cancelled) {
+          setState("fallback");
+          onFallback();
+        }
       }
     };
 
@@ -435,50 +445,19 @@ export function CameraStudy() {
       observer.disconnect();
       cleanup();
     };
-  }, []);
+  }, [onFallback, onReady]);
 
   const ready = state === "ready";
 
   return (
-    <section
-      id="spatial-archive"
-      className={styles.section}
-      aria-labelledby="camera-title"
-      data-motion-version="scroll-light-reveal-v3"
-    >
-      <header className={styles.heading} data-scroll-reveal>
-        <p className={styles.eyebrow}>02 / OBJECT STUDY</p>
-        <h2 id="camera-title">시선을 만드는 도구.</h2>
-        <p>Sony A7C II, 오래 바라본 장면을 기록하는 카메라.</p>
-      </header>
-      <div ref={host} className={styles.stage} data-scroll-reveal data-reveal-delay="90">
-        {state === "fallback" && (
-          <Image
-            src="/media/Sony_A7C_II_preview.webp"
-            alt="Sony A7C II의 정면 사선 구도. 검은 몸체와 렌즈 마운트, 상단 다이얼"
-            fill
-            sizes="(max-width: 800px) 94vw, 1120px"
-            className={styles.fallback}
-          />
-        )}
-        <canvas
-          ref={canvas}
-          className={styles.canvas}
-          style={{ opacity: ready ? 1 : 0 }}
-          aria-label="Sony A7C II 카메라 3D 오브젝트"
-          role="img"
-        />
-      </div>
-      <p className="sr-only" role="status">
-        {state === "loading"
-          ? "3D 모델을 불러오는 중"
-          : state === "fallback"
-            ? "3D 대신 카메라 미리보기 이미지를 표시합니다"
-            : "3D 모델 준비 완료"}
-      </p>
-      <Link className={styles.link} href="/works/" data-scroll-reveal data-reveal-delay="130">
-        사진과 영상 보기 <span aria-hidden="true">↗</span>
-      </Link>
-    </section>
+    <div ref={host} className={styles.scene}>
+      <canvas
+        ref={canvas}
+        className={styles.canvas}
+        style={{ opacity: ready ? 1 : 0 }}
+        aria-label="Sony A7C II 카메라 3D 오브젝트"
+        role="img"
+      />
+    </div>
   );
 }

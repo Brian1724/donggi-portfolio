@@ -2,6 +2,7 @@ export type Work = {
   title: string;
   slug: string;
   year: string;
+  yearRange: readonly [number, number];
   categories: string[];
   description: string;
   format: string;
@@ -46,6 +47,7 @@ export const works: Work[] = [
     title: "Cinematic Travel Archive",
     slug: "cinematic-travel-archive",
     year: "Ongoing",
+    yearRange: [2025, 2026],
     categories: ["Film", "Travel", "Personal"],
     description:
       "여행지에서 마주한 빛, 공간, 사람, 분위기를 시네마틱한 영상으로 기록한 개인 아카이브.",
@@ -102,6 +104,7 @@ export const works: Work[] = [
     title: "DK4FILM Photo Archive",
     slug: "dk4film-photo-archive",
     year: "Ongoing",
+    yearRange: [2025, 2026],
     categories: ["Photography", "Personal"],
     description:
       "@dk4film 계정을 중심으로 일상, 여행, 거리의 순간을 필름적인 톤으로 기록하는 사진 작업.",
@@ -152,6 +155,7 @@ export const works: Work[] = [
     title: "Digital Age, Analog Mood",
     slug: "digital-age-analog-mood",
     year: "2026",
+    yearRange: [2026, 2026],
     categories: ["Photography", "Essay"],
     description:
       "디지털 시대 속에서 아날로그적인 감성과 기록의 의미를 탐구한 사진 에세이.",
@@ -200,6 +204,7 @@ export const works: Work[] = [
     title: "Campus Visual Notes",
     slug: "campus-visual-notes",
     year: "Ongoing",
+    yearRange: [2025, 2026],
     categories: ["Photography", "Campus"],
     description:
       "학교 생활, 동아리 활동, 캠퍼스의 계절과 사람들을 기록하는 비주얼 노트.",
@@ -243,6 +248,7 @@ export const works: Work[] = [
     title: "Personal Film Experiments",
     slug: "personal-film-experiments",
     year: "Ongoing",
+    yearRange: [2025, 2026],
     categories: ["Film", "Personal"],
     description:
       "색감, 사운드, 내레이션, 편집 리듬을 실험하며 나만의 영상 언어를 찾아가는 작업.",

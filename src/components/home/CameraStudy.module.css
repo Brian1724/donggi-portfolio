@@ -48,6 +48,11 @@
   margin: 40px auto 0;
 }
 
+.scene {
+  position: absolute;
+  inset: 0;
+}
+
 .canvas {
   display: block;
   width: 100%;
@@ -56,10 +61,16 @@
   transition: opacity 500ms ease;
 }
 
-.fallback {
+.poster {
   padding: 32px;
   object-fit: contain;
   filter: saturate(0.75) brightness(0.78) contrast(1.06);
+  opacity: 1;
+  transition: opacity 500ms ease;
+}
+
+.posterHidden {
+  opacity: 0;
 }
 
 .link {
@@ -88,13 +99,17 @@
     margin-top: 24px;
   }
 
-  .fallback {
+  .poster {
     padding: 12px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .canvas {
+    transition: none;
+  }
+
+  .poster {
     transition: none;
   }
 }

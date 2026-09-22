@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { archiveStills, type ArchiveStill } from "@/data/stills";
-import { homeCopy } from "@/data/home";
+import { getHomeSectionLabel, homeCopy } from "@/data/home";
 import styles from "../CinematicOnePage.module.css";
 
 export function StillArchiveSection() {
@@ -13,7 +13,7 @@ export function StillArchiveSection() {
     >
       <div className={`${styles.archiveHeading} ${styles.reveal}`} data-scroll-reveal>
         <div>
-          <p className={styles.eyebrow}>05 / STILL ARCHIVE</p>
+          <p className={styles.eyebrow}>{getHomeSectionLabel("stills")}</p>
           <h2 className={styles.display} id="archive-title">
             장면과 장면 사이.
           </h2>

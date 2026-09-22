@@ -1,4 +1,4 @@
-import { homeCopy } from "@/data/home";
+import { getHomeSectionLabel, homeCopy } from "@/data/home";
 import { profile } from "@/data/profile";
 import styles from "../CinematicOnePage.module.css";
 
@@ -9,7 +9,9 @@ export function ContactSection() {
       id="contact"
       aria-labelledby="credits-title"
     >
-      <p className={`${styles.eyebrow} ${styles.reveal}`} data-scroll-reveal>07 / END CREDITS</p>
+      <p className={`${styles.eyebrow} ${styles.reveal}`} data-scroll-reveal>
+        {getHomeSectionLabel("credits")}
+      </p>
       <h2 className={`${styles.creditsTitle} ${styles.reveal}`} id="credits-title" data-scroll-reveal data-reveal-delay="60">
         다음 장면을 함께 만들어요
       </h2>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { featuredFilm } from "@/data/films";
-import { homeCopy } from "@/data/home";
+import { getHomeSectionLabel, homeCopy } from "@/data/home";
 import styles from "../CinematicOnePage.module.css";
 
 export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
@@ -13,9 +13,9 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
     >
       <div className={`${styles.featureHeading} ${styles.reveal}`} data-scroll-reveal>
         <div>
-          <p className={styles.eyebrow}>03 / SELECTED WORK</p>
+          <p className={styles.eyebrow}>{getHomeSectionLabel("selected-work")}</p>
           <h2 className={styles.display} id="feature-title">
-            DALIAN, 2026.
+            {featuredFilm.title}, {featuredFilm.year}.
           </h2>
         </div>
         <p>{featured.description}</p>
@@ -33,7 +33,7 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
           type="button"
           className={styles.framePlay}
           onClick={onPlay}
-          aria-label="Dalian 전체 영상 재생"
+          aria-label={`${featuredFilm.title} 전체 영상 재생`}
         >
           <i aria-hidden="true" /> 전체 필름 보기
         </button>
@@ -49,7 +49,7 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
         </div>
         <div>
           <dt>Credits / Year</dt>
-          <dd>{featured.role}<br />2026</dd>
+          <dd>{featured.role}<br />{featuredFilm.year}</dd>
         </div>
       </dl>
     </section>

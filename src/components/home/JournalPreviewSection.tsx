@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getSortedJournalPosts } from "@/data/journal";
-import { homeCopy } from "@/data/home";
+import { getHomeSectionLabel, homeCopy } from "@/data/home";
 import styles from "../CinematicOnePage.module.css";
 
 export function JournalPreviewSection() {
@@ -13,7 +13,7 @@ export function JournalPreviewSection() {
     >
       <div className={`${styles.journalHeading} ${styles.reveal}`} data-scroll-reveal>
         <div>
-          <p className={styles.eyebrow}>06 / FIELD NOTES</p>
+          <p className={styles.eyebrow}>{getHomeSectionLabel("notes")}</p>
           <h2 className={styles.display} id="journal-title">
             기록하며 알게 된 것들.
           </h2>

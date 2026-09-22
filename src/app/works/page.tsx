@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/Reveal";
 import { WorkFilter } from "@/components/WorkFilter";
 import { works } from "@/data/works";
+import { formatYearRange } from "@/lib/content-years";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -10,12 +11,17 @@ export const metadata = createPageMetadata({
 });
 
 export default function WorksPage() {
+  const yearRange = formatYearRange(
+    works.flatMap((work) => work.yearRange),
+    "—",
+  );
+
   return (
     <div className="portfolio-page">
       <section className="portfolio-hero works-hero">
         <div className="portfolio-container">
           <Reveal>
-            <p className="portfolio-kicker">Works / 2025—2026</p>
+            <p className="portfolio-kicker">Works / {yearRange}</p>
             <h1 className="portfolio-title is-korean">사진과 영상으로<br />쌓아가는 작업들.</h1>
           </Reveal>
           <Reveal delay={0.08}>

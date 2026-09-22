@@ -1,10 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { films, type Film } from "@/data/films";
-import { homeCopy } from "@/data/home";
+import { getHomeSectionLabel, homeCopy } from "@/data/home";
+import { formatYearRange } from "@/lib/content-years";
 import styles from "../CinematicOnePage.module.css";
 
 export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
+  const yearRange = formatYearRange(films.map((film) => film.year));
+
   return (
     <section
       className={`${styles.section} ${styles.filmSection}`}
@@ -13,7 +16,9 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
     >
       <div className={`${styles.filmHeading} ${styles.reveal}`} data-scroll-reveal>
         <div>
-          <p className={styles.eyebrow}>04 / SHORT FILMS · 2023–2026</p>
+          <p className={styles.eyebrow}>
+            {getHomeSectionLabel("films")} · {yearRange}
+          </p>
           <h2 className={styles.display} id="film-title">
             계절을 이어온 기록.
           </h2>
@@ -52,7 +57,7 @@ function FilmCard({ film, index, onPlay }: { film: Film; index: number; onPlay: 
         style={{ aspectRatio: film.posterRatio }}
       >
         <Image
-          src={film.poster}
+          src={film.posterAlt ?? film.poster}
           alt={film.alt}
           fill
           sizes="(max-width: 800px) 100vw, 40vw"
