@@ -272,7 +272,7 @@ button, input, textarea { font: inherit; }
 .contact-directory { padding-top: 20px; border-top: 1px solid var(--site-line); }
 .contact-directory > a:not(.portfolio-text-link) { position: relative; display: grid; grid-template-columns: 120px minmax(0, 1fr) 20px; gap: 24px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--site-line); color: var(--site-ink); text-decoration: none; }
 .contact-directory > a > span { color: var(--site-muted); font-size: var(--text-meta); font-weight: 700; line-height: var(--leading-meta); letter-spacing: .1em; text-transform: uppercase; }
-.contact-directory > a > strong { min-width: 0; overflow-wrap: anywhere; font-family: var(--font-display), Pretendard, sans-serif; font-size: var(--text-title); letter-spacing: -.025em; line-height: var(--leading-heading); }
+.contact-directory > a > strong { min-width: 0; font-size: var(--text-lead); font-weight: 600; line-height: var(--leading-title); }
 .contact-directory > a > i { color: var(--site-muted); font-style: normal; }
 .contact-directory .portfolio-facts { margin-top: 48px; }
 .contact-presets { padding: 28px 0 8px; border-bottom: 1px solid var(--site-line); }
@@ -372,7 +372,7 @@ button, input, textarea { font: inherit; }
 .journal-index-list > :nth-child(even) .portfolio-card-media { order: 2; }
 .journal-index-list > :nth-child(even) .portfolio-card-body { order: 1; }
 .journal-entry .portfolio-card-body { flex: none; padding-top: 0; }
-.journal-entry h3 { font-size: var(--text-section); line-height: var(--leading-heading); }
+.journal-entry h3 { font-size: var(--text-title); line-height: var(--leading-heading); }
 .journal-entry .portfolio-card-link { display: inline-block; width: max-content; margin-top: 32px !important; padding: 0 0 5px; border-bottom: 1px solid currentColor; }
 
 .journal-paper-page { background: var(--site-paper); color: var(--site-paper-ink); }
