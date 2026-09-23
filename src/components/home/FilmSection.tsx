@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { films, type Film } from "@/data/films";
+import { filmsByNewest, type Film } from "@/data/films";
 import { getHomeSectionLabel, homeCopy } from "@/data/home";
 import { formatYearRange } from "@/lib/content-years";
+import { getWorkMediaHref } from "@/lib/work-media";
 import styles from "../CinematicOnePage.module.css";
 
 export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
-  const yearRange = formatYearRange(films.map((film) => film.year));
+  const yearRange = formatYearRange(filmsByNewest.map((film) => film.year));
 
   return (
     <section
@@ -26,28 +27,28 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
       </div>
       <p className={`${styles.filmIntro} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="70">{homeCopy.films.intro}</p>
       <div className={styles.filmGrid}>
-        {films.map((film, index) => (
+        {filmsByNewest.map((film, index) => (
           <FilmCard
             key={film.id}
             film={film}
-            index={index + 1}
+            order={index}
             onPlay={() => onPlay(film)}
           />
         ))}
       </div>
       <div className={`${styles.inlineContact} ${styles.reveal}`} data-scroll-reveal>
         <p>{homeCopy.films.contact}</p>
-        <Link href="/contact">협업 이야기 나누기</Link>
+        <Link href="/contact">촬영 문의</Link>
       </div>
     </section>
   );
 }
 
-function FilmCard({ film, index, onPlay }: { film: Film; index: number; onPlay: () => void }) {
+function FilmCard({ film, order, onPlay }: { film: Film; order: number; onPlay: () => void }) {
   const formatClass = `film${film.format[0].toUpperCase()}${film.format.slice(1)}`;
 
   return (
-    <article className={`${styles.filmCard} ${styles[formatClass]} ${styles.reveal}`} data-scroll-reveal data-reveal-delay={String((index - 1) % 3 * 70)}>
+    <article className={`${styles.filmCard} ${styles[formatClass]} ${styles.reveal}`} data-scroll-reveal data-reveal-delay={String(order % 3 * 70)}>
       <button
         type="button"
         className={styles.filmMedia}
@@ -66,11 +67,10 @@ function FilmCard({ film, index, onPlay }: { film: Film; index: number; onPlay: 
         <span className={styles.cardPlay} aria-hidden="true">
           <i />
         </span>
-        <span className={styles.filmIndex}>0{index}</span>
       </button>
       <div className={styles.filmCardMeta}>
         <div>
-          <h3>{film.title}</h3>
+          <h3><Link href={getWorkMediaHref("film", film.id)}>{film.title}</Link></h3>
           <p className={styles.filmDescription}>{film.description}</p>
         </div>
         <p>

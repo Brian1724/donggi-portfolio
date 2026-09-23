@@ -14,6 +14,7 @@ export type Work = {
   reflection: string;
   role: string[];
   tools: string[];
+  media: WorkMediaRef[];
   archiveMeta?: {
     city?: string;
     country?: string;
@@ -42,6 +43,11 @@ export type Work = {
   };
 };
 
+export type WorkMediaRef = {
+  kind: "film" | "still";
+  id: string;
+};
+
 export const works: Work[] = [
   {
     title: "Cinematic Travel Archive",
@@ -60,6 +66,11 @@ export const works: Work[] = [
     reflection: "도시의 큰 풍경과 작은 움직임이 한 호흡 안에 들어온 점은 좋았습니다. 다음 여행에서는 현장의 소리와 인물의 시선을 더 오래 수집해 장소에 대한 개인적인 기억을 깊게 만들고 싶습니다.",
     role: ["Videographer", "Editor", "Color"],
     tools: ["Sony A7C II", "Final Cut Pro", "Lightroom"],
+    media: [
+      { kind: "film", id: "hanoi-sapa-2026" },
+      { kind: "film", id: "dalian-2026" },
+      { kind: "film", id: "phu-quoc-2023" },
+    ],
     archiveMeta: {
       city: "Dalian",
       country: "China",
@@ -117,6 +128,12 @@ export const works: Work[] = [
     reflection: "사진을 한 장씩 완성하는 것보다 서로 다른 날의 장면을 한 흐름으로 선별하는 일이 더 중요하다는 것을 배웠습니다. 앞으로는 장소와 날짜에 대한 짧은 메모도 함께 남겨 사진 사이의 연결을 더 분명하게 만들고 싶습니다.",
     role: ["Photographer", "Editor"],
     tools: ["Sony A7C II", "Lightroom"],
+    media: [
+      { kind: "still", id: "city-at-dusk" },
+      { kind: "still", id: "angkor" },
+      { kind: "still", id: "night-reflection" },
+      { kind: "still", id: "hong-kong" },
+    ],
     archiveMeta: {
       country: "South Korea",
       medium: "Photography",
@@ -168,6 +185,10 @@ export const works: Work[] = [
     reflection: "흑백과 저채도 프레임이 장소의 구조를 또렷하게 보여줬지만, 일부 장면은 시간의 흔적보다 형식에 먼저 시선이 갔습니다. 다음에는 그 공간을 사용하는 사람과 소리를 더 가까이 관찰해 현재성과 기억이 함께 남는 에세이로 확장하려 합니다.",
     role: ["Photographer", "Planner", "Writer"],
     tools: ["Photography", "Lightroom"],
+    media: [
+      { kind: "still", id: "light-study" },
+      { kind: "still", id: "in-transit" },
+    ],
     archiveMeta: {
       city: "Jeonju",
       country: "South Korea",
@@ -217,6 +238,10 @@ export const works: Work[] = [
     reflection: "익숙한 장소도 계절과 사람의 동선에 따라 전혀 다른 장면이 된다는 것을 확인했습니다. 기록이 행사 사진에 머물지 않도록, 앞으로는 한 학기의 변화를 시작과 끝이 있는 시퀀스로 편집해보려 합니다.",
     role: ["Photographer", "Editor"],
     tools: ["Sony A7C II", "Lightroom"],
+    media: [
+      { kind: "still", id: "seodo-station" },
+      { kind: "still", id: "winter-trail" },
+    ],
     archiveMeta: {
       city: "Jeonju",
       country: "South Korea",
@@ -261,6 +286,11 @@ export const works: Work[] = [
     reflection: "짧은 영상에서도 색과 음악만으로 분위기를 만들기보다 한 장면이 다음 장면으로 넘어가야 하는 이유가 필요했습니다. 다음 실험에서는 촬영 전에 한 문장의 의도를 먼저 정하고, 사운드와 편집 속도를 그 문장에 맞춰 더 절제하려 합니다.",
     role: ["Director", "Videographer", "Editor"],
     tools: ["Final Cut Pro", "DaVinci Resolve", "Lightroom"],
+    media: [
+      { kind: "film", id: "new-year-2026" },
+      { kind: "film", id: "year-2025" },
+      { kind: "film", id: "year-2024" },
+    ],
     archiveMeta: {
       medium: "Film",
       format: "Short-form experiments",

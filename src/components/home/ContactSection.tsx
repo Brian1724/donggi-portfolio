@@ -18,11 +18,11 @@ export function ContactSection() {
       <p className={`${styles.creditsKo} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="100">{homeCopy.contact.description}</p>
       <div className={`${styles.contactRow} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="140">
         <div className={styles.contactPrimary}>
-          <span>연락 / 프로젝트 문의</span>
+          <span>촬영 문의</span>
           <a href={`mailto:${profile.email}`}>{profile.email}</a>
         </div>
         <div className={styles.socialLinks}>
-          <span>작업 이어보기</span>
+          <span>채널</span>
           <div>
             <a href={profile.instagram} target="_blank" rel="noreferrer">
               Instagram

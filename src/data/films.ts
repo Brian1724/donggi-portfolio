@@ -101,3 +101,7 @@ export const films: Film[] = [
 ];
 
 export const featuredFilm = films.find((film) => film.id === "dalian-2026") ?? films[0];
+
+export const filmsByNewest = [...films].sort(
+  (first, second) => Number(second.year) - Number(first.year),
+);

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { archiveStills, type ArchiveStill } from "@/data/stills";
 import { getHomeSectionLabel, homeCopy } from "@/data/home";
+import { getWorkMediaHref } from "@/lib/work-media";
 import styles from "../CinematicOnePage.module.css";
 
 export function StillArchiveSection() {
@@ -22,11 +23,11 @@ export function StillArchiveSection() {
       </div>
       <div className={styles.archiveGallery}>
         {archiveStills.map((still) => (
-          <ArchiveFrame key={still.src} still={still} />
+          <ArchiveFrame key={still.id} still={still} />
         ))}
       </div>
       <div className={styles.archiveMore}>
-        <Link href="/works">사진 작업 더 보기</Link>
+        <Link href="/photos">사진 보기</Link>
       </div>
     </section>
   );
@@ -34,8 +35,8 @@ export function StillArchiveSection() {
 
 function ArchiveFrame({ still }: { still: ArchiveStill }) {
   return (
-    <figure className={`${styles.archiveFigure} ${styles[still.placement]} ${styles.reveal}`} data-scroll-reveal>
-      <div className={styles.archiveMedia} data-image-reveal style={{ aspectRatio: still.ratio }}>
+    <figure className={`${styles.archiveFigure} ${styles[still.placement ?? "archiveLead"]} ${styles.reveal}`} data-scroll-reveal>
+      <Link href={getWorkMediaHref("still", still.id)} className={styles.archiveMedia} data-image-reveal style={{ aspectRatio: still.ratio }}>
         <div className={styles.archiveImage} data-cinematic-parallax={still.speed}>
           <Image
             src={still.src}
@@ -44,7 +45,7 @@ function ArchiveFrame({ still }: { still: ArchiveStill }) {
             sizes="(max-width: 800px) 92vw, 70vw"
           />
         </div>
-      </div>
+      </Link>
       <figcaption>{still.label}<span className={styles.stillCaption}>{still.alt}</span></figcaption>
     </figure>
   );

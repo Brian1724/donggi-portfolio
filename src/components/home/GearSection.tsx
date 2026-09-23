@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getHomeSectionLabel } from "@/data/home";
 import styles from "./CameraStudy.module.css";
 
 const CameraStudy = dynamic(
@@ -100,7 +99,7 @@ export function GearSection() {
       data-motion-version="scroll-light-reveal-v3"
     >
       <header className={styles.heading} data-scroll-reveal>
-        <p className={styles.eyebrow}>{getHomeSectionLabel("gear")}</p>
+        <p className={styles.eyebrow}>GEAR / CAMERA</p>
         <h2 id="camera-title">시선을 만드는 도구.</h2>
         <p>Sony A7C II, 오래 바라본 장면을 기록하는 카메라.</p>
       </header>
@@ -121,8 +120,8 @@ export function GearSection() {
           <CameraStudy onReady={handleReady} onFallback={handleFallback} />
         )}
       </div>
-      <Link className={styles.link} href="/works/" data-scroll-reveal data-reveal-delay="130">
-        사진과 영상 보기 <span aria-hidden="true">↗</span>
+      <Link className={styles.link} href="/photos/" data-scroll-reveal data-reveal-delay="130">
+        사진 보기 <span aria-hidden="true">↗</span>
       </Link>
     </section>
   );

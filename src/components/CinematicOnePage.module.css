@@ -204,6 +204,8 @@
 .projectBrief dt { color: var(--cinema-muted); font-size: var(--text-meta); font-weight: 700; line-height: var(--leading-meta); letter-spacing: .1em; text-transform: uppercase; }
 .projectBrief dd { margin: 10px 0 0; color: var(--cinema-ink); font-size: var(--text-small); line-height: var(--leading-lead); word-break: keep-all; }
 .projectBriefStory dd { max-width: 560px; color: var(--cinema-soft); font-size: var(--text-body); line-height: var(--leading-body); }
+.featureMore { display: flex; justify-content: center; margin-top: 28px; }
+.featureMore a { min-height: 44px; padding: 12px 0 4px; border-bottom: 1px solid currentColor; font-size: var(--text-meta); font-weight: 700; line-height: var(--leading-meta); }
 
 .filmSection { border-top: 0; }
 .filmHeading { max-width: 680px; margin: 0 auto; text-align: center; }
@@ -221,7 +223,6 @@
 .posterShade { position: absolute; inset: 0; background: rgba(5, 7, 7, 0.18); }
 .cardPlay { position: absolute; top: 50%; left: 50%; display: grid; width: 64px; height: 64px; border: 1px solid rgba(255, 255, 255, 0.74); border-radius: 50%; place-items: center; opacity: 0; transform: translate(-50%, -45%); transition: opacity var(--motion-ui) ease, transform var(--motion-ui) var(--ease); }
 .cardPlay i { width: 0; height: 0; margin-left: 4px; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid white; }
-.filmIndex { position: absolute; top: 16px; left: 16px; font-size: var(--text-meta); font-weight: 700; line-height: var(--leading-meta); letter-spacing: .12em; }
 .filmCardMeta { display: flex; align-items: flex-start; flex-direction: column; gap: 12px; }
 .filmCardMeta h3 { margin: 0; font-family: var(--font-display), sans-serif; font-size: var(--text-title); font-weight: 800; letter-spacing: -.03em; line-height: var(--leading-title); }
 .filmCardMeta p { margin: 9px 0 0; color: var(--cinema-muted); font-size: var(--text-meta); line-height: var(--leading-meta); letter-spacing: .08em; text-transform: uppercase; }
@@ -236,7 +237,7 @@
 .archiveSection { border-top: 0; background: #090909; }
 .archiveGallery { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px 32px; margin-top: 48px; }
 .archiveFigure { min-width: 0; margin: 0; }
-.archiveMedia { position: relative; width: 100%; overflow: hidden; background: #111; }
+.archiveMedia { position: relative; display: block; width: 100%; overflow: hidden; background: #111; }
 .archiveImage { position: absolute; inset: -6%; will-change: transform; }
 .archiveImage img { height: 100%; object-fit: cover; }
 .archiveFigure figcaption { margin-top: 14px; color: var(--cinema-muted); font-size: var(--text-meta); font-weight: 600; line-height: var(--leading-meta); letter-spacing: .12em; }

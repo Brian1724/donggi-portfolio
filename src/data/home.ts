@@ -39,7 +39,6 @@ export const homeCopy = {
 
 export const homeSections = [
   { id: "profile", label: "PROFILE" },
-  { id: "gear", label: "GEAR" },
   { id: "selected-work", label: "SELECTED WORK" },
   { id: "films", label: "SHORT FILMS" },
   { id: "stills", label: "STILL ARCHIVE" },

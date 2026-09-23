@@ -5,6 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { DocumentLink } from "@/components/DocumentLink";
 import { getAdjacentWorks, getWorkBySlug, works } from "@/data/works";
 import { createPageMetadata } from "@/lib/metadata";
+import { getResolvedWorkMedia } from "@/lib/work-media";
 
 type WorkPageProps = { params: Promise<{ slug: string }> };
 
@@ -30,6 +31,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
   const work = getWorkBySlug((await params).slug);
   if (!work) notFound();
   const { previous, next } = getAdjacentWorks(work.slug);
+  const media = getResolvedWorkMedia(work);
 
   return (
     <article className="portfolio-page">
@@ -117,18 +119,48 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
             </article>
           </Reveal>
         </div>
-        {work.video ? (
-          <div className="portfolio-container">
-            <Reveal>
-              <div className="project-video">
-                <video controls playsInline preload="none" poster={work.video.poster}>
-                  <source src={work.video.src} type="video/mp4" />
-                </video>
-              </div>
-            </Reveal>
-          </div>
-        ) : null}
       </section>
+
+      {media.length ? (
+        <section className="portfolio-section project-media-archive">
+          <div className="portfolio-container">
+            <div className="portfolio-section-heading">
+              <div>
+                <p className="portfolio-kicker">Project archive</p>
+                <h2>프로젝트를 이루는 기록.</h2>
+              </div>
+              <p>한 프로젝트 안에서 이어지는 영상과 사진을 모았습니다.</p>
+            </div>
+            <div className="project-media-list">
+              {media.map((entry, index) => (
+                <Reveal key={`${entry.kind}-${entry.item.id}`} delay={index * 0.05}>
+                  <article id={`${entry.kind}-${entry.item.id}`} className={`project-media-item is-${entry.kind}`}>
+                    {entry.kind === "film" ? (
+                      <video controls playsInline preload="none" poster={entry.item.posterAlt ?? entry.item.poster}>
+                        <source src={entry.item.src} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <div className="project-media-still" style={{ aspectRatio: entry.item.ratio }}>
+                        <Image
+                          src={entry.item.src}
+                          alt={entry.item.alt}
+                          fill
+                          sizes="(max-width: 800px) 100vw, 980px"
+                        />
+                      </div>
+                    )}
+                    <div className="project-media-caption">
+                      <p>{entry.kind === "film" ? "Film" : "Still"}</p>
+                      <h3>{entry.kind === "film" ? entry.item.title : entry.item.label}</h3>
+                      <span>{entry.kind === "film" ? `${entry.item.year} · ${entry.item.duration}` : entry.item.alt}</span>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="portfolio-section">
         <div className="portfolio-container">

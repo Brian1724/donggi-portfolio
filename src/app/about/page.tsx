@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { GearSection } from "@/components/home/GearSection";
 import { profile } from "@/data/profile";
 import { skills } from "@/data/skills";
 import { timeline } from "@/data/timeline";
@@ -67,6 +68,8 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+
+      <GearSection />
 
       <section className="portfolio-section about-timeline-section">
         <div className="portfolio-container">

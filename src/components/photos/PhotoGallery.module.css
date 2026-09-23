@@ -1,0 +1,134 @@
+.grid {
+  columns: 3;
+  column-gap: clamp(20px, 3vw, 40px);
+}
+
+.item {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 clamp(40px, 6vw, 72px);
+  break-inside: avoid;
+}
+
+.openButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: var(--site-surface-raised);
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.frame img {
+  object-fit: cover;
+  transition: transform var(--motion-cinematic) var(--ease-out);
+}
+
+.openButton:hover .frame img { transform: scale(1.015); }
+.openButton:focus-visible { outline: 2px solid var(--site-ink); outline-offset: 6px; }
+
+.item > figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  color: var(--site-muted);
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.item > figcaption span:last-child { text-align: right; }
+
+.dialog {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #050505;
+  color: #f1efe9;
+}
+
+.dialog::backdrop { background: rgba(0, 0, 0, .92); }
+.dialog[open] { display: grid; place-items: center; }
+
+.dialogInner {
+  width: 100%;
+  height: 100%;
+  padding: 68px max(24px, 4vw) 28px;
+}
+
+.closeButton {
+  position: fixed;
+  z-index: 2;
+  top: 18px;
+  right: max(24px, 4vw);
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.dialogInner > figure {
+  display: grid;
+  height: 100%;
+  margin: 0;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.dialogImage {
+  align-self: center;
+  justify-self: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - 150px);
+  object-fit: contain;
+}
+
+.dialogInner figcaption {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 18px;
+  color: #aaa7a0;
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+}
+
+.dialogInner figcaption div { display: grid; gap: 4px; }
+.dialogInner figcaption strong { color: #f1efe9; font-size: var(--text-meta); letter-spacing: .08em; }
+.dialogInner figcaption a { padding-bottom: 4px; border-bottom: 1px solid currentColor; color: #f1efe9; text-decoration: none; white-space: nowrap; }
+
+@media (max-width: 900px) { .grid { columns: 2; } }
+
+@media (max-width: 620px) {
+  .grid { columns: 1; }
+  .item > figcaption { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .item > figcaption span:last-child { text-align: left; }
+  .dialogInner { padding: 64px 18px 22px; }
+  .dialogInner figcaption { align-items: flex-start; flex-direction: column; gap: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame img { transition: none; }
+}

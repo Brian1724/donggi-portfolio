@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 const navLinks = [
   { href: "/works", label: "작업" },
+  { href: "/photos", label: "사진" },
   { href: "/about", label: "소개" },
   { href: "/journal", label: "기록" },
   { href: "/contact", label: "연락" },

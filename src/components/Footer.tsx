@@ -13,6 +13,7 @@ export function Footer() {
         </div>
         <nav aria-label="푸터 메뉴">
           <Link href="/works">작업</Link>
+          <Link href="/photos">사진</Link>
           <Link href="/about">소개</Link>
           <Link href="/journal">기록</Link>
           <a href={profile.instagram} target="_blank" rel="noreferrer">Instagram</a>

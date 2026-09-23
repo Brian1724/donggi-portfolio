@@ -44,8 +44,8 @@ export function ProfileSection() {
             </div>
           </dl>
           <div className={styles.textLinks}>
-            <Link href="/works">모든 작업 보기</Link>
-            <Link href="/about">조금 더 소개하기</Link>
+            <Link href="/works">작업 보기</Link>
+            <Link href="/about">소개</Link>
           </div>
         </div>
       </div>

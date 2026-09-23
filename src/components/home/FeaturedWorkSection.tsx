@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { featuredFilm } from "@/data/films";
 import { getHomeSectionLabel, homeCopy } from "@/data/home";
+import { getWorkMediaHref } from "@/lib/work-media";
 import styles from "../CinematicOnePage.module.css";
 
 export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
@@ -52,6 +54,9 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
           <dd>{featured.role}<br />{featuredFilm.year}</dd>
         </div>
       </dl>
+      <div className={styles.featureMore}>
+        <Link href={getWorkMediaHref("film", featuredFilm.id)}>프로젝트 보기</Link>
+      </div>
     </section>
   );
 }
