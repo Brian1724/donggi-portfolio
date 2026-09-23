@@ -54,13 +54,13 @@ export const works: Work[] = [
     title: "Cinematic Travel Archive",
     slug: "cinematic-travel-archive",
     year: "Ongoing",
-    yearRange: [2025, 2026],
+    yearRange: [2023, 2026],
     categories: ["Film", "Travel", "Personal"],
     description:
       "여행지에서 마주한 빛, 공간, 사람, 분위기를 시네마틱한 영상으로 기록한 개인 아카이브.",
     summaryEn: "Short travel films shaped by light, movement, and the quiet rhythm of unfamiliar cities.",
     format: "Cinematic travel film",
-    location: "Dalian and cities in Asia · 2025—2026",
+    location: "Cities in Asia · 2023—2026",
     purpose: "장소의 정보를 나열하기보다 그곳에서 느낀 속도, 공기, 빛을 짧은 영화의 리듬으로 남기는 개인 여행 아카이브입니다.",
     concept: "빠르게 움직이는 도시의 컷과 정적인 시선을 교차시켜 낯선 장소를 기억하는 감각을 표현했습니다.",
     process: "현장에서 빛과 움직임을 먼저 관찰한 뒤 와이드, 미디엄, 디테일 숏을 모으고 편집에서 사운드와 색의 흐름을 맞춥니다.",
@@ -71,6 +71,7 @@ export const works: Work[] = [
     media: [
       { kind: "film", id: "hanoi-sapa-2026" },
       { kind: "film", id: "dalian-2026" },
+      { kind: "film", id: "qingdao-2025" },
       { kind: "film", id: "phu-quoc-2023" },
     ],
     archiveMeta: {
@@ -108,7 +109,7 @@ export const works: Work[] = [
       instagram: "https://instagram.com/donggi_03",
     },
     video: {
-      src: "/media/dalian/donggi-trailer.mp4",
+      src: "/media/dalian/donggi-full.mp4",
       poster: "/media/dalian/frame-opening.jpg",
       duration: "00:21",
     },
@@ -278,13 +279,13 @@ export const works: Work[] = [
     title: "Personal Film Experiments",
     slug: "personal-film-experiments",
     year: "Ongoing",
-    yearRange: [2025, 2026],
+    yearRange: [2024, 2026],
     categories: ["Film", "Personal"],
     description:
       "색감, 사운드, 내레이션, 편집 리듬을 실험하며 나만의 영상 언어를 찾아가는 작업.",
     summaryEn: "Short film studies exploring color, sound, narration, and the emotional weight of an edit.",
     format: "Short-form film experiments",
-    location: "Personal archive · 2025—2026",
+    location: "Personal archive · 2024—2026",
     purpose: "의뢰 작업 이전 단계에서 색감, 사운드, 화면비, 내레이션을 자유롭게 시험하며 영상 언어의 기준을 만듭니다.",
     concept: "작은 기억과 계절의 인상을 짧은 러닝타임 안에 압축하고, 화면보다 감정이 먼저 남는 영상을 지향합니다.",
     process: "촬영 소스를 테마별로 분류하고 여러 편집 속도와 사운드 조합을 비교한 뒤 가장 절제된 버전을 선택합니다.",
@@ -294,8 +295,11 @@ export const works: Work[] = [
     tools: ["Final Cut Pro", "DaVinci Resolve", "Lightroom"],
     media: [
       { kind: "film", id: "new-year-2026" },
+      { kind: "film", id: "wolhwawon-2026" },
       { kind: "film", id: "year-2025" },
+      { kind: "film", id: "deokjin-park-2025" },
       { kind: "film", id: "year-2024" },
+      { kind: "film", id: "paradox-of-choice-2024" },
     ],
     archiveMeta: {
       medium: "Film",

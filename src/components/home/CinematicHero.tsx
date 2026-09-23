@@ -40,16 +40,10 @@ export function CinematicHero({
       >
         <source
           media="(max-width: 720px)"
-          src="/media/dalian/donggi-hero-mobile-v2.webm"
-          type="video/webm"
-        />
-        <source
-          media="(max-width: 720px)"
-          src="/media/dalian/donggi-hero-mobile-v2.mp4"
+          src="/media/dalian/donggi-full-mobile.mp4"
           type="video/mp4"
         />
-        <source src="/media/dalian/donggi-hero-v2.webm" type="video/webm" />
-        <source src="/media/dalian/donggi-hero-v2.mp4" type="video/mp4" />
+        <source src="/media/dalian/donggi-full.mp4" type="video/mp4" />
       </video>
       <div className={styles.heroShade} aria-hidden="true" />
       <div className={styles.grain} aria-hidden="true" />

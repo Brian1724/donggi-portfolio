@@ -1,6 +1,6 @@
 import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import Link from "next/link";
-import { filmsByNewest, type Film } from "@/data/films";
+import { featuredFilm, filmsByNewest, type Film } from "@/data/films";
 import { getHomeSectionLabel, homeCopy } from "@/data/home";
 import { formatYearRange } from "@/lib/content-years";
 import { getWorkMediaHref } from "@/lib/work-media";
@@ -8,6 +8,7 @@ import styles from "../CinematicOnePage.module.css";
 
 export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
   const yearRange = formatYearRange(filmsByNewest.map((film) => film.year));
+  const archiveFilms = filmsByNewest.filter((film) => film.id !== featuredFilm.id);
 
   return (
     <section
@@ -27,7 +28,7 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
       </div>
       <p className={`${styles.filmIntro} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="70">{homeCopy.films.intro}</p>
       <div className={styles.filmGrid}>
-        {filmsByNewest.map((film, index) => (
+        {archiveFilms.map((film, index) => (
           <FilmCard
             key={film.id}
             film={film}

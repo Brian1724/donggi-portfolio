@@ -1172,6 +1172,27 @@
       }
     ]
   },
+  "/media/films/deokjin-park-2025-poster.jpg": {
+    "width": 1280,
+    "height": 720,
+    "variants": [
+      {
+        "src": "/generated/images/media/films/deokjin-park-2025-poster-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/films/deokjin-park-2025-poster-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/media/films/deokjin-park-2025-poster.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
   "/media/films/hanoi-sapa-2026-poster.jpg": {
     "width": 1440,
     "height": 810,
@@ -1209,6 +1230,27 @@
       }
     ]
   },
+  "/media/films/paradox-of-choice-2024-poster.jpg": {
+    "width": 1280,
+    "height": 676,
+    "variants": [
+      {
+        "src": "/generated/images/media/films/paradox-of-choice-2024-poster-w480.webp",
+        "width": 480,
+        "height": 254
+      },
+      {
+        "src": "/generated/images/media/films/paradox-of-choice-2024-poster-w960.webp",
+        "width": 960,
+        "height": 507
+      },
+      {
+        "src": "/media/films/paradox-of-choice-2024-poster.jpg",
+        "width": 1280,
+        "height": 676
+      }
+    ]
+  },
   "/media/films/phu-quoc-2023-poster.jpg": {
     "width": 1440,
     "height": 810,
@@ -1227,6 +1269,43 @@
         "src": "/generated/images/media/films/phu-quoc-2023-poster-w1440.webp",
         "width": 1440,
         "height": 810
+      }
+    ]
+  },
+  "/media/films/qingdao-2025-poster.jpg": {
+    "width": 720,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/generated/images/media/films/qingdao-2025-poster-w480.webp",
+        "width": 480,
+        "height": 853
+      },
+      {
+        "src": "/media/films/qingdao-2025-poster.jpg",
+        "width": 720,
+        "height": 1280
+      }
+    ]
+  },
+  "/media/films/wolhwawon-2026-poster.jpg": {
+    "width": 1280,
+    "height": 720,
+    "variants": [
+      {
+        "src": "/generated/images/media/films/wolhwawon-2026-poster-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/films/wolhwawon-2026-poster-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/media/films/wolhwawon-2026-poster.jpg",
+        "width": 1280,
+        "height": 720
       }
     ]
   },
