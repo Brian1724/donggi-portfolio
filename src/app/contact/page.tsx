@@ -9,6 +9,12 @@ export const metadata = createPageMetadata({
   path: "/contact",
 });
 
+const inquiryPresets = [
+  { label: "영상 촬영", subject: "영상 촬영 문의", body: "촬영 목적:\n희망 일정:\n촬영 장소:\n예상 결과물:\n참고할 분위기:" },
+  { label: "편집", subject: "영상 편집 문의", body: "편집할 영상 소개:\n원본 분량:\n희망 러닝타임:\n마감 일정:\n참고할 분위기:" },
+  { label: "사진", subject: "사진 촬영 문의", body: "촬영 목적:\n희망 일정:\n촬영 장소:\n필요한 사진 수:\n참고할 분위기:" },
+] as const;
+
 export default function ContactPage() {
   return (
     <div className="portfolio-page contact-paper-page">
@@ -37,6 +43,14 @@ export default function ContactPage() {
                 <span>Photo archive</span>
                 <strong>@dk4film</strong>
               </a>
+              <div className="contact-presets" aria-label="문의 종류 선택">
+                <p className="portfolio-kicker">Email starter</p>
+                <div>
+                  {inquiryPresets.map((preset) => (
+                    <a key={preset.label} href={mailto(preset.subject, preset.body)}>{preset.label}</a>
+                  ))}
+                </div>
+              </div>
               <dl className="portfolio-facts">
                 <div>
                   <dt>Available for</dt>
@@ -57,4 +71,8 @@ export default function ContactPage() {
       </section>
     </div>
   );
+}
+
+function mailto(subject: string, body: string) {
+  return `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

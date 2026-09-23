@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: WorkPageProps) {
         title: work.title,
         description: work.description,
         path: `/works/${work.slug}`,
-        imagePath: work.thumbnail,
+        imagePath: `/og/works/${work.slug}.png`,
       })
     : createPageMetadata({ title: "작업", path: "/works" });
 }
@@ -47,6 +47,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
             <p className="portfolio-lead">
               <strong>{work.format}</strong>
               {work.description}
+              <span lang="en" className="project-summary-en">{work.summaryEn}</span>
             </p>
           </Reveal>
         </div>

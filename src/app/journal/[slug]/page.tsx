@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DocumentLink } from "@/components/DocumentLink";
@@ -9,7 +9,7 @@ import { createPageMetadata } from "@/lib/metadata";
 type JournalPageProps = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 export function generateStaticParams() { return journalPosts.map((post) => ({ slug: post.slug })); }
-export async function generateMetadata({ params }: JournalPageProps) { const post = getJournalPostBySlug((await params).slug); return post ? createPageMetadata({ title: post.title, description: post.excerpt, path: `/journal/${post.slug}`, imagePath: post.thumbnail }) : createPageMetadata({ title: "저널", path: "/journal" }); }
+export async function generateMetadata({ params }: JournalPageProps) { const post = getJournalPostBySlug((await params).slug); return post ? createPageMetadata({ title: post.title, description: post.excerpt, path: `/journal/${post.slug}`, imagePath: `/og/journal/${post.slug}.png` }) : createPageMetadata({ title: "저널", path: "/journal" }); }
 
 export default async function JournalDetailPage({ params }: JournalPageProps) {
   const post = getJournalPostBySlug((await params).slug);

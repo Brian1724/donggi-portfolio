@@ -1,4 +1,5 @@
 import type { RefObject } from "react";
+import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import { featuredFilm } from "@/data/films";
 import { homeCopy } from "@/data/home";
 import styles from "../CinematicOnePage.module.css";
@@ -18,6 +19,15 @@ export function CinematicHero({
 }: CinematicHeroProps) {
   return (
     <section className={styles.hero} id="top" aria-labelledby="hero-title">
+      <Image
+        src="/media/dalian/frame-opening.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        priority
+        sizes="100vw"
+        className={styles.heroPoster}
+      />
       <video
         ref={videoRef}
         className={styles.heroVideo}
@@ -26,7 +36,6 @@ export function CinematicHero({
         loop
         playsInline
         preload="metadata"
-        poster="/media/dalian/frame-opening.jpg"
         aria-label="대련의 도시 풍경과 여행 장면"
       >
         <source

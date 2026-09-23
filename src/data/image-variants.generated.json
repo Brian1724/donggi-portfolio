@@ -1,0 +1,1646 @@
+{
+  "/images/archive/about-cherry-portrait.jpg": {
+    "width": 1280,
+    "height": 802,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/about-cherry-portrait-w480.webp",
+        "width": 480,
+        "height": 301
+      },
+      {
+        "src": "/generated/images/images/archive/about-cherry-portrait-w960.webp",
+        "width": 960,
+        "height": 602
+      },
+      {
+        "src": "/images/archive/about-cherry-portrait.jpg",
+        "width": 1280,
+        "height": 802
+      }
+    ]
+  },
+  "/images/archive/about-filming-night.jpg": {
+    "width": 2200,
+    "height": 1237,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/about-filming-night-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/archive/about-filming-night-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/images/archive/about-filming-night-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/images/archive/about-filming-night.jpg",
+        "width": 2200,
+        "height": 1237
+      }
+    ]
+  },
+  "/images/archive/about-winter-hike.jpg": {
+    "width": 853,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/about-winter-hike-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/images/archive/about-winter-hike.jpg",
+        "width": 853,
+        "height": 1280
+      }
+    ]
+  },
+  "/images/archive/about-winter-mountain.jpg": {
+    "width": 1466,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/about-winter-mountain-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/archive/about-winter-mountain-w960.webp",
+        "width": 960,
+        "height": 1441
+      },
+      {
+        "src": "/generated/images/images/archive/about-winter-mountain-w1440.webp",
+        "width": 1440,
+        "height": 2161
+      },
+      {
+        "src": "/images/archive/about-winter-mountain.jpg",
+        "width": 1466,
+        "height": 2200
+      }
+    ]
+  },
+  "/images/archive/detail-architectural-rhythm-bw.jpg": {
+    "width": 1466,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-architectural-rhythm-bw-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/archive/detail-architectural-rhythm-bw-w960.webp",
+        "width": 960,
+        "height": 1441
+      },
+      {
+        "src": "/generated/images/images/archive/detail-architectural-rhythm-bw-w1440.webp",
+        "width": 1440,
+        "height": 2161
+      },
+      {
+        "src": "/images/archive/detail-architectural-rhythm-bw.jpg",
+        "width": 1466,
+        "height": 2200
+      }
+    ]
+  },
+  "/images/archive/detail-cinematic-wat-arun.jpg": {
+    "width": 1466,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-cinematic-wat-arun-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/archive/detail-cinematic-wat-arun-w960.webp",
+        "width": 960,
+        "height": 1441
+      },
+      {
+        "src": "/generated/images/images/archive/detail-cinematic-wat-arun-w1440.webp",
+        "width": 1440,
+        "height": 2161
+      },
+      {
+        "src": "/images/archive/detail-cinematic-wat-arun.jpg",
+        "width": 1466,
+        "height": 2200
+      }
+    ]
+  },
+  "/images/archive/detail-digital-architecture.jpg": {
+    "width": 1466,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-digital-architecture-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/archive/detail-digital-architecture-w960.webp",
+        "width": 960,
+        "height": 1441
+      },
+      {
+        "src": "/generated/images/images/archive/detail-digital-architecture-w1440.webp",
+        "width": 1440,
+        "height": 2161
+      },
+      {
+        "src": "/images/archive/detail-digital-architecture.jpg",
+        "width": 1466,
+        "height": 2200
+      }
+    ]
+  },
+  "/images/archive/detail-extra-visual-01.jpg": {
+    "width": 1280,
+    "height": 720,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-extra-visual-01-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/archive/detail-extra-visual-01-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/images/archive/detail-extra-visual-01.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  "/images/archive/detail-light-trace.jpg": {
+    "width": 2200,
+    "height": 1466,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-light-trace-w480.webp",
+        "width": 480,
+        "height": 320
+      },
+      {
+        "src": "/generated/images/images/archive/detail-light-trace-w960.webp",
+        "width": 960,
+        "height": 640
+      },
+      {
+        "src": "/generated/images/images/archive/detail-light-trace-w1440.webp",
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "src": "/images/archive/detail-light-trace.jpg",
+        "width": 2200,
+        "height": 1466
+      }
+    ]
+  },
+  "/images/archive/detail-night-couple.jpg": {
+    "width": 2200,
+    "height": 1237,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-night-couple-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/archive/detail-night-couple-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/images/archive/detail-night-couple-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/images/archive/detail-night-couple.jpg",
+        "width": 2200,
+        "height": 1237
+      }
+    ]
+  },
+  "/images/archive/detail-personal-airport.jpg": {
+    "width": 2200,
+    "height": 1237,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-personal-airport-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/archive/detail-personal-airport-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/images/archive/detail-personal-airport-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/images/archive/detail-personal-airport.jpg",
+        "width": 2200,
+        "height": 1237
+      }
+    ]
+  },
+  "/images/archive/detail-personal-hotel.jpg": {
+    "width": 2200,
+    "height": 1237,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-personal-hotel-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/archive/detail-personal-hotel-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/images/archive/detail-personal-hotel-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/images/archive/detail-personal-hotel.jpg",
+        "width": 2200,
+        "height": 1237
+      }
+    ]
+  },
+  "/images/archive/detail-travel-railway-tunnel.jpg": {
+    "width": 1650,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-travel-railway-tunnel-w480.webp",
+        "width": 480,
+        "height": 640
+      },
+      {
+        "src": "/generated/images/images/archive/detail-travel-railway-tunnel-w960.webp",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "src": "/generated/images/images/archive/detail-travel-railway-tunnel-w1440.webp",
+        "width": 1440,
+        "height": 1920
+      },
+      {
+        "src": "/images/archive/detail-travel-railway-tunnel.jpg",
+        "width": 1650,
+        "height": 2200
+      }
+    ]
+  },
+  "/images/archive/detail-underground-stair.jpg": {
+    "width": 1760,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/detail-underground-stair-w480.webp",
+        "width": 480,
+        "height": 600
+      },
+      {
+        "src": "/generated/images/images/archive/detail-underground-stair-w960.webp",
+        "width": 960,
+        "height": 1200
+      },
+      {
+        "src": "/generated/images/images/archive/detail-underground-stair-w1440.webp",
+        "width": 1440,
+        "height": 1800
+      },
+      {
+        "src": "/images/archive/detail-underground-stair.jpg",
+        "width": 1760,
+        "height": 2200
+      }
+    ]
+  },
+  "/images/archive/hero-cherry-portrait.jpg": {
+    "width": 1280,
+    "height": 848,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/hero-cherry-portrait-w480.webp",
+        "width": 480,
+        "height": 318
+      },
+      {
+        "src": "/generated/images/images/archive/hero-cherry-portrait-w960.webp",
+        "width": 960,
+        "height": 636
+      },
+      {
+        "src": "/images/archive/hero-cherry-portrait.jpg",
+        "width": 1280,
+        "height": 848
+      }
+    ]
+  },
+  "/images/archive/journal-camera-process.jpg": {
+    "width": 2200,
+    "height": 1466,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/journal-camera-process-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/archive/journal-camera-process-w960.webp",
+        "width": 960,
+        "height": 1441
+      },
+      {
+        "src": "/generated/images/images/archive/journal-camera-process-w1440.webp",
+        "width": 1440,
+        "height": 2161
+      },
+      {
+        "src": "/images/archive/journal-camera-process.jpg",
+        "width": 2200,
+        "height": 1466
+      }
+    ]
+  },
+  "/images/archive/journal-starting-dk4film.jpg": {
+    "width": 853,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/journal-starting-dk4film-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/images/archive/journal-starting-dk4film.jpg",
+        "width": 853,
+        "height": 1280
+      }
+    ]
+  },
+  "/images/archive/journal-travel-passport.jpg": {
+    "width": 2200,
+    "height": 1237,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/journal-travel-passport-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/archive/journal-travel-passport-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/images/archive/journal-travel-passport-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/images/archive/journal-travel-passport.jpg",
+        "width": 2200,
+        "height": 1237
+      }
+    ]
+  },
+  "/images/archive/journal-travel-video-workflow.jpg": {
+    "width": 960,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/journal-travel-video-workflow-w480.webp",
+        "width": 480,
+        "height": 640
+      },
+      {
+        "src": "/generated/images/images/archive/journal-travel-video-workflow-w960.webp",
+        "width": 960,
+        "height": 1280
+      }
+    ]
+  },
+  "/images/archive/journal-why-capture-everyday.jpg": {
+    "width": 1280,
+    "height": 720,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/journal-why-capture-everyday-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/archive/journal-why-capture-everyday-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/images/archive/journal-why-capture-everyday.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  "/images/archive/og-seodo-station.jpg": {
+    "width": 848,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/og-seodo-station-w480.webp",
+        "width": 480,
+        "height": 725
+      },
+      {
+        "src": "/images/archive/og-seodo-station.jpg",
+        "width": 848,
+        "height": 1280
+      }
+    ]
+  },
+  "/images/archive/project-campus-autumn-rail.jpg": {
+    "width": 1280,
+    "height": 853,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/project-campus-autumn-rail-w480.webp",
+        "width": 480,
+        "height": 320
+      },
+      {
+        "src": "/generated/images/images/archive/project-campus-autumn-rail-w960.webp",
+        "width": 960,
+        "height": 640
+      },
+      {
+        "src": "/images/archive/project-campus-autumn-rail.jpg",
+        "width": 1280,
+        "height": 853
+      }
+    ]
+  },
+  "/images/archive/project-cinematic-hong-kong.jpg": {
+    "width": 2200,
+    "height": 1237,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/project-cinematic-hong-kong-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/archive/project-cinematic-hong-kong-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/images/archive/project-cinematic-hong-kong-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/images/archive/project-cinematic-hong-kong.jpg",
+        "width": 2200,
+        "height": 1237
+      }
+    ]
+  },
+  "/images/archive/project-cinematic-travel-angkor.jpg": {
+    "width": 853,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/project-cinematic-travel-angkor-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/images/archive/project-cinematic-travel-angkor.jpg",
+        "width": 853,
+        "height": 1280
+      }
+    ]
+  },
+  "/images/archive/project-digital-analog-bw-station.jpg": {
+    "width": 853,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/project-digital-analog-bw-station-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/images/archive/project-digital-analog-bw-station.jpg",
+        "width": 853,
+        "height": 1280
+      }
+    ]
+  },
+  "/images/archive/project-dk4film-seodo-station.jpg": {
+    "width": 853,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/project-dk4film-seodo-station-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/images/archive/project-dk4film-seodo-station.jpg",
+        "width": 853,
+        "height": 1280
+      }
+    ]
+  },
+  "/images/archive/project-dk4film-seodo-wide.jpg": {
+    "width": 2200,
+    "height": 1379,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/project-dk4film-seodo-wide-w480.webp",
+        "width": 480,
+        "height": 301
+      },
+      {
+        "src": "/generated/images/images/archive/project-dk4film-seodo-wide-w960.webp",
+        "width": 960,
+        "height": 602
+      },
+      {
+        "src": "/generated/images/images/archive/project-dk4film-seodo-wide-w1440.webp",
+        "width": 1440,
+        "height": 903
+      },
+      {
+        "src": "/images/archive/project-dk4film-seodo-wide.jpg",
+        "width": 2200,
+        "height": 1379
+      }
+    ]
+  },
+  "/images/archive/project-personal-film-night-fortress.jpg": {
+    "width": 960,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/project-personal-film-night-fortress-w480.webp",
+        "width": 480,
+        "height": 640
+      },
+      {
+        "src": "/generated/images/images/archive/project-personal-film-night-fortress-w960.webp",
+        "width": 960,
+        "height": 1280
+      }
+    ]
+  },
+  "/images/archive/project-personal-night-portrait.jpg": {
+    "width": 2200,
+    "height": 1237,
+    "variants": [
+      {
+        "src": "/generated/images/images/archive/project-personal-night-portrait-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/archive/project-personal-night-portrait-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/images/archive/project-personal-night-portrait-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/images/archive/project-personal-night-portrait.jpg",
+        "width": 2200,
+        "height": 1237
+      }
+    ]
+  },
+  "/images/hero.jpg": {
+    "width": 2200,
+    "height": 1238,
+    "variants": [
+      {
+        "src": "/generated/images/images/hero-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/images/hero-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/images/hero-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/images/hero.jpg",
+        "width": 2200,
+        "height": 1238
+      }
+    ]
+  },
+  "/images/journal/starting-dk4film.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/generated/images/images/journal/starting-dk4film-w480.webp",
+        "width": 480,
+        "height": 360
+      },
+      {
+        "src": "/generated/images/images/journal/starting-dk4film-w960.webp",
+        "width": 960,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/journal/starting-dk4film-w1440.webp",
+        "width": 1440,
+        "height": 1080
+      },
+      {
+        "src": "/images/journal/starting-dk4film.jpg",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  "/images/journal/travel-video-workflow.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/generated/images/images/journal/travel-video-workflow-w480.webp",
+        "width": 480,
+        "height": 360
+      },
+      {
+        "src": "/generated/images/images/journal/travel-video-workflow-w960.webp",
+        "width": 960,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/journal/travel-video-workflow-w1440.webp",
+        "width": 1440,
+        "height": 1080
+      },
+      {
+        "src": "/images/journal/travel-video-workflow.jpg",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  "/images/journal/why-i-capture-everyday.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/generated/images/images/journal/why-i-capture-everyday-w480.webp",
+        "width": 480,
+        "height": 360
+      },
+      {
+        "src": "/generated/images/images/journal/why-i-capture-everyday-w960.webp",
+        "width": 960,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/journal/why-i-capture-everyday-w1440.webp",
+        "width": 1440,
+        "height": 1080
+      },
+      {
+        "src": "/images/journal/why-i-capture-everyday.jpg",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  "/images/og-image.jpg": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/images/og-image-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/images/og-image-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/images/og-image.jpg",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/images/profile.jpg": {
+    "width": 1200,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/generated/images/images/profile-w480.webp",
+        "width": 480,
+        "height": 640
+      },
+      {
+        "src": "/generated/images/images/profile-w960.webp",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "src": "/images/profile.jpg",
+        "width": 1200,
+        "height": 1600
+      }
+    ]
+  },
+  "/images/works/campus-visual-notes.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/generated/images/images/works/campus-visual-notes-w480.webp",
+        "width": 480,
+        "height": 360
+      },
+      {
+        "src": "/generated/images/images/works/campus-visual-notes-w960.webp",
+        "width": 960,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/works/campus-visual-notes-w1440.webp",
+        "width": 1440,
+        "height": 1080
+      },
+      {
+        "src": "/images/works/campus-visual-notes.jpg",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  "/images/works/cinematic-travel-archive.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/generated/images/images/works/cinematic-travel-archive-w480.webp",
+        "width": 480,
+        "height": 360
+      },
+      {
+        "src": "/generated/images/images/works/cinematic-travel-archive-w960.webp",
+        "width": 960,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/works/cinematic-travel-archive-w1440.webp",
+        "width": 1440,
+        "height": 1080
+      },
+      {
+        "src": "/images/works/cinematic-travel-archive.jpg",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  "/images/works/digital-age-analog-mood.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/generated/images/images/works/digital-age-analog-mood-w480.webp",
+        "width": 480,
+        "height": 360
+      },
+      {
+        "src": "/generated/images/images/works/digital-age-analog-mood-w960.webp",
+        "width": 960,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/works/digital-age-analog-mood-w1440.webp",
+        "width": 1440,
+        "height": 1080
+      },
+      {
+        "src": "/images/works/digital-age-analog-mood.jpg",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  "/images/works/dk4film-photo-archive.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/generated/images/images/works/dk4film-photo-archive-w480.webp",
+        "width": 480,
+        "height": 360
+      },
+      {
+        "src": "/generated/images/images/works/dk4film-photo-archive-w960.webp",
+        "width": 960,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/works/dk4film-photo-archive-w1440.webp",
+        "width": 1440,
+        "height": 1080
+      },
+      {
+        "src": "/images/works/dk4film-photo-archive.jpg",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  "/images/works/personal-film-experiments.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/generated/images/images/works/personal-film-experiments-w480.webp",
+        "width": 480,
+        "height": 360
+      },
+      {
+        "src": "/generated/images/images/works/personal-film-experiments-w960.webp",
+        "width": 960,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/images/works/personal-film-experiments-w1440.webp",
+        "width": 1440,
+        "height": 1080
+      },
+      {
+        "src": "/images/works/personal-film-experiments.jpg",
+        "width": 1600,
+        "height": 1200
+      }
+    ]
+  },
+  "/logo/apple-icon.png": {
+    "width": 180,
+    "height": 180,
+    "variants": [
+      {
+        "src": "/logo/apple-icon.png",
+        "width": 180,
+        "height": 180
+      }
+    ]
+  },
+  "/logo/icon-192.png": {
+    "width": 192,
+    "height": 192,
+    "variants": [
+      {
+        "src": "/logo/icon-192.png",
+        "width": 192,
+        "height": 192
+      }
+    ]
+  },
+  "/logo/icon-512.png": {
+    "width": 512,
+    "height": 512,
+    "variants": [
+      {
+        "src": "/generated/images/logo/icon-512-w480.webp",
+        "width": 480,
+        "height": 480
+      },
+      {
+        "src": "/logo/icon-512.png",
+        "width": 512,
+        "height": 512
+      }
+    ]
+  },
+  "/logo/logo-full.png": {
+    "width": 760,
+    "height": 132,
+    "variants": [
+      {
+        "src": "/generated/images/logo/logo-full-w480.webp",
+        "width": 480,
+        "height": 83
+      },
+      {
+        "src": "/logo/logo-full.png",
+        "width": 760,
+        "height": 132
+      }
+    ]
+  },
+  "/logo/logo-icon.png": {
+    "width": 512,
+    "height": 512,
+    "variants": [
+      {
+        "src": "/generated/images/logo/logo-icon-w480.webp",
+        "width": 480,
+        "height": 480
+      },
+      {
+        "src": "/logo/logo-icon.png",
+        "width": 512,
+        "height": 512
+      }
+    ]
+  },
+  "/logo/logo-mono-light.png": {
+    "width": 430,
+    "height": 80,
+    "variants": [
+      {
+        "src": "/logo/logo-mono-light.png",
+        "width": 430,
+        "height": 80
+      }
+    ]
+  },
+  "/logo/og-image.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/logo/og-image-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/logo/og-image-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/logo/og-image.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/media/Sony_A7C_II_preview.webp": {
+    "width": 1200,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/generated/images/media/Sony_A7C_II_preview-w480.webp",
+        "width": 480,
+        "height": 360
+      },
+      {
+        "src": "/generated/images/media/Sony_A7C_II_preview-w960.webp",
+        "width": 960,
+        "height": 720
+      },
+      {
+        "src": "/media/Sony_A7C_II_preview.webp",
+        "width": 1200,
+        "height": 900
+      }
+    ]
+  },
+  "/media/dalian/frame-finale.jpg": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/generated/images/media/dalian/frame-finale-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/dalian/frame-finale-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/media/dalian/frame-finale-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/media/dalian/frame-finale.jpg",
+        "width": 1600,
+        "height": 900
+      }
+    ]
+  },
+  "/media/dalian/frame-motion.jpg": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/generated/images/media/dalian/frame-motion-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/dalian/frame-motion-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/media/dalian/frame-motion-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/media/dalian/frame-motion.jpg",
+        "width": 1600,
+        "height": 900
+      }
+    ]
+  },
+  "/media/dalian/frame-night.jpg": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/generated/images/media/dalian/frame-night-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/dalian/frame-night-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/media/dalian/frame-night-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/media/dalian/frame-night.jpg",
+        "width": 1600,
+        "height": 900
+      }
+    ]
+  },
+  "/media/dalian/frame-opening.jpg": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/generated/images/media/dalian/frame-opening-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/dalian/frame-opening-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/media/dalian/frame-opening-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/media/dalian/frame-opening.jpg",
+        "width": 1600,
+        "height": 900
+      }
+    ]
+  },
+  "/media/films/2025-poster.jpg": {
+    "width": 1080,
+    "height": 1920,
+    "variants": [
+      {
+        "src": "/generated/images/media/films/2025-poster-w480.webp",
+        "width": 480,
+        "height": 853
+      },
+      {
+        "src": "/generated/images/media/films/2025-poster-w960.webp",
+        "width": 960,
+        "height": 1707
+      },
+      {
+        "src": "/media/films/2025-poster.jpg",
+        "width": 1080,
+        "height": 1920
+      }
+    ]
+  },
+  "/media/films/hanoi-sapa-2026-poster.jpg": {
+    "width": 1440,
+    "height": 810,
+    "variants": [
+      {
+        "src": "/generated/images/media/films/hanoi-sapa-2026-poster-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/films/hanoi-sapa-2026-poster-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/media/films/hanoi-sapa-2026-poster-w1440.webp",
+        "width": 1440,
+        "height": 810
+      }
+    ]
+  },
+  "/media/films/new-year-2026-poster.jpg": {
+    "width": 540,
+    "height": 540,
+    "variants": [
+      {
+        "src": "/generated/images/media/films/new-year-2026-poster-w480.webp",
+        "width": 480,
+        "height": 480
+      },
+      {
+        "src": "/media/films/new-year-2026-poster.jpg",
+        "width": 540,
+        "height": 540
+      }
+    ]
+  },
+  "/media/films/phu-quoc-2023-poster.jpg": {
+    "width": 1440,
+    "height": 810,
+    "variants": [
+      {
+        "src": "/generated/images/media/films/phu-quoc-2023-poster-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/films/phu-quoc-2023-poster-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/media/films/phu-quoc-2023-poster-w1440.webp",
+        "width": 1440,
+        "height": 810
+      }
+    ]
+  },
+  "/media/films/year-2024-poster.jpg": {
+    "width": 1440,
+    "height": 760,
+    "variants": [
+      {
+        "src": "/generated/images/media/films/year-2024-poster-w480.webp",
+        "width": 480,
+        "height": 253
+      },
+      {
+        "src": "/generated/images/media/films/year-2024-poster-w960.webp",
+        "width": 960,
+        "height": 507
+      },
+      {
+        "src": "/generated/images/media/films/year-2024-poster-w1440.webp",
+        "width": 1440,
+        "height": 760
+      }
+    ]
+  },
+  "/media/stills/still-01-city-dusk.jpg": {
+    "width": 2200,
+    "height": 1459,
+    "variants": [
+      {
+        "src": "/generated/images/media/stills/still-01-city-dusk-w480.webp",
+        "width": 480,
+        "height": 318
+      },
+      {
+        "src": "/generated/images/media/stills/still-01-city-dusk-w960.webp",
+        "width": 960,
+        "height": 637
+      },
+      {
+        "src": "/generated/images/media/stills/still-01-city-dusk-w1440.webp",
+        "width": 1440,
+        "height": 955
+      },
+      {
+        "src": "/media/stills/still-01-city-dusk.jpg",
+        "width": 2200,
+        "height": 1459
+      }
+    ]
+  },
+  "/media/stills/still-02-light-study.jpg": {
+    "width": 1458,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/media/stills/still-02-light-study-w480.webp",
+        "width": 480,
+        "height": 724
+      },
+      {
+        "src": "/generated/images/media/stills/still-02-light-study-w960.webp",
+        "width": 960,
+        "height": 1449
+      },
+      {
+        "src": "/generated/images/media/stills/still-02-light-study-w1440.webp",
+        "width": 1440,
+        "height": 2173
+      },
+      {
+        "src": "/media/stills/still-02-light-study.jpg",
+        "width": 1458,
+        "height": 2200
+      }
+    ]
+  },
+  "/media/stills/still-03-angkor.jpg": {
+    "width": 1458,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/media/stills/still-03-angkor-w480.webp",
+        "width": 480,
+        "height": 724
+      },
+      {
+        "src": "/generated/images/media/stills/still-03-angkor-w960.webp",
+        "width": 960,
+        "height": 1449
+      },
+      {
+        "src": "/generated/images/media/stills/still-03-angkor-w1440.webp",
+        "width": 1440,
+        "height": 2173
+      },
+      {
+        "src": "/media/stills/still-03-angkor.jpg",
+        "width": 1458,
+        "height": 2200
+      }
+    ]
+  },
+  "/media/stills/still-04-seodo-station.jpg": {
+    "width": 2200,
+    "height": 1238,
+    "variants": [
+      {
+        "src": "/generated/images/media/stills/still-04-seodo-station-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/stills/still-04-seodo-station-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/media/stills/still-04-seodo-station-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/media/stills/still-04-seodo-station.jpg",
+        "width": 2200,
+        "height": 1238
+      }
+    ]
+  },
+  "/media/stills/still-05-night-reflection.jpg": {
+    "width": 1238,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/media/stills/still-05-night-reflection-w480.webp",
+        "width": 480,
+        "height": 853
+      },
+      {
+        "src": "/generated/images/media/stills/still-05-night-reflection-w960.webp",
+        "width": 960,
+        "height": 1706
+      },
+      {
+        "src": "/media/stills/still-05-night-reflection.jpg",
+        "width": 1238,
+        "height": 2200
+      }
+    ]
+  },
+  "/media/stills/still-06-winter-trail.jpg": {
+    "width": 1650,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/media/stills/still-06-winter-trail-w480.webp",
+        "width": 480,
+        "height": 640
+      },
+      {
+        "src": "/generated/images/media/stills/still-06-winter-trail-w960.webp",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "src": "/generated/images/media/stills/still-06-winter-trail-w1440.webp",
+        "width": 1440,
+        "height": 1920
+      },
+      {
+        "src": "/media/stills/still-06-winter-trail.jpg",
+        "width": 1650,
+        "height": 2200
+      }
+    ]
+  },
+  "/media/stills/still-07-in-transit.jpg": {
+    "width": 1467,
+    "height": 2200,
+    "variants": [
+      {
+        "src": "/generated/images/media/stills/still-07-in-transit-w480.webp",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "src": "/generated/images/media/stills/still-07-in-transit-w960.webp",
+        "width": 960,
+        "height": 1440
+      },
+      {
+        "src": "/generated/images/media/stills/still-07-in-transit-w1440.webp",
+        "width": 1440,
+        "height": 2160
+      },
+      {
+        "src": "/media/stills/still-07-in-transit.jpg",
+        "width": 1467,
+        "height": 2200
+      }
+    ]
+  },
+  "/media/stills/still-08-hong-kong.jpg": {
+    "width": 2048,
+    "height": 1152,
+    "variants": [
+      {
+        "src": "/generated/images/media/stills/still-08-hong-kong-w480.webp",
+        "width": 480,
+        "height": 270
+      },
+      {
+        "src": "/generated/images/media/stills/still-08-hong-kong-w960.webp",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "src": "/generated/images/media/stills/still-08-hong-kong-w1440.webp",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "src": "/media/stills/still-08-hong-kong.jpg",
+        "width": 2048,
+        "height": 1152
+      }
+    ]
+  },
+  "/og/journal/starting-dk4film.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/journal/starting-dk4film-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/journal/starting-dk4film-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/journal/starting-dk4film.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/og/journal/what-i-see-first-when-filming-travel.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/journal/what-i-see-first-when-filming-travel-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/journal/what-i-see-first-when-filming-travel-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/journal/what-i-see-first-when-filming-travel.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/og/journal/why-i-capture-everyday.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/journal/why-i-capture-everyday-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/journal/why-i-capture-everyday-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/journal/why-i-capture-everyday.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/og/works/campus-visual-notes.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/works/campus-visual-notes-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/works/campus-visual-notes-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/works/campus-visual-notes.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/og/works/cinematic-travel-archive.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/works/cinematic-travel-archive-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/works/cinematic-travel-archive-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/works/cinematic-travel-archive.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/og/works/digital-age-analog-mood.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/works/digital-age-analog-mood-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/works/digital-age-analog-mood-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/works/digital-age-analog-mood.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/og/works/dk4film-photo-archive.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/works/dk4film-photo-archive-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/works/dk4film-photo-archive-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/works/dk4film-photo-archive.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/og/works/personal-film-experiments.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/works/personal-film-experiments-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/works/personal-film-experiments-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/works/personal-film-experiments.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
+  "/og.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  }
+}

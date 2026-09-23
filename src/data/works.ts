@@ -5,6 +5,7 @@ export type Work = {
   yearRange: readonly [number, number];
   categories: string[];
   description: string;
+  summaryEn: string;
   format: string;
   location: string;
   purpose: string;
@@ -57,6 +58,7 @@ export const works: Work[] = [
     categories: ["Film", "Travel", "Personal"],
     description:
       "여행지에서 마주한 빛, 공간, 사람, 분위기를 시네마틱한 영상으로 기록한 개인 아카이브.",
+    summaryEn: "Short travel films shaped by light, movement, and the quiet rhythm of unfamiliar cities.",
     format: "Cinematic travel film",
     location: "Dalian and cities in Asia · 2025—2026",
     purpose: "장소의 정보를 나열하기보다 그곳에서 느낀 속도, 공기, 빛을 짧은 영화의 리듬으로 남기는 개인 여행 아카이브입니다.",
@@ -119,6 +121,7 @@ export const works: Work[] = [
     categories: ["Photography", "Personal"],
     description:
       "@dk4film 계정을 중심으로 일상, 여행, 거리의 순간을 필름적인 톤으로 기록하는 사진 작업.",
+    summaryEn: "An ongoing photo archive of ordinary streets, journeys, and the light that connects them.",
     format: "Ongoing photography archive",
     location: "South Korea and travel destinations · Ongoing",
     purpose: "완성작만 전시하는 대신 어떤 빛과 장면에 끌리는지 꾸준히 확인하기 위해 만든 개인 사진 아카이브입니다.",
@@ -176,6 +179,7 @@ export const works: Work[] = [
     categories: ["Photography", "Essay"],
     description:
       "디지털 시대 속에서 아날로그적인 감성과 기록의 의미를 탐구한 사진 에세이.",
+    summaryEn: "A photo essay tracing analog memory through stations, structures, and subdued digital frames.",
     format: "Photography essay",
     location: "Jeonju and railway spaces · 2026",
     purpose: "빠르게 소비되는 이미지 환경에서 한 장면을 오래 바라보고 남기는 행위의 의미를 사진과 글로 탐구했습니다.",
@@ -229,6 +233,7 @@ export const works: Work[] = [
     categories: ["Photography", "Campus"],
     description:
       "학교 생활, 동아리 활동, 캠퍼스의 계절과 사람들을 기록하는 비주얼 노트.",
+    summaryEn: "Documentary notes on campus seasons, familiar paths, and people moving through everyday life.",
     format: "Documentary photo notes",
     location: "Jeonbuk National University · Ongoing",
     purpose: "반복되는 학교생활 속 계절과 사람의 변화를 놓치지 않고 개인적이면서도 공동체적인 기록으로 남깁니다.",
@@ -277,6 +282,7 @@ export const works: Work[] = [
     categories: ["Film", "Personal"],
     description:
       "색감, 사운드, 내레이션, 편집 리듬을 실험하며 나만의 영상 언어를 찾아가는 작업.",
+    summaryEn: "Short film studies exploring color, sound, narration, and the emotional weight of an edit.",
     format: "Short-form film experiments",
     location: "Personal archive · 2025—2026",
     purpose: "의뢰 작업 이전 단계에서 색감, 사운드, 화면비, 내레이션을 자유롭게 시험하며 영상 언어의 기준을 만듭니다.",

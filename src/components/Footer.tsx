@@ -16,6 +16,8 @@ export function Footer() {
           <Link href="/photos">사진</Link>
           <Link href="/about">소개</Link>
           <Link href="/journal">기록</Link>
+          <a href={profile.resumeUrl} target="_blank" rel="noreferrer">이력서</a>
+          <Link href="/en/about">EN</Link>
           <a href={profile.instagram} target="_blank" rel="noreferrer">Instagram</a>
           <a href={profile.photoInstagram} target="_blank" rel="noreferrer">DK4FILM</a>
           <Link href="/rss.xml">RSS</Link>

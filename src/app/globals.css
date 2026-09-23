@@ -227,6 +227,7 @@ button, input, textarea { font: inherit; }
 .project-hero-media { position: relative; overflow: hidden; width: 100%; margin-top: 64px; background: var(--site-surface-raised); }
 .project-hero-media.is-portrait { width: min(100%, 720px); margin-right: auto; margin-left: auto; }
 .project-hero-media img { height: 100%; object-fit: cover; }
+.project-summary-en { display: block; max-width: 720px; margin-top: 18px; color: var(--site-muted); font-size: var(--text-small); line-height: var(--leading-body); }
 .project-visual-wrap { display: block !important; }
 .project-info-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 0; border-top: 1px solid var(--site-line); }
 .project-info-grid > div { padding: 24px 24px 0 0; }
@@ -274,6 +275,9 @@ button, input, textarea { font: inherit; }
 .contact-directory > a > strong { min-width: 0; overflow-wrap: anywhere; font-family: var(--font-display), Pretendard, sans-serif; font-size: var(--text-title); letter-spacing: -.025em; line-height: var(--leading-heading); }
 .contact-directory > a > i { color: var(--site-muted); font-style: normal; }
 .contact-directory .portfolio-facts { margin-top: 48px; }
+.contact-presets { padding: 28px 0 8px; border-bottom: 1px solid var(--site-line); }
+.contact-presets > div { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 12px; }
+.contact-presets a { min-height: 44px; padding: 12px 0 5px; border-bottom: 1px solid currentColor; color: var(--site-ink); font-size: var(--text-small); font-weight: 600; line-height: var(--leading-meta); text-decoration: none; }
 
 /* Cinematic visual publication */
 .works-hero, .journal-index-hero { min-height: 52vh; }
@@ -388,6 +392,8 @@ button, input, textarea { font: inherit; }
 .contact-paper-page .contact-layout h1 { color: var(--site-paper-ink); }
 .contact-paper-page .portfolio-lead { color: var(--site-paper-muted); }
 .contact-paper-page .contact-directory { border-color: rgba(17, 17, 15, .16); }
+.contact-paper-page .contact-presets { border-color: rgba(17, 17, 15, .16); }
+.contact-paper-page .contact-presets a { color: var(--site-paper-ink); }
 .contact-paper-page .contact-directory > a:not(.portfolio-text-link) { grid-template-columns: 120px minmax(0, 1fr); border-color: rgba(17, 17, 15, .16); color: var(--site-paper-ink); }
 .contact-paper-page .contact-directory > a > span, .contact-paper-page .portfolio-facts dt { color: var(--site-paper-muted); }
 .contact-paper-page .portfolio-facts, .contact-paper-page .portfolio-facts > div { border-color: rgba(17, 17, 15, .16); }

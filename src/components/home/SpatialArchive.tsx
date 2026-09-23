@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { photoBook } from "@/data/photo-book";

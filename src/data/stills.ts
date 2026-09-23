@@ -1,3 +1,13 @@
+import generatedExif from "./stills-exif.generated.json" with { type: "json" };
+
+export type StillExif = {
+  camera?: string;
+  lens?: string;
+  shutter?: string;
+  aperture?: string;
+  iso?: string;
+};
+
 export type ArchiveStill = {
   id: string;
   src: string;
@@ -17,11 +27,12 @@ export type ArchiveStill = {
   year?: string;
   medium?: string;
   camera?: string;
+  exif?: StillExif;
 };
 
 const stillsBase = "/media/stills";
 
-export const archiveStills: ArchiveStill[] = [
+const archiveStillDefinitions: ArchiveStill[] = [
   {
     id: "city-at-dusk",
     src: `${stillsBase}/still-01-city-dusk.jpg`,
@@ -92,9 +103,17 @@ export const archiveStills: ArchiveStill[] = [
   },
 ];
 
+const exifById = generatedExif as Record<string, StillExif>;
+
+export const archiveStills: ArchiveStill[] = archiveStillDefinitions.map((still) => ({
+  ...still,
+  exif: exifById[still.id],
+}));
+
 export const stills: ArchiveStill[] = [
   ...archiveStills,
-  {
+  ...[
+    {
     id: "winter-trail",
     src: `${stillsBase}/still-06-winter-trail.jpg`,
     alt: "눈 덮인 숲길에서 스틱을 짚고 걷는 여행자",
@@ -103,8 +122,8 @@ export const stills: ArchiveStill[] = [
     speed: 0,
     country: "South Korea",
     medium: "Photography",
-  },
-  {
+    },
+    {
     id: "in-transit",
     src: `${stillsBase}/still-07-in-transit.jpg`,
     alt: "주황빛 구조물 아래 지하철 계단으로 향하는 사람들",
@@ -114,5 +133,6 @@ export const stills: ArchiveStill[] = [
     city: "Bangkok",
     country: "Thailand",
     medium: "Photography",
-  },
+    },
+  ].map((still) => ({ ...still, exif: exifById[still.id] })),
 ];

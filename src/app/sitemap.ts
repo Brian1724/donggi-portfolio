@@ -3,7 +3,7 @@ import { journalPosts } from "@/data/journal";
 import { works } from "@/data/works";
 import { absoluteUrl } from "@/lib/site-url";
 
-const staticRoutes = ["/", "/about", "/works", "/photos", "/journal", "/contact"];
+const staticRoutes = ["/", "/about", "/en/about", "/works", "/photos", "/journal", "/contact"];
 const defaultLastModified = new Date("2026-09-01");
 
 export const dynamic = "force-static";

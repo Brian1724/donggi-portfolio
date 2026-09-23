@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { GearSection } from "@/components/home/GearSection";

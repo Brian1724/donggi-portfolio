@@ -32,7 +32,8 @@
   isolation: isolate;
   background: #101617;
 }
-.heroVideo, .heroShade, .grain { position: absolute; inset: 0; height: 100%; }
+.heroPoster, .heroVideo, .heroShade, .grain { position: absolute; inset: 0; height: 100%; }
+.heroPoster { z-index: 0; object-fit: cover; object-position: center; }
 .heroVideo {
   z-index: 0;
   object-fit: cover;
@@ -278,7 +279,8 @@
 .dialog::backdrop { background: #020303; }
 .dialog[open] { display: grid; grid-template-rows: calc(68px + env(safe-area-inset-top)) minmax(0, 1fr); }
 .dialogBar { display: flex; align-items: center; justify-content: space-between; padding: 0 var(--page-pad); border-bottom: 1px solid var(--cinema-line); font-size: var(--text-meta); line-height: var(--leading-meta); letter-spacing: .12em; }
-.dialogBar button { padding: 14px 0 14px 20px; border: 0; background: transparent; cursor: pointer; color: var(--cinema-muted); font-size: var(--text-meta); line-height: var(--leading-meta); letter-spacing: .1em; text-transform: uppercase; }
+.dialogBar button { width: 44px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; color: var(--cinema-muted); font-size: var(--text-body); line-height: 1; }
+.dialogControls { display: flex; align-items: center; gap: 4px; }
 .dialog video { align-self: center; max-height: calc(100dvh - 68px - env(safe-area-inset-top)); object-fit: contain; }
 
 .reveal { opacity: 1; transform: none; }

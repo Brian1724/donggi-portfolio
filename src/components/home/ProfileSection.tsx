@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import Link from "next/link";
 import { getHomeSectionLabel, homeCopy } from "@/data/home";
 import { profile } from "@/data/profile";

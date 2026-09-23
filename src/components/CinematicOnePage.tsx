@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ContactSection } from "@/components/home/ContactSection";
 import { CinematicHero } from "@/components/home/CinematicHero";
 import { FeaturedWorkSection } from "@/components/home/FeaturedWorkSection";
@@ -9,7 +9,7 @@ import { FilmSection } from "@/components/home/FilmSection";
 import { JournalPreviewSection } from "@/components/home/JournalPreviewSection";
 import { ProfileSection } from "@/components/home/ProfileSection";
 import { StillArchiveSection } from "@/components/home/StillArchiveSection";
-import { featuredFilm, type Film } from "@/data/films";
+import { featuredFilm, filmsByNewest, type Film } from "@/data/films";
 import styles from "./CinematicOnePage.module.css";
 
 export function CinematicOnePage() {
@@ -119,7 +119,7 @@ export function CinematicOnePage() {
     if (nextSoundOn) await video.play().catch(() => undefined);
   };
 
-  const closeFilm = () => {
+  const closeFilm = useCallback(() => {
     const film = filmVideoRef.current;
     const dialog = dialogRef.current;
     film?.pause();
@@ -133,18 +133,21 @@ export function CinematicOnePage() {
 
     document.body.style.overflow = previousOverflowRef.current;
     setSelectedFilm(null);
+    clearFilmHash();
     if (shouldAutoplayRef.current && heroInViewRef.current && !document.hidden) heroVideoRef.current?.play().catch(() => undefined);
 
     window.requestAnimationFrame(() => lastFocusedRef.current?.focus());
-  };
+  }, []);
 
-  const openFilm = (film: Film) => {
+  const openFilm = useCallback((film: Film, updateHash = true) => {
     const dialog = dialogRef.current;
     const player = filmVideoRef.current;
     if (!dialog || !player) return;
 
-    lastFocusedRef.current = document.activeElement as HTMLElement | null;
-    previousOverflowRef.current = document.body.style.overflow;
+    if (!dialog.open) {
+      lastFocusedRef.current = document.activeElement as HTMLElement | null;
+      previousOverflowRef.current = document.body.style.overflow;
+    }
     setSelectedFilm(film);
     heroVideoRef.current?.pause();
     player.pause();
@@ -160,8 +163,31 @@ export function CinematicOnePage() {
     }
 
     document.body.style.overflow = "hidden";
+    if (updateHash) setFilmHash(film.id, dialog.open);
     player.play().catch(() => undefined);
-  };
+  }, []);
+
+  const moveFilm = useCallback((offset: number) => {
+    if (!selectedFilm) return;
+    const current = filmsByNewest.findIndex((film) => film.id === selectedFilm.id);
+    const next = (current + offset + filmsByNewest.length) % filmsByNewest.length;
+    openFilm(filmsByNewest[next]);
+  }, [openFilm, selectedFilm]);
+
+  useEffect(() => {
+    const syncFromHash = () => {
+      const match = window.location.hash.match(/^#film=(.+)$/);
+      if (!match) {
+        if (dialogRef.current?.open) closeFilm();
+        return;
+      }
+      const film = filmsByNewest.find((item) => item.id === decodeURIComponent(match[1]));
+      if (film) openFilm(film, false);
+    };
+    syncFromHash();
+    window.addEventListener("hashchange", syncFromHash);
+    return () => window.removeEventListener("hashchange", syncFromHash);
+  }, [closeFilm, openFilm]);
 
   return (
     <div ref={pageRef} className={styles.page}>
@@ -182,7 +208,22 @@ export function CinematicOnePage() {
         videoRef={filmVideoRef}
         film={selectedFilm}
         onClose={closeFilm}
+        onPrevious={() => moveFilm(-1)}
+        onNext={() => moveFilm(1)}
       />
     </div>
   );
+}
+
+function setFilmHash(id: string, replace = false) {
+  const url = new URL(window.location.href);
+  url.hash = `film=${encodeURIComponent(id)}`;
+  window.history[replace ? "replaceState" : "pushState"](null, "", url);
+}
+
+function clearFilmHash() {
+  if (!window.location.hash.startsWith("#film=")) return;
+  const url = new URL(window.location.href);
+  url.hash = "";
+  window.history.replaceState(null, "", url);
 }

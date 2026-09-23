@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import { DocumentLink } from "@/components/DocumentLink";
 import type { JournalPost } from "@/data/journal";
 

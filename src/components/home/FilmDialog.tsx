@@ -7,9 +7,11 @@ type FilmDialogProps = {
   videoRef: RefObject<HTMLVideoElement | null>;
   film: Film | null;
   onClose: () => void;
+  onPrevious: () => void;
+  onNext: () => void;
 };
 
-export function FilmDialog({ dialogRef, videoRef, film, onClose }: FilmDialogProps) {
+export function FilmDialog({ dialogRef, videoRef, film, onClose, onPrevious, onNext }: FilmDialogProps) {
   const dialogLabel = film
     ? `${film.title}${film.title.includes(film.year) ? "" : ` ${film.year}`}`
     : "FILM";
@@ -23,12 +25,18 @@ export function FilmDialog({ dialogRef, videoRef, film, onClose }: FilmDialogPro
         event.preventDefault();
         onClose();
       }}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft") { event.preventDefault(); onPrevious(); }
+        if (event.key === "ArrowRight") { event.preventDefault(); onNext(); }
+      }}
     >
       <div className={styles.dialogBar}>
         <span id="film-dialog-title">DONGGI / {dialogLabel}</span>
-        <button type="button" onClick={onClose} aria-label="영상 닫기">
-          닫기 ×
-        </button>
+        <div className={styles.dialogControls}>
+          <button type="button" onClick={onPrevious} aria-label="이전 영상" title="이전 영상">←</button>
+          <button type="button" onClick={onNext} aria-label="다음 영상" title="다음 영상">→</button>
+          <button type="button" onClick={onClose} aria-label="영상 닫기" title="닫기">×</button>
+        </div>
       </div>
       <video ref={videoRef} controls playsInline preload="metadata" poster={film?.poster} />
     </dialog>

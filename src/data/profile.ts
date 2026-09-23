@@ -14,5 +14,5 @@ export const profile = {
   email: "ydk0717@gmail.com",
   instagram: "https://instagram.com/donggi_03",
   photoInstagram: "https://instagram.com/dk4film",
-  resumeUrl: "/resume/Yoon_Donggi_Resume.pdf",
+  resumeUrl: "/resume/Yoon_Donggi_Resume_2026-09.pdf",
 };
