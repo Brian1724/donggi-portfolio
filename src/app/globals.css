@@ -280,10 +280,12 @@ button, input, textarea { font: inherit; }
 .contact-presets a { min-height: 44px; padding: 12px 0 5px; border-bottom: 1px solid currentColor; color: var(--site-ink); font-size: var(--text-small); font-weight: 600; line-height: var(--leading-meta); text-decoration: none; }
 
 /* Cinematic visual publication */
-.works-hero, .journal-index-hero { min-height: 52vh; }
+.works-hero { min-height: auto; padding-bottom: calc(var(--site-section) / 2); }
+.journal-index-hero { min-height: 52vh; }
 .works-hero .portfolio-container, .journal-index-hero .portfolio-container { align-items: end; }
 .works-hero .portfolio-title, .journal-index-hero .portfolio-title { max-width: 10ch; font-size: var(--text-page); line-height: var(--leading-display); }
 .works-archive-section, .journal-index-section { background: var(--site-bg); }
+.works-archive-section { padding-top: calc(var(--site-section) / 2); }
 
 .work-archive { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: clamp(104px, 13vw, 184px); }
 .work-archive-item { grid-column: 1 / 12; min-width: 0; }

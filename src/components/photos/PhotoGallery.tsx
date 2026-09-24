@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import type { ArchiveStill } from "@/data/stills";
-import { getWorkMediaHref } from "@/lib/work-media";
 import styles from "./PhotoGallery.module.css";
 
 type PhotoGroup = { title: string; description: string; items: ArchiveStill[] };
@@ -131,7 +129,6 @@ export function PhotoGallery({ groups }: { groups: PhotoGroup[] }) {
                     <span>{selectedIndex! + 1} / {items.length}</span>
                     <button type="button" onClick={() => move(1)} aria-label="다음 사진">→</button>
                   </div>
-                  <Link href={getWorkMediaHref("still", selected.id)} onClick={close}>프로젝트 보기</Link>
                 </div>
               </figcaption>
             </figure>

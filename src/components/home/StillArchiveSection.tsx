@@ -2,7 +2,6 @@ import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import Link from "next/link";
 import { archiveStills, type ArchiveStill } from "@/data/stills";
 import { getHomeSectionLabel, homeCopy } from "@/data/home";
-import { getWorkMediaHref } from "@/lib/work-media";
 import styles from "../CinematicOnePage.module.css";
 
 export function StillArchiveSection() {
@@ -36,7 +35,7 @@ export function StillArchiveSection() {
 function ArchiveFrame({ still }: { still: ArchiveStill }) {
   return (
     <figure className={`${styles.archiveFigure} ${styles[still.placement ?? "archiveLead"]} ${styles.reveal}`} data-scroll-reveal>
-      <Link href={getWorkMediaHref("still", still.id)} className={styles.archiveMedia} data-image-reveal style={{ aspectRatio: still.ratio }}>
+      <Link href={`/photos/#still=${encodeURIComponent(still.id)}`} className={styles.archiveMedia} data-image-reveal style={{ aspectRatio: still.ratio }}>
         <div className={styles.archiveImage} data-cinematic-parallax={still.speed}>
           <Image
             src={still.src}

@@ -41,7 +41,6 @@ const archiveStillDefinitions: ArchiveStill[] = [
     ratio: "2200 / 1459",
     placement: "archiveLead",
     speed: 0.05,
-    year: "2025",
     medium: "Photography",
   },
   {

@@ -222,7 +222,7 @@ export const works: Work[] = [
       "디지털 시대 속에서 아날로그적인 감성과 기록의 의미를 탐구한 사진 에세이.",
     summaryEn: "A photo essay tracing analog memory through stations, structures, and subdued digital frames.",
     format: "Photography essay",
-    location: "Jeonju and railway spaces · 2026",
+    location: "Various places · 2026",
     purpose: "빠르게 소비되는 이미지 환경에서 한 장면을 오래 바라보고 남기는 행위의 의미를 사진과 글로 탐구했습니다.",
     concept: "역, 철길, 오래된 구조물을 흑백과 저채도 프레임으로 기록해 시간의 층위를 드러냅니다.",
     process: "장소를 반복해서 관찰하고 비어 있는 프레임과 생활의 흔적을 촬영한 뒤, 짧은 에세이와 함께 편집했습니다.",
@@ -235,8 +235,6 @@ export const works: Work[] = [
       { kind: "still", id: "in-transit" },
     ],
     archiveMeta: {
-      city: "Jeonju",
-      country: "South Korea",
       medium: "Photography",
       format: "Photo essay",
     },
@@ -302,7 +300,7 @@ export const works: Work[] = [
     detailImages: [
       {
         src: "/images/archive/project-campus-autumn-rail.jpg",
-        alt: "가을빛이 내려앉은 철길과 나무의 풍경",
+        alt: "벚꽃이 핀 길에서 봄빛을 바라보는 인물",
         aspect: "landscape",
         ratio: "3 / 2",
       },
