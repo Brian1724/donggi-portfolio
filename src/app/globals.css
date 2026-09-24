@@ -326,6 +326,8 @@ button, input, textarea { font: inherit; }
 .project-paper .portfolio-text-link { color: var(--site-paper-ink); }
 
 .project-media-archive { background: var(--site-bg); }
+.project-premiere .project-video { margin-top: 0; }
+.project-premiere .project-media-caption { margin-top: 24px; }
 .project-media-list { display: grid; gap: clamp(88px, 10vw, 144px); margin-top: 64px; }
 .project-media-item { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(240px, .5fr); gap: clamp(28px, 5vw, 72px); align-items: end; scroll-margin-top: 96px; }
 .project-media-list > :nth-child(even) .project-media-item { grid-template-columns: minmax(240px, .5fr) minmax(0, 1.5fr); }

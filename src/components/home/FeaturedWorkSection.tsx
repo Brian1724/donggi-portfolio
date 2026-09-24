@@ -2,7 +2,6 @@ import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import Link from "next/link";
 import { featuredFilm } from "@/data/films";
 import { getHomeSectionLabel, homeCopy } from "@/data/home";
-import { getWorkMediaHref } from "@/lib/work-media";
 import styles from "../CinematicOnePage.module.css";
 
 export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
@@ -55,7 +54,7 @@ export function FeaturedWorkSection({ onPlay }: { onPlay: () => void }) {
         </div>
       </dl>
       <div className={styles.featureMore}>
-        <Link href={getWorkMediaHref("film", featuredFilm.id)}>프로젝트 보기</Link>
+        <Link href="/works/dalian-2026/">프로젝트 보기</Link>
       </div>
     </section>
   );

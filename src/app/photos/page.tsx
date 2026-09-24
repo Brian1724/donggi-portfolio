@@ -1,12 +1,12 @@
 import { PhotoGallery } from "@/components/photos/PhotoGallery";
-import { stills } from "@/data/stills";
+import { photoSequences } from "@/data/stills";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
   title: "사진 아카이브",
   description: "여행과 일상 사이에서 기록한 윤동기의 사진 아카이브.",
   path: "/photos",
-  imagePath: stills[0]?.src,
+  imagePath: photoSequences[0]?.items[0]?.src,
 });
 
 export default function PhotosPage() {
@@ -23,7 +23,7 @@ export default function PhotosPage() {
       </section>
       <section className="portfolio-section photos-archive-section">
         <div className="portfolio-container">
-          <PhotoGallery items={stills} />
+          <PhotoGallery groups={photoSequences} />
         </div>
       </section>
     </main>

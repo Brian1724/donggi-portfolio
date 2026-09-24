@@ -1,13 +1,18 @@
+.sequence + .sequence { margin-top: clamp(88px, 10vw, 144px); }
+.sequenceHeading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 40px; padding-top: 20px; border-top: 1px solid var(--site-line); }
+.sequenceHeading > div > p { margin: 0 0 18px; color: var(--site-muted); font-size: var(--text-meta); line-height: var(--leading-meta); }
+.sequenceHeading h2 { margin: 0; color: var(--site-ink); font-size: var(--text-section); line-height: var(--leading-heading); }
+.sequenceHeading > p { max-width: 320px; margin: 0; color: var(--site-soft); font-size: var(--text-body); line-height: var(--leading-body); word-break: keep-all; }
 .grid {
-  columns: 3;
-  column-gap: clamp(20px, 3vw, 40px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(40px, 6vw, 72px) clamp(20px, 3vw, 40px);
+  align-items: start;
 }
 
 .item {
-  display: inline-block;
   width: 100%;
-  margin: 0 0 clamp(40px, 6vw, 72px);
-  break-inside: avoid;
+  margin: 0;
 }
 
 .openButton {
@@ -126,10 +131,11 @@
 .exifList dt, .exifList dd { margin: 0; color: #aaa7a0; font-size: var(--text-meta); line-height: var(--leading-meta); }
 .exifList dt { color: #f1efe9; }
 
-@media (max-width: 900px) { .grid { columns: 2; } }
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 @media (max-width: 620px) {
-  .grid { columns: 1; }
+  .sequenceHeading { align-items: start; flex-direction: column; gap: 16px; }
+  .grid { grid-template-columns: 1fr; }
   .item > figcaption { align-items: flex-start; flex-direction: column; gap: 6px; }
   .item > figcaption span:last-child { text-align: left; }
   .dialogInner { padding: 64px 18px 22px; }

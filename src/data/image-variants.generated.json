@@ -1638,6 +1638,27 @@
       }
     ]
   },
+  "/og/works/dalian-2026.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/works/dalian-2026-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/works/dalian-2026-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/works/dalian-2026.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
   "/og/works/digital-age-analog-mood.png": {
     "width": 1200,
     "height": 630,

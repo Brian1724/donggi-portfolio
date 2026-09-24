@@ -136,3 +136,22 @@ export const stills: ArchiveStill[] = [
     },
   ].map((still) => ({ ...still, exif: exifById[still.id] })),
 ];
+
+const photoSequenceDefinitions = [
+  {
+    title: "도시와 이동",
+    description: "역, 거리, 도시의 밤을 지나며 남긴 장면.",
+    ids: ["city-at-dusk", "seodo-station", "in-transit", "hong-kong", "night-reflection"],
+  },
+  {
+    title: "장소의 빛",
+    description: "다른 날씨와 장소에서 마주한 빛의 결.",
+    ids: ["light-study", "angkor", "winter-trail"],
+  },
+] as const;
+
+export const photoSequences = photoSequenceDefinitions.map((sequence) => ({
+  title: sequence.title,
+  description: sequence.description,
+  items: sequence.ids.map((id) => stills.find((still) => still.id === id)!),
+}));

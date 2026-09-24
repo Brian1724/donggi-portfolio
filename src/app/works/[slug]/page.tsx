@@ -84,6 +84,22 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         </div>
       </section>
 
+      {work.slug === "dalian-2026" && work.video ? (
+        <section className="portfolio-section project-premiere" aria-label={`${work.title} 완성 영상`}>
+          <div className="portfolio-container">
+            <div className="project-video" id="film-dalian-2026">
+              <video controls playsInline preload="none" poster={work.video.poster}>
+                <source src={work.video.src} type="video/mp4" />
+              </video>
+            </div>
+            <div className="project-media-caption">
+              <p>Complete film / {work.video.duration}</p>
+              <h2>{work.title}</h2>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="portfolio-section project-story-section">
         <div className="portfolio-container project-narrative">
           <Reveal>
@@ -122,7 +138,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         </div>
       </section>
 
-      {media.length ? (
+      {media.length && work.slug !== "dalian-2026" ? (
         <section className="portfolio-section project-media-archive">
           <div className="portfolio-container">
             <div className="portfolio-section-heading">

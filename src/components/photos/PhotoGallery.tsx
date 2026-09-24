@@ -7,7 +7,10 @@ import type { ArchiveStill } from "@/data/stills";
 import { getWorkMediaHref } from "@/lib/work-media";
 import styles from "./PhotoGallery.module.css";
 
-export function PhotoGallery({ items }: { items: ArchiveStill[] }) {
+type PhotoGroup = { title: string; description: string; items: ArchiveStill[] };
+
+export function PhotoGallery({ groups }: { groups: PhotoGroup[] }) {
+  const items = useMemo(() => groups.flatMap((group) => group.items), [groups]);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
   const previousOverflowRef = useRef("");
@@ -68,21 +71,36 @@ export function PhotoGallery({ items }: { items: ArchiveStill[] }) {
 
   return (
     <>
-      <div className={styles.grid}>
-        {items.map((still, index) => (
-          <figure key={still.id} className={styles.item}>
-            <button type="button" className={styles.openButton} onClick={() => open(index)} aria-label={`${index + 1}번 사진, ${still.alt} 크게 보기`}>
-              <span className={styles.frame} style={{ aspectRatio: still.ratio }}>
-                <Image src={still.src} alt={still.alt} fill sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw" />
-              </span>
-            </button>
-            <figcaption>
-              <span aria-label={`${index + 1} — ${still.label.replace(/^[IVX]+\s*—\s*/, "")}`}>{still.label}</span>
-              <span>{[still.city, still.country, still.year].filter(Boolean).join(" · ")}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
+      {groups.map((group, groupIndex) => (
+        <section key={group.title} className={styles.sequence} aria-labelledby={`photo-sequence-${groupIndex}`}>
+          <div className={styles.sequenceHeading}>
+            <div>
+              <p>{String(groupIndex + 1).padStart(2, "0")} / PHOTO SEQUENCE</p>
+              <h2 id={`photo-sequence-${groupIndex}`}>{group.title}</h2>
+            </div>
+            <p>{group.description}</p>
+          </div>
+          <div className={styles.grid}>
+            {group.items.map((still) => {
+              const index = items.findIndex((item) => item.id === still.id);
+              const caption = `${romanNumeral(index + 1)} — ${still.label.replace(/^[IVX]+\s*—\s*/, "")}`;
+              return (
+                <figure key={still.id} className={styles.item}>
+                  <button type="button" className={styles.openButton} onClick={() => open(index)} aria-label={`${index + 1}번 사진, ${still.alt} 크게 보기`}>
+                    <span className={styles.frame} style={{ aspectRatio: still.ratio }}>
+                      <Image src={still.src} alt={still.alt} fill sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+                    </span>
+                  </button>
+                  <figcaption>
+                    <span aria-label={`${index + 1} — ${still.label.replace(/^[IVX]+\s*—\s*/, "")}`}>{caption}</span>
+                    <span>{[...new Set([still.city, still.country, still.year].filter(Boolean))].join(" · ")}</span>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        </section>
+      ))}
 
       <dialog
         ref={dialogRef}
@@ -103,7 +121,7 @@ export function PhotoGallery({ items }: { items: ArchiveStill[] }) {
               <Image src={selected.src} alt={selected.alt} width={ratioPart(selected.ratio, 0)} height={ratioPart(selected.ratio, 1)} sizes="100vw" className={styles.dialogImage} />
               <figcaption>
                 <div className={styles.dialogCopy}>
-                  <strong>{selected.label}</strong>
+                  <strong>{romanNumeral(selectedIndex! + 1)} — {selected.label.replace(/^[IVX]+\s*—\s*/, "")}</strong>
                   <span>{selected.alt}</span>
                   {exif.length ? <dl className={styles.exifList}>{exif.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl> : null}
                 </div>
@@ -122,6 +140,10 @@ export function PhotoGallery({ items }: { items: ArchiveStill[] }) {
       </dialog>
     </>
   );
+}
+
+function romanNumeral(index: number) {
+  return ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"][index - 1] ?? String(index);
 }
 
 function setHash(id: string, replace = false) {

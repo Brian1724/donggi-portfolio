@@ -154,6 +154,9 @@ export const films: Film[] = [
 
 export const featuredFilm = films.find((film) => film.id === "dalian-2026") ?? films[0];
 
+const homeFilmIds = ["hanoi-sapa-2026", "wolhwawon-2026", "paradox-of-choice-2024"];
+export const homeFilms = homeFilmIds.flatMap((id) => films.find((film) => film.id === id) ?? []);
+
 export const filmsByNewest = [...films].sort(
   (first, second) => Number(second.year) - Number(first.year),
 );

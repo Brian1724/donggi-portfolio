@@ -1,14 +1,13 @@
 import { ResponsiveImage as Image } from "@/components/ResponsiveImage";
 import Link from "next/link";
-import { featuredFilm, filmsByNewest, type Film } from "@/data/films";
+import { homeFilms, type Film } from "@/data/films";
 import { getHomeSectionLabel, homeCopy } from "@/data/home";
 import { formatYearRange } from "@/lib/content-years";
 import { getWorkMediaHref } from "@/lib/work-media";
 import styles from "../CinematicOnePage.module.css";
 
 export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
-  const yearRange = formatYearRange(filmsByNewest.map((film) => film.year));
-  const archiveFilms = filmsByNewest.filter((film) => film.id !== featuredFilm.id);
+  const yearRange = formatYearRange(homeFilms.map((film) => film.year));
 
   return (
     <section
@@ -28,7 +27,7 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
       </div>
       <p className={`${styles.filmIntro} ${styles.reveal}`} data-scroll-reveal data-reveal-delay="70">{homeCopy.films.intro}</p>
       <div className={styles.filmGrid}>
-        {archiveFilms.map((film, index) => (
+        {homeFilms.map((film, index) => (
           <FilmCard
             key={film.id}
             film={film}
@@ -38,8 +37,7 @@ export function FilmSection({ onPlay }: { onPlay: (film: Film) => void }) {
         ))}
       </div>
       <div className={`${styles.inlineContact} ${styles.reveal}`} data-scroll-reveal>
-        <p>{homeCopy.films.contact}</p>
-        <Link href="/contact">촬영 문의</Link>
+        <Link href="/works/?category=film">전체 영상 보기</Link>
       </div>
     </section>
   );
