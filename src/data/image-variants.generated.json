@@ -1596,27 +1596,6 @@
       }
     ]
   },
-  "/og/works/campus-visual-notes.png": {
-    "width": 1200,
-    "height": 630,
-    "variants": [
-      {
-        "src": "/generated/images/og/works/campus-visual-notes-w480.webp",
-        "width": 480,
-        "height": 252
-      },
-      {
-        "src": "/generated/images/og/works/campus-visual-notes-w960.webp",
-        "width": 960,
-        "height": 504
-      },
-      {
-        "src": "/og/works/campus-visual-notes.png",
-        "width": 1200,
-        "height": 630
-      }
-    ]
-  },
   "/og/works/cinematic-travel-archive.png": {
     "width": 1200,
     "height": 630,
