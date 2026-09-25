@@ -12,7 +12,7 @@ export const metadata = createPageMetadata({
 
 export default function WorksPage() {
   const yearRange = formatYearRange(
-    works.flatMap((work) => work.yearRange),
+    works.flatMap((work) => work.yearRange ?? []),
     "—",
   );
 

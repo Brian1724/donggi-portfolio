@@ -1,8 +1,9 @@
 export type Work = {
   title: string;
   slug: string;
+  legacySlugs?: string[];
   year: string;
-  yearRange: readonly [number, number];
+  yearRange?: readonly [number, number];
   categories: string[];
   description: string;
   summaryEn: string;
@@ -265,50 +266,44 @@ export const works: Work[] = [
     links: {},
   },
   {
-    title: "Campus Visual Notes",
-    slug: "campus-visual-notes",
-    year: "Ongoing",
-    yearRange: [2025, 2026],
-    categories: ["Photography", "Campus"],
+    title: "Seasonal Notes",
+    slug: "seasonal-notes",
+    legacySlugs: ["campus-visual-notes"],
+    year: "Archive",
+    categories: ["Photography", "Personal"],
     description:
-      "학교 생활, 동아리 활동, 캠퍼스의 계절과 사람들을 기록하는 비주얼 노트.",
-    summaryEn: "Documentary notes on campus seasons, familiar paths, and people moving through everyday life.",
-    format: "Documentary photo notes",
-    location: "Jeonbuk National University · Ongoing",
-    purpose: "반복되는 학교생활 속 계절과 사람의 변화를 놓치지 않고 개인적이면서도 공동체적인 기록으로 남깁니다.",
-    concept: "익숙한 캠퍼스를 빛, 동선, 관계의 장면으로 다시 바라보며 평범한 하루의 서사를 발견합니다.",
-    process: "수업과 활동 사이에 카메라를 휴대하며 자연스러운 순간을 기록하고, 계절별 시퀀스로 사진을 편집합니다.",
-    challenge: "관찰자의 거리감을 유지하면서도 인물과 공간이 차갑게 보이지 않도록 자연광과 시선의 높이를 세심하게 선택합니다.",
-    reflection: "익숙한 장소도 계절과 사람의 동선에 따라 전혀 다른 장면이 된다는 것을 확인했습니다. 기록이 행사 사진에 머물지 않도록, 앞으로는 한 학기의 변화를 시작과 끝이 있는 시퀀스로 편집해보려 합니다.",
-    role: ["Photographer", "Editor"],
-    tools: ["Sony A7C II", "Lightroom"],
-    media: [
-      { kind: "still", id: "seodo-station" },
-      { kind: "still", id: "winter-trail" },
-    ],
+      "벚꽃길, 가을 철길, 눈 덮인 산길을 잇는 세 장의 사진.",
+    summaryEn: "Three photographs moving from spring blossoms to autumn tracks and a snowy trail.",
+    format: "Personal photo sequence",
+    location: "Various places · Spring / Autumn / Winter",
+    purpose: "서로 다른 계절과 장소에서 남긴 사진 세 장을 한 흐름으로 묶었습니다.",
+    concept: "봄의 벚꽃, 가을 철길의 노란 잎, 겨울 눈길을 차례로 배치해 빛과 색의 변화를 보여줍니다.",
+    process: "사람이 풍경 안에 놓인 장면을 골라 봄에서 겨울로 이어지는 순서로 편집했습니다.",
+    challenge: "사진마다 장소와 비율이 달라 한 톤으로 맞추기보다 계절별 차이를 그대로 두었습니다.",
+    reflection: "서로 다른 장소에서 찍은 장면이므로 한 장소의 시간 변화로 읽히지 않게 구성했습니다. 다음에는 같은 장소를 계절마다 다시 찾아 기록할 수 있습니다.",
+    role: ["Photo selection", "Sequence edit"],
+    tools: [],
+    media: [],
     archiveMeta: {
-      city: "Jeonju",
-      country: "South Korea",
       medium: "Photography",
-      camera: "Sony A7C II",
-      format: "Documentary notes",
+      format: "Personal photo sequence",
     },
     thumbnail: "/images/archive/project-campus-autumn-rail.jpg",
-    thumbnailAlt: "벚꽃이 핀 길에서 봄빛을 바라보는 윤동기",
+    thumbnailAlt: "벚꽃이 핀 길에서 위를 바라보는 인물",
     thumbnailAspect: "landscape",
     thumbnailRatio: "3 / 2",
     detailImages: [
       {
-        src: "/images/archive/project-campus-autumn-rail.jpg",
-        alt: "벚꽃이 핀 길에서 봄빛을 바라보는 인물",
-        aspect: "landscape",
-        ratio: "3 / 2",
-      },
-      {
         src: "/images/archive/about-winter-hike.jpg",
-        alt: "겨울 산책길에서 기록한 세로 프레임의 풍경",
+        alt: "노란 잎이 물든 철길에서 걷고 있는 두 사람",
         aspect: "portrait",
         ratio: "853 / 1280",
+      },
+      {
+        src: "/media/stills/still-06-winter-trail.jpg",
+        alt: "눈 덮인 숲길에서 스틱을 짚고 걷는 사람",
+        aspect: "portrait",
+        ratio: "3 / 4",
       },
     ],
     links: {},
@@ -382,12 +377,11 @@ export const workFilters = [
   { value: "photography", label: "사진", category: "Photography" },
   { value: "travel", label: "여행", category: "Travel" },
   { value: "personal", label: "개인 작업", category: "Personal" },
-  { value: "campus", label: "캠퍼스", category: "Campus" },
   { value: "essay", label: "에세이", category: "Essay" },
 ] as const;
 
 export function getWorkBySlug(slug: string) {
-  return works.find((work) => work.slug === slug);
+  return works.find((work) => work.slug === slug || work.legacySlugs?.includes(slug));
 }
 
 export function getAdjacentWorks(slug: string) {

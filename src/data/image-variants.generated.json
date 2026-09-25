@@ -1722,6 +1722,27 @@
       }
     ]
   },
+  "/og/works/seasonal-notes.png": {
+    "width": 1200,
+    "height": 630,
+    "variants": [
+      {
+        "src": "/generated/images/og/works/seasonal-notes-w480.webp",
+        "width": 480,
+        "height": 252
+      },
+      {
+        "src": "/generated/images/og/works/seasonal-notes-w960.webp",
+        "width": 960,
+        "height": 504
+      },
+      {
+        "src": "/og/works/seasonal-notes.png",
+        "width": 1200,
+        "height": 630
+      }
+    ]
+  },
   "/og.png": {
     "width": 1200,
     "height": 630,

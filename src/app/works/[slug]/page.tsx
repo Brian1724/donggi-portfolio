@@ -12,7 +12,9 @@ type WorkPageProps = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return works.map((work) => ({ slug: work.slug }));
+  return works.flatMap((work) =>
+    [work.slug, ...(work.legacySlugs ?? [])].map((slug) => ({ slug })),
+  );
 }
 
 export async function generateMetadata({ params }: WorkPageProps) {
@@ -217,17 +219,19 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         <div className="portfolio-container project-closing">
           <Reveal>
             <div>
-              <p className="portfolio-kicker">Role / Tools</p>
-              <h2>이 작업에서 맡고 사용한 것.</h2>
+              <p className="portfolio-kicker">{work.tools.length ? "Role / Tools" : "Role"}</p>
+              <h2>{work.tools.length ? "이 작업에서 맡고 사용한 것." : "이 작업에서 한 일."}</h2>
               <dl className="portfolio-facts">
                 <div>
                   <dt>Role</dt>
                   <dd>{work.role.join(" · ")}</dd>
                 </div>
-                <div>
-                  <dt>Tools</dt>
-                  <dd>{work.tools.join(" · ")}</dd>
-                </div>
+                {work.tools.length ? (
+                  <div>
+                    <dt>Tools</dt>
+                    <dd>{work.tools.join(" · ")}</dd>
+                  </div>
+                ) : null}
                 {work.archiveMeta?.camera ? (
                   <div>
                     <dt>Camera</dt>
