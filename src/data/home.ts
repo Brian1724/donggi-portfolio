@@ -4,7 +4,7 @@ export const homeCopy = {
     message: "여행과 일상에서 발견한 장면을 사진과 짧은 영화로 기록합니다.",
   },
   profile: {
-    role: "Videographer & Photographer in Progress",
+    role: "Videographer / Photographer",
     description:
       "빛과 움직임, 사람 사이의 거리를 오래 바라보고 한 장면의 리듬으로 엮습니다.",
     note:

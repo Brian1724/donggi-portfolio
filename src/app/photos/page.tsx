@@ -11,7 +11,7 @@ export const metadata = createPageMetadata({
 
 export default function PhotosPage() {
   return (
-    <main className="portfolio-page photos-page">
+    <div className="portfolio-page photos-page">
       <section className="portfolio-hero photos-hero">
         <div className="portfolio-container">
           <div>
@@ -26,6 +26,6 @@ export default function PhotosPage() {
           <PhotoGallery groups={photoSequences} />
         </div>
       </section>
-    </main>
+    </div>
   );
 }

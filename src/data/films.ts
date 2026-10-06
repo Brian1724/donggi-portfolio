@@ -11,6 +11,7 @@ export type Film = {
   src: string;
   poster: string;
   posterAlt?: string;
+  preview?: string;
   posterRatio: string;
   alt: string;
 };
@@ -29,6 +30,7 @@ export const films: Film[] = [
     format: "landscape",
     src: `${filmsBase}/hanoi-sapa-2026.mp4`,
     poster: `${filmsBase}/hanoi-sapa-2026-poster.jpg`,
+    preview: `${filmsBase}/hanoi-sapa-2026-preview.webm`,
     posterRatio: "16 / 9",
     alt: "흐린 하늘 아래 붉은 지붕의 건물과 광장이 펼쳐진 사파의 풍경",
   },
@@ -56,6 +58,7 @@ export const films: Film[] = [
     format: "landscape",
     src: `${filmsBase}/wolhwawon-2026.mp4`,
     poster: `${filmsBase}/wolhwawon-2026-poster.jpg`,
+    preview: `${filmsBase}/wolhwawon-2026-preview.webm`,
     posterRatio: "16 / 9",
     alt: "월화원 창가에서 바깥을 바라보는 인물",
   },
@@ -134,6 +137,7 @@ export const films: Film[] = [
     format: "landscape",
     src: `${filmsBase}/paradox-of-choice-2024.mp4`,
     poster: `${filmsBase}/paradox-of-choice-2024-poster.jpg`,
+    preview: `${filmsBase}/paradox-of-choice-2024-preview.webm`,
     posterRatio: "4096 / 2160",
     alt: "밤에 불 켜진 성곽을 바라보는 사람",
   },

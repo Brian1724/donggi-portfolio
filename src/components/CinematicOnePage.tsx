@@ -41,7 +41,6 @@ export function CinematicOnePage() {
         heroVideo.play().catch(() => undefined);
       } else {
         heroVideo.pause();
-        heroVideo.removeAttribute("autoplay");
       }
     }
 

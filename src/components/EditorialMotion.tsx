@@ -12,7 +12,6 @@ export function EditorialMotion() {
     const contentSeen = new WeakSet<Element>();
     const contentNodes = new Set<HTMLElement>();
     const root = document.documentElement;
-    let initialFrame = 0;
 
     const imageObserver = new IntersectionObserver((entries) => {
       entries.forEach(({ target, isIntersecting }) => {
@@ -57,11 +56,11 @@ export function EditorialMotion() {
           contentObserver.observe(node);
         }
       });
-      if (initiallyVisible.length) initialFrame = requestAnimationFrame(() => revealContent(initiallyVisible));
+      if (initiallyVisible.length) revealContent(initiallyVisible);
     };
 
-    root.classList.add("scroll-reveal-ready");
     discover();
+    root.classList.add("scroll-reveal-ready");
     const mutations = new MutationObserver(discover);
     const main = document.getElementById("main-content");
     if (main) mutations.observe(main, { childList: true, subtree: true });
@@ -72,7 +71,6 @@ export function EditorialMotion() {
     };
     preference.addEventListener("change", clearMotion);
     return () => {
-      cancelAnimationFrame(initialFrame);
       imageObserver.disconnect();
       contentObserver.disconnect();
       mutations.disconnect();

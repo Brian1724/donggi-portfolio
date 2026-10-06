@@ -31,11 +31,10 @@ export function CinematicHero({
       <video
         ref={videoRef}
         className={styles.heroVideo}
-        autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
         aria-label="대련의 도시 풍경과 여행 장면"
       >
         <source

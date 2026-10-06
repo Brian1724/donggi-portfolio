@@ -49,6 +49,7 @@ export function GearSection() {
           supportsWebGl();
         if (!allowed || !stage) {
           setShouldMountScene(false);
+          setSceneReady(false);
           return;
         }
 
@@ -90,6 +91,7 @@ export function GearSection() {
     setSceneReady(false);
   }, []);
   const showScene = shouldMountScene && !sceneFailed;
+  const showPoster = !showScene || !sceneReady;
 
   return (
     <section
@@ -111,10 +113,10 @@ export function GearSection() {
       >
         <Image
           src="/media/Sony_A7C_II_preview.webp"
-          alt={sceneReady ? "" : "Sony A7C II의 정면 사선 구도. 검은 몸체와 렌즈 마운트, 상단 다이얼"}
+          alt={showPoster ? "Sony A7C II의 정면 사선 구도. 검은 몸체와 렌즈 마운트, 상단 다이얼" : ""}
           fill
           sizes="(max-width: 800px) 94vw, 1120px"
-          className={`${styles.poster} ${sceneReady ? styles.posterHidden : ""}`}
+          className={`${styles.poster} ${showPoster ? "" : styles.posterHidden}`}
         />
         {showScene && (
           <CameraStudy onReady={handleReady} onFallback={handleFallback} />

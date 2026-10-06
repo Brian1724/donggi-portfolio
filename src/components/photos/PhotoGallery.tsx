@@ -70,7 +70,7 @@ export function PhotoGallery({ groups }: { groups: PhotoGroup[] }) {
   return (
     <>
       {groups.map((group, groupIndex) => (
-        <section key={group.title} className={styles.sequence} aria-labelledby={`photo-sequence-${groupIndex}`}>
+        <section key={group.title} className={styles.sequence} data-layout={group.items.every((item) => ratioPart(item.ratio, 0) < ratioPart(item.ratio, 1)) ? "portrait" : "mixed"} aria-labelledby={`photo-sequence-${groupIndex}`}>
           <div className={styles.sequenceHeading}>
             <div>
               <p>{String(groupIndex + 1).padStart(2, "0")} / PHOTO SEQUENCE</p>
@@ -86,7 +86,7 @@ export function PhotoGallery({ groups }: { groups: PhotoGroup[] }) {
                 <figure key={still.id} className={styles.item}>
                   <button type="button" className={styles.openButton} onClick={() => open(index)} aria-label={`${index + 1}번 사진, ${still.alt} 크게 보기`}>
                     <span className={styles.frame} style={{ aspectRatio: still.ratio }}>
-                      <Image src={still.src} alt={still.alt} fill sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+                      <Image src={still.src} alt={still.alt} fill priority={groupIndex === 0 && index === 0} sizes="(max-width: 620px) 92vw, (max-width: 900px) 60vw, 66vw" />
                     </span>
                   </button>
                   <figcaption>
@@ -110,6 +110,13 @@ export function PhotoGallery({ groups }: { groups: PhotoGroup[] }) {
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
           if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
+          if (event.key === "Tab") {
+            const controls = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>("button:not([disabled])"));
+            const first = controls[0];
+            const last = controls[controls.length - 1];
+            if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+            else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+          }
         }}
       >
         {selected ? (

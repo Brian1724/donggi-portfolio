@@ -86,27 +86,11 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         </div>
       </section>
 
-      {work.slug === "dalian-2026" && work.video ? (
-        <section className="portfolio-section project-premiere" aria-label={`${work.title} 완성 영상`}>
-          <div className="portfolio-container">
-            <div className="project-video" id="film-dalian-2026">
-              <video controls playsInline preload="none" poster={work.video.poster}>
-                <source src={work.video.src} type="video/mp4" />
-              </video>
-            </div>
-            <div className="project-media-caption">
-              <p>Complete film / {work.video.duration}</p>
-              <h2>{work.title}</h2>
-            </div>
-          </div>
-        </section>
-      ) : null}
-
       <section className="portfolio-section project-story-section">
         <div className="portfolio-container project-narrative">
           <Reveal>
             <article>
-              <p className="portfolio-kicker">Context</p>
+              <p className="portfolio-kicker">{work.slug === "dalian-2026" ? "01 / Context" : "Context"}</p>
               <h2>왜 이 작업을 시작했는가.</h2>
               <p>{work.purpose}</p>
             </article>
@@ -125,20 +109,36 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
           ) : null}
           <Reveal delay={0.05}>
             <article>
-              <p className="portfolio-kicker">Concept</p>
+              <p className="portfolio-kicker">{work.slug === "dalian-2026" ? "02 / Concept" : "Concept"}</p>
               <h2>무엇을 중심에 두었는가.</h2>
               <p>{work.concept}</p>
             </article>
           </Reveal>
           <Reveal delay={0.1}>
             <article>
-              <p className="portfolio-kicker">Process</p>
+              <p className="portfolio-kicker">{work.slug === "dalian-2026" ? "03 / Visual approach" : "Process"}</p>
               <h2>장면을 어떻게 이어갔는가.</h2>
               <p>{work.process}</p>
             </article>
           </Reveal>
         </div>
       </section>
+
+      {work.slug === "dalian-2026" && work.video ? (
+        <section className="portfolio-section project-premiere" aria-label={`${work.title} 완성 영상`}>
+          <div className="portfolio-container">
+            <div className="project-video" id="film-dalian-2026">
+              <video controls playsInline preload="none" poster={work.video.poster}>
+                <source src={work.video.src} type="video/mp4" />
+              </video>
+            </div>
+            <div className="project-media-caption">
+              <p>04 / Final film · {work.video.duration}</p>
+              <h2>{work.title}</h2>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {media.length && work.slug !== "dalian-2026" ? (
         <section className="portfolio-section project-media-archive">

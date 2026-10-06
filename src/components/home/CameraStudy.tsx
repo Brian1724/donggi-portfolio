@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { featuredFilm } from "@/data/films";
+import imageVariants from "@/data/image-variants.generated.json";
 import styles from "./CameraStudy.module.css";
 
 type CameraStudyProps = {
@@ -70,6 +72,8 @@ export function CameraStudy({ onFallback, onReady }: CameraStudyProps) {
         let motionDirty = true;
         let samplePending = true;
         let hasRendered = false;
+        let screenTexture: import("three").Texture | undefined;
+        const replacedMaterials = new Set<import("three").Material>();
         let removeListeners = () => {};
 
         const disposeObject = (object: import("three").Object3D) => {
@@ -93,6 +97,8 @@ export function CameraStudy({ onFallback, onReady }: CameraStudyProps) {
           cancelAnimationFrame(frame);
           removeListeners();
           disposeObject(scene);
+          replacedMaterials.forEach((material) => material.dispose());
+          screenTexture?.dispose();
           environment.dispose();
           renderer.dispose();
         };
@@ -146,6 +152,58 @@ export function CameraStudy({ onFallback, onReady }: CameraStudyProps) {
         const object = new THREE.Group();
         object.add(gltf.scene);
         scene.add(object);
+
+        // GLTFLoader sanitizes object names but preserves the authored name in userData.
+        const findPanel = (name: string) => {
+          let panel: import("three").Object3D | undefined;
+          gltf.scene.traverse((child) => {
+            if (child.userData.name === name || child.name === name) panel = child;
+          });
+          return panel;
+        };
+        const lcdScreen = findPanel("LCD | active screen");
+        const lcdGlass = findPanel("LCD | glass face");
+        const lcdSurround = findPanel("LCD | recessed surround");
+        // Keep the LCD and its recessed backing dark under the animated studio lights.
+        for (const panel of [lcdScreen, lcdGlass, lcdSurround]) {
+          if (!(panel instanceof THREE.Mesh)) continue;
+          const materials = Array.isArray(panel.material) ? panel.material : [panel.material];
+          const darkMaterials = materials.map((material) => {
+            const copy = material.clone();
+            if (copy instanceof THREE.MeshStandardMaterial) {
+              copy.color.set("#080b0e");
+              copy.metalness = 0;
+              copy.roughness = panel === lcdGlass ? 0.55 : 0.9;
+              copy.envMapIntensity = 0.12;
+            }
+            return copy;
+          });
+          panel.material = Array.isArray(panel.material) ? darkMaterials : darkMaterials[0];
+          materials.forEach((material) => replacedMaterials.add(material));
+        }
+
+        if (lcdScreen instanceof THREE.Mesh) {
+          const entry = (imageVariants as Record<string, { variants: { src: string; width: number }[] }>)[featuredFilm.poster];
+          const preview = entry?.variants.find((variant) => variant.width === 480)?.src ?? featuredFilm.poster;
+          screenTexture = await new THREE.TextureLoader().loadAsync(preview);
+          if (cancelled) { screenTexture.dispose(); return; }
+          screenTexture.colorSpace = THREE.SRGBColorSpace;
+          lcdScreen.geometry.computeBoundingBox();
+          const screenBounds = lcdScreen.geometry.boundingBox!;
+          const screenSize = screenBounds.getSize(new THREE.Vector3());
+          const screenImage = screenTexture.image as HTMLImageElement;
+          const displayWidth = screenSize.x * 0.98;
+          const displayHeight = displayWidth * screenImage.height / screenImage.width;
+          const display = new THREE.Mesh(
+            new THREE.PlaneGeometry(displayWidth, Math.min(displayHeight, screenSize.y * 0.98)),
+            new THREE.MeshBasicMaterial({ map: screenTexture, color: "#c4cbd1", toneMapped: false }),
+          );
+          display.name = "LCD | film preview";
+          display.position.copy(screenBounds.getCenter(new THREE.Vector3()));
+          display.position.z = screenBounds.min.z - 0.00002;
+          display.rotation.y = Math.PI;
+          lcdScreen.add(display);
+        }
         object.updateMatrixWorld(true);
 
         poseLcd(0);

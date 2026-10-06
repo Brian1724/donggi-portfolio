@@ -13,6 +13,10 @@ const swing = gltf.nodes.find(node => node.extras?.lcdRole === "swing");
 const swivelIndex = gltf.nodes.findIndex(node => node.extras?.lcdRole === "swivel");
 assert.ok(swing?.children.includes(swivelIndex), "Keep nested LCD hinges");
 assert.equal(gltf.nodes[swivelIndex].children.length, 3, "Keep LCD frame and screen parts");
+for (const name of ["LCD | active screen", "LCD | glass face", "LCD | recessed surround"]) {
+  const panel = gltf.nodes.find(node => node.name === name);
+  assert.ok(Number.isInteger(panel?.mesh), `Keep authored LCD mesh: ${name}`);
+}
 assert.equal(gltf.materials.filter(material => material.normalTexture).length, 4, "Four baked rubber normals");
 assert.equal(gltf.images.length, 4);
 assert.ok(gltf.images.every(image => Number.isInteger(image.bufferView)), "Embed textures in GLB");
