@@ -51,6 +51,8 @@ export function EditorialMotion() {
         contentSeen.add(node);
         contentNodes.add(node);
         if (preference.matches || node.getBoundingClientRect().top < innerHeight * 0.94) {
+          // Keep above-the-fold copy readable while still playing its entrance.
+          node.dataset.revealInitial = "true";
           initiallyVisible.push(node);
         } else {
           contentObserver.observe(node);
@@ -78,6 +80,7 @@ export function EditorialMotion() {
       root.classList.remove("scroll-reveal-ready");
       contentNodes.forEach((node) => {
         delete node.dataset.revealed;
+        delete node.dataset.revealInitial;
         node.style.removeProperty("--reveal-delay");
       });
     };
