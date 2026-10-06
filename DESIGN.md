@@ -73,6 +73,7 @@
 
 - 영문 디스플레이: Manrope 800/900
 - 본문과 UI: Inter 400/600
+- Inter/Manrope는 `src/app/fonts/`의 WOFF2를 `next/font/local`로 로드한다. 빌드 중 Google Fonts에 요청하지 않는다.
 - 한국어: Pretendard 우선, `Apple SD Gothic Neo`, system sans-serif 폴백
 - 새로운 장식 폰트는 추가하지 않는다.
 

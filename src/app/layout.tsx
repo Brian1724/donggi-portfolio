@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import { SiteChrome } from "@/components/SiteChrome";
 import {
   DEFAULT_DESCRIPTION,
@@ -12,17 +12,20 @@ import {
 import { absoluteUrl, metadataBase } from "@/lib/site-url";
 import "./globals.css";
 
-const inter = Inter({
+const inter = localFont({
+  src: [
+    { path: "./fonts/inter/files/inter-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/inter/files/inter-latin-600-normal.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "600"],
   display: "swap",
 });
 
-const manrope = Manrope({
+const manrope = localFont({
+  src: "./fonts/manrope/files/manrope-latin-800-normal.woff2",
   variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["800"],
+  weight: "800",
+  style: "normal",
   display: "swap",
 });
 
