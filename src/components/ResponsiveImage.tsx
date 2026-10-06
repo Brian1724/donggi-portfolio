@@ -30,9 +30,9 @@ export function ResponsiveImage({ src, alt, width, height, fill = false, priorit
     // eslint-disable-next-line @next/next/no-img-element
     <img
       {...props}
-      src={src}
+      src={entry?.variants[0]?.src ?? src}
       srcSet={srcSet}
-      sizes={srcSet ? sizes : undefined}
+      sizes={srcSet ? sizes ?? "100vw" : undefined}
       alt={alt}
       width={fill ? undefined : width ?? entry?.width}
       height={fill ? undefined : height ?? entry?.height}

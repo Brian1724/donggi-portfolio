@@ -188,6 +188,9 @@ export function CameraStudy({ onFallback, onReady }: CameraStudyProps) {
           screenTexture = await new THREE.TextureLoader().loadAsync(preview);
           if (cancelled) { screenTexture.dispose(); return; }
           screenTexture.colorSpace = THREE.SRGBColorSpace;
+          // The opened LCD swivels its local image axes by half a turn.
+          screenTexture.center.set(0.5, 0.5);
+          screenTexture.rotation = Math.PI;
           lcdScreen.geometry.computeBoundingBox();
           const screenBounds = lcdScreen.geometry.boundingBox!;
           const screenSize = screenBounds.getSize(new THREE.Vector3());

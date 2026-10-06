@@ -27,7 +27,7 @@ export function CinematicOnePage() {
   useEffect(() => {
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const reduceMotion = motionPreference.matches;
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const connection = (navigator as Navigator & { connection?: EventTarget & { saveData?: boolean } }).connection;
     const shouldAutoplay = !reduceMotion && !connection?.saveData;
     shouldAutoplayRef.current = shouldAutoplay;
 
@@ -37,11 +37,7 @@ export function CinematicOnePage() {
       heroVideo.defaultMuted = true;
       heroVideo.muted = true;
 
-      if (shouldAutoplay) {
-        heroVideo.play().catch(() => undefined);
-      } else {
-        heroVideo.pause();
-      }
+      heroVideo.pause();
     }
 
     const page = pageRef.current;
@@ -52,6 +48,8 @@ export function CinematicOnePage() {
       page.querySelectorAll<HTMLElement>("[data-cinematic-parallax]"),
     );
     let frameId = 0;
+    let cancelled = false;
+    let posterReady = false;
 
     const updateParallax = () => {
       frameId = 0;
@@ -82,7 +80,7 @@ export function CinematicOnePage() {
 
     const syncPlayback = () => {
       shouldAutoplayRef.current = !motionPreference.matches && !connection?.saveData;
-      if (shouldAutoplayRef.current && heroInViewRef.current && !document.hidden && !dialogRef.current?.open) heroVideo?.play().catch(() => undefined);
+      if (posterReady && shouldAutoplayRef.current && heroInViewRef.current && !document.hidden && !dialogRef.current?.open) heroVideo?.play().catch(() => undefined);
       else heroVideo?.pause();
       requestParallax();
     };
@@ -91,19 +89,29 @@ export function CinematicOnePage() {
       syncPlayback();
     }) : null;
     if (hero) visibility?.observe(hero);
+    // Let the first visible image finish before the video competes for bandwidth.
+    const poster = hero?.querySelector("img");
+    void (poster?.decode() ?? Promise.resolve()).catch(() => undefined).then(() => {
+      if (cancelled) return;
+      posterReady = true;
+      syncPlayback();
+    });
     updateParallax();
     window.addEventListener("scroll", requestParallax, { passive: true });
     window.addEventListener("resize", requestParallax);
     document.addEventListener("visibilitychange", syncPlayback);
     motionPreference.addEventListener("change", syncPlayback);
+    connection?.addEventListener("change", syncPlayback);
 
     return () => {
+      cancelled = true;
       cancelAnimationFrame(frameId);
       window.removeEventListener("scroll", requestParallax);
       window.removeEventListener("resize", requestParallax);
       visibility?.disconnect();
       document.removeEventListener("visibilitychange", syncPlayback);
       motionPreference.removeEventListener("change", syncPlayback);
+      connection?.removeEventListener("change", syncPlayback);
       heroVideo?.pause();
       if (dialog?.open) document.body.style.overflow = previousOverflowRef.current;
     };

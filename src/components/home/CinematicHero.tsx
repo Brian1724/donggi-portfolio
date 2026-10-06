@@ -35,14 +35,15 @@ export function CinematicHero({
         loop
         playsInline
         preload="none"
+        poster="/generated/images/media/dalian/frame-opening-w960.webp"
         aria-label="대련의 도시 풍경과 여행 장면"
       >
         <source
           media="(max-width: 720px)"
-          src="/media/dalian/donggi-full-mobile.mp4"
+          src="/media/dalian/donggi-hero-mobile-v1.mp4"
           type="video/mp4"
         />
-        <source src="/media/dalian/donggi-full.mp4" type="video/mp4" />
+        <source src="/media/dalian/donggi-hero-desktop-v1.mp4" type="video/mp4" />
       </video>
       <div className={styles.heroShade} aria-hidden="true" />
       <div className={styles.grain} aria-hidden="true" />
